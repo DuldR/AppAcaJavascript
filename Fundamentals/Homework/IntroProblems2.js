@@ -35,4 +35,10 @@ Elephant.prototype.addTrick = function(trick) {
     this.tricks.push(trick)
 }
 
+Elephant.prototype.play = function() {
+    let rand = Math.floor(Math.random() * (this.tricks.length));
+
+    console.log(`${this.name} is ${this.tricks[rand]}`);
+}
+
 var q = new Elephant("avon", 12, ["Dancing", "Smokin", "Spittin"])
