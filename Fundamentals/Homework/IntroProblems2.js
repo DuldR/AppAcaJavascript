@@ -56,6 +56,15 @@ Elephant.paradeHelper = function(ele) {
 
 // herd.forEach(element => Elephant.paradeHelper(element))
 
-function dinerBreakfast(food) {
-    
+// This doesnt make sens.e
+function dinerBreakfast() {
+    let order = "Eggs";
+
+    console.log(order);
+
+    return function(food) {
+        order = order + food;
+        console.log(order);
+    }
+
 }
