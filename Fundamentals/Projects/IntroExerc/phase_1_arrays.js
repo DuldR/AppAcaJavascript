@@ -1,4 +1,4 @@
-Array.uniq = function(arr) {
+Array.prototype.uniq = function(arr) {
 
     let newArr = [];
 
@@ -16,7 +16,7 @@ Array.uniq = function(arr) {
 
 }
 
-Array.twoSum = function(arr) {
+Array.prototype.twoSum = function(arr) {
 
     let newArr = [];
     let posArr = [];
@@ -36,7 +36,7 @@ Array.twoSum = function(arr) {
     return newArr;
 }
 
-Array.transpose = function(arr) {
+Array.prototype.transpose = function(arr) {
 
     let transArr = [];
 
