@@ -4,3 +4,12 @@ Array.prototype.myEach = function(cb) {
         cb(this[i]);
     }
 }
+
+Array.prototype.myMap = function(cb) {
+
+    const newArr = []
+
+    this.myEach(element => newArr.push(cb(element)))
+
+    return newArr
+}
