@@ -20,6 +20,8 @@ function Elephant(name, height, tricks) {
     // elephant.prototype.trumpet = function() {
     //     console.log(`${this.name} the elephant goes hog mild`);
     // }
+
+}
     
 }
 
@@ -41,4 +43,19 @@ Elephant.prototype.play = function() {
     console.log(`${this.name} is ${this.tricks[rand]}`);
 }
 
-var q = new Elephant("avon", 12, ["Dancing", "Smokin", "Spittin"])
+Elephant.paradeHelper = function(ele) {
+    console.log(`${ele.name} is trottin' by!`);
+}
+
+// var ellie = new Elephant("Ellie", 185, ["giving human friends a ride", "playing hide and seek"]);
+// var charlie = new Elephant("Charlie", 200, ["painting pictures", "spraying water for a slip and slide"]);
+// var kate = new Elephant("Kate", 234, ["writing letters", "stealing peanuts"]);
+// var micah = new Elephant("Micah", 143, ["trotting", "playing tic tac toe", "doing elephant ballet"]);
+
+// var herd = [ellie, charlie, kate, micah];
+
+// herd.forEach(element => Elephant.paradeHelper(element))
+
+function dinerBreakfast(food) {
+    
+}
