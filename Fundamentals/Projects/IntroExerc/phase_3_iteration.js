@@ -26,9 +26,9 @@ String.prototype.substrings = function() {
 
     for (i = 0; i < this.length; i++) {
 
-        for (j = 1; j < this.length; j++) {
+        for (j = 1; j <= this.length; j++) {
 
-            if (i === j) {
+            if (i === j || i > j) {
                 continue;
             } else {
                 subs.push(this.slice(i, j));
