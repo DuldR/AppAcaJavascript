@@ -7,9 +7,18 @@ Array.prototype.myEach = function(cb) {
 
 Array.prototype.myMap = function(cb) {
 
-    const newArr = []
+    const newArr = [];
 
-    this.myEach(element => newArr.push(cb(element)))
+    this.myEach(element => newArr.push(cb(element)));
 
     return newArr
+}
+
+Array.prototype.myReduce = function(cb) {
+
+    var val = 0;
+
+    this.myEach(element => (val = cb(val, element)));
+
+    return val;
 }
