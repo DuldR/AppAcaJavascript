@@ -14,11 +14,11 @@ Array.prototype.myMap = function(cb) {
     return newArr
 }
 
-Array.prototype.myReduce = function(cb) {
+Array.prototype.myReduce = function(cb, i) {
 
-    var val = 0;
+    var i = (i === undefined) ? 0 : i;
 
-    this.myEach(element => (val = cb(val, element)));
+    this.myEach(element => (i = cb(i, element)));
 
-    return val;
+    return i;
 }
