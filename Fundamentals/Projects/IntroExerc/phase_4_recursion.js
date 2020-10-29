@@ -73,6 +73,48 @@ function fib(n) {
     return arr;
 }
 
-function bsearch(arr, target) {
-    
-}
+
+// This works, but isn't a binary search.
+// function bsearch(arr, target) {
+//     if (arr.length === 0) {
+//         return -1;
+//     } else if(arr[arr.length - 1] === target) {
+//         return (arr.length - 1);
+//     } else {
+//         arr.pop();
+//         return bsearch(arr, target);
+//     }
+// }
+
+// function bsearch(arr, target) {
+//     let mid = Math.floor(arr.length / 2);
+
+//     if (arr[mid] === target) {
+//         return mid;
+//     } else if (arr[mid] > target) {
+//         return mid + bsearch(a.slice(0, mid), target);
+//     } else if (arr[mid] < target) {
+//         return mid + bsearch(a.slice(mid + 1), target);
+//     } else {
+//         return -1;
+//     }
+// }
+
+function bsearch(numbers, target) {
+    if (numbers.length === 0) {
+      return -1;
+    }
+  
+    const probeIdx = Math.floor(numbers.length / 2);
+    const probe = numbers[probeIdx];
+  
+    if (target === probe) {
+      return probeIdx;
+    } else if (target < probe) {
+      return bsearch(numbers.slice(0, probeIdx), target);
+    } else {
+      const subProblem = bsearch(numbers.slice(probeIdx + 1), target);
+  
+      return subProblem === -1 ? -1 : subProblem + (probeIdx + 1);
+    }
+  }
