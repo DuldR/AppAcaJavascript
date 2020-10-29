@@ -100,25 +100,36 @@ function bsearch(arr, target) {
         return bsearch(a.slice(0, mid), target);
     } else {
         check = bsearch(a.slice(mid + 1), target);
-        return 
+        return check === -1 ? -1 : check + (mid + 1);
     }
 }
 
-// function bsearch(numbers, target) {
-//     if (numbers.length === 0) {
-//       return -1;
-//     }
+// merge, mergeSort
+function merge(left, right) {
+    const merged = [];
   
-//     const probeIdx = Math.floor(numbers.length / 2);
-//     const probe = numbers[probeIdx];
+    while (left.length > 0 && right.length > 0) {
+      let nextItem = (left[0] < right[0]) ? left.shift() : right.shift();
+      merged.push(nextItem);
+    }
   
-//     if (target === probe) {
-//       return probeIdx;
-//     } else if (target < probe) {
-//       return bsearch(numbers.slice(0, probeIdx), target);
-//     } else {
-//       const subProblem = bsearch(numbers.slice(probeIdx + 1), target);
+    return merged.concat(left, right);
+  }
+}
   
-//       return subProblem === -1 ? -1 : subProblem + (probeIdx + 1);
-//     }
-//   }
+function mergeSort(array) {
+    if (array.length < 2) {
+      return array;
+    } else {
+      const middle = Math.floor(array.length / 2);
+  
+      const left = mergeSort(array.slice(0, middle));
+      const right = mergeSort(array.slice(middle));
+  
+      return merge(left, right);
+    }
+}
+
+function subset(arr) {
+    
+}
