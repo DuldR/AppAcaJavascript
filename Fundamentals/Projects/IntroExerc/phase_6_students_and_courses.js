@@ -18,6 +18,19 @@ Student.prototype.enroll = function(course) {
     }
 }
 
+Student.prototype.hasConflict = function(course) {
+
+    check = false;
+    this.courses.forEach(function(el) {
+            if (el.conflictsWith(course)) {
+                check = true;
+            }
+        }
+    )
+
+    return check;
+}
+
 Student.prototype.courseLoad = function() {
 
     load = {};
@@ -26,7 +39,7 @@ Student.prototype.courseLoad = function() {
                 load[el.dept] = 0;
             }
 
-            y[el.dept] += el.credit;
+            load[el.dept] += el.credit;
         }
     )
 
@@ -34,10 +47,12 @@ Student.prototype.courseLoad = function() {
 }
 
 class Course {
-    constructor(name, dept, credit) {
+    constructor(name, dept, credit, days, block) {
         this.name = name;
         this.dept = dept;
         this.credit = credit;
+        this.day = days
+        this.block = block
         this.students = [];
     }
 }
@@ -49,14 +64,23 @@ Course.prototype.addStudent = function(st) {
 
 }
 
+Course.prototype.conflictsWith = function(course) {
+    if (JSON.stringify(course.day) === JSON.stringify(this.day) && JSON.stringify(course.block) === JSON.stringify(this.block)) {
+        return true;
+    }
+
+    return false;
+}
 
 var stud = new Student("Garrett", "Julaka")
-let cal = new Course("Calc1", "Math", 1)
+let cal = new Course("Calc1", "Math", 1, ['wed', 'fri'], 1)
+let cool = new Course("Cool", "No", 1, ['wed', 'fri'], 1)
+let coo1l = new Course("Cool", "No", 1, ['wed', 'fri'], 2)
 let cal2 = new Course("Calc2", "Math", 2)
 let eng = new Course("Eng1", "Lit", 1)
 let his = new Course("History1", "History", 1)
 
-cal.enrollStudent(s)
-cal2.enrollStudent(s)
-eng.enrollStudent(s)
-his.enrollStudent(s)
+cal.addStudent(stud)
+cal2.addStudent(stud)
+eng.addStudent(stud)
+his.addStudent(stud)
