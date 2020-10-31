@@ -5,6 +5,9 @@
     margin-top: -110px;
     position: relative;
     display: block;
+    border: 1px black solid;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .profile-info {
@@ -38,8 +41,17 @@
 }
 
 .online {
+    display: block;
+    font-weight: 700;
     position: absolute;
-    top: -10px;
+    top: 5px;
+    left: -30px;
+    padding: 5px 30px;
+    transform: rotate(315deg);
+    letter-spacing: 1px;
+    background-color: green;
+    color: white;
+    box-shadow: 10px 5px 5px black;
 }
 
 
