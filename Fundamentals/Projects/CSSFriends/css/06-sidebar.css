@@ -13,6 +13,39 @@
 .profile-info {
 }
 
+.profile-friends {
+    list-style: none;
+}
+
+.profile-friends > li {
+    float: left;
+    width: 60px;
+    margin: 0 0 10px 0;
+}
+
+.profile-friends > li:nth-child(3n-1) {
+    margin: 0 10px 0 10px;
+}
+
+.thumb {
+    display: block;
+    width: 58px;
+    height: 58px;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+.thumb::before {
+    content: "";
+    top: -7px;
+    position: absolute;
+    border-bottom: 0px;
+    border-top: 5px solid black;
+
+}
+
 .profile-info > p {
     margin: 20px 0;
 }
