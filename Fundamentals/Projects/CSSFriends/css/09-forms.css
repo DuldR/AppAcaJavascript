@@ -5,12 +5,11 @@
     display: flex;
     width: 100%;
     height: auto;
-    justify-content: space-between;
 }
 
 .form-fields {
     display: flex;
-    width: 87%;
+    width: 540px;
     margin: 0 0 0 10px;
     background-color: #eee;
     justify-content: space-between;
@@ -24,6 +23,10 @@
     margin: 15px 15px 5px 15px;
 }
 
+.form-fields > div {
+    margin: 15px 0 15px 0;
+}
+
 
 .form-button {
     margin: 10px 5px 10px 15px;
@@ -31,8 +34,8 @@
     color: white;
     font-weight: bold;
     text-align: center;
-    width: 30%;
-    height: 30px;
+    width: 150px;
+    height: 40px;
     border-radius: 5px;
     box-shadow: 0 2px #070;
 
