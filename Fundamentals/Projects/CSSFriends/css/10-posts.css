@@ -1,1 +1,29 @@
 /* PHASE 4: Posts */
+
+
+.main-post {
+    display: flex;
+    padding: 15px 0 15px 0;
+    margin: 15px 0 15px 0;
+    border-top: 1px solid black;
+    height: auto;
+    background-color: red;
+}
+
+.post-body {
+    margin-left: 15px;
+    width: 540px;
+    height: auto;
+
+}
+
+.post-body > h1 {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.post-footer {
+    display: flex;
+}
+
