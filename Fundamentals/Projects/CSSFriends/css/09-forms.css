@@ -5,15 +5,17 @@
     display: flex;
     width: 100%;
     height: auto;
-    background-color: grey;
+    justify-content: space-between;
 }
 
 .form-fields {
     display: flex;
-    margin: 0 0 0 15px;
-    background-color: chartreuse;
+    width: 87%;
+    margin: 0 0 0 10px;
+    background-color: #eee;
     justify-content: space-between;
-    flex-flow: column wrap;
+    flex-flow: column;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
@@ -22,28 +24,54 @@
     margin: 15px 15px 5px 15px;
 }
 
+
 .form-button {
-    margin: 10px 15px 10px 15px;
-    background-color: darkcyan;
+    margin: 10px 5px 10px 15px;
+    background-color: #0c0;
+    color: white;
+    font-weight: bold;
+    text-align: center;
     width: 30%;
     height: 30px;
     border-radius: 5px;
-    text-align: center;
+    box-shadow: 0 2px #070;
+
+}
+
+.form-button:hover {
+    background-color: goldenrod;
 }
 
 .button-alt {
     width: 50%;
+    font-weight: bold;
+    margin-left: 5px;
 }
 
-#form-title {
-    padding: 5px;
-    margin: 0 15px 0 15px;
-    background-color: red;
+.button-alt:hover {
+    color: red;
+}
 
+
+#form-title {
+    padding: 2.5px;
+    margin: 0 15px 0 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+}
+
+#form-title:focus {
+    border: 1px solid black;
 }
 
 #form-text {
     padding: 5px;
     margin: 0 15px 0 15px;
-    background-color: cornflowerblue;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+#form-text:focus {
+    border: 1px solid black;
 }
