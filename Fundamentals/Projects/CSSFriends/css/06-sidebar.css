@@ -10,8 +10,6 @@
     overflow: hidden;
 }
 
-.profile-info {
-}
 
 .profile-friends {
     list-style: none;
@@ -27,24 +25,6 @@
     margin: 0 10px 0 10px;
 }
 
-.thumb {
-    display: block;
-    width: 58px;
-    height: 58px;
-    position: relative;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-
-.thumb::before {
-    content: "";
-    top: -7px;
-    position: absolute;
-    border-bottom: 0px;
-    border-top: 5px solid black;
-
-}
 
 .profile-info > p {
     margin: 20px 0;
@@ -72,19 +52,4 @@
 .profile-nav > ul > li:last-child {
     border-bottom: 1px grey solid;
 }
-
-.online {
-    display: block;
-    font-weight: 700;
-    position: absolute;
-    top: 5px;
-    left: -30px;
-    padding: 5px 30px;
-    transform: rotate(315deg);
-    letter-spacing: 1px;
-    background-color: green;
-    color: white;
-    box-shadow: 10px 5px 5px black;
-}
-
 
