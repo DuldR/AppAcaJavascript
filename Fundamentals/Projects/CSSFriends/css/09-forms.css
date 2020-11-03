@@ -10,21 +10,40 @@
 
 .form-fields {
     display: flex;
-    margin: 0 10px 0 10px;
+    margin: 0 0 0 15px;
     background-color: chartreuse;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-flow: column wrap;
+    border-radius: 5px;
 }
 
 .form-fields > label {
     display: block;
-    margin: 15px;
+    margin: 15px 15px 5px 15px;
+}
+
+.form-button {
+    margin: 10px 15px 10px 15px;
+    background-color: darkcyan;
+    width: 30%;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.button-alt {
+    width: 50%;
 }
 
 #form-title {
     padding: 5px;
+    margin: 0 15px 0 15px;
     background-color: red;
+
 }
 
 #form-text {
+    padding: 5px;
+    margin: 0 15px 0 15px;
     background-color: cornflowerblue;
 }
