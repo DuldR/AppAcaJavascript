@@ -1,1 +1,30 @@
 /* PHASE 3: Forms */
+
+
+.main-form {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: grey;
+}
+
+.form-fields {
+    display: flex;
+    margin: 0 10px 0 10px;
+    background-color: chartreuse;
+    flex-direction: column;
+}
+
+.form-fields > label {
+    display: block;
+    margin: 15px;
+}
+
+#form-title {
+    padding: 5px;
+    background-color: red;
+}
+
+#form-text {
+    background-color: cornflowerblue;
+}
