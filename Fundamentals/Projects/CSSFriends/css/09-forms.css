@@ -10,7 +10,7 @@
 .form-fields {
     display: flex;
     width: 540px;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 20px;
     background-color: #eee;
     justify-content: space-between;
     flex-flow: column;

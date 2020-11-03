@@ -6,6 +6,7 @@
     padding: 15px 0 15px 0;
     margin: 15px 0 15px 0;
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
     height: auto;
     background-color: red;
 }
@@ -20,10 +21,28 @@
 .post-body > h1 {
     font-size: 25px;
     font-weight: 700;
-    margin: 0 0 15px 0;
+    margin: 0 0 20px 0;
 }
 
+.footer-group {
+    margin: 20px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
 .post-footer {
     display: flex;
+}
+
+.post-footer > li {
+    font-size: small;
+    margin-left: 10px;
+}
+
+.post-footer-links {
+    display: flex;
+}
+
+.post-footer-links > li {
+    margin-left: 10px;
 }
 
