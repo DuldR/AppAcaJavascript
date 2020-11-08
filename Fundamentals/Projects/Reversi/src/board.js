@@ -134,32 +134,24 @@ Board.prototype.validMove = function (pos, color) {
   //   console.log(this._positionsToFlip(pos, color, Board.DIRS[dir]).length > 0);
 
   // }
-
-    for (const dir in Board.DIRS) { 
+  for (const dir in Board.DIRS) { 
 
       if (this._positionsToFlip(pos, color, Board.DIRS[dir]).length > 0) {
         let len = this._positionsToFlip(pos, color, Board.DIRS[dir]).length;
         let end = this._positionsToFlip(pos, color, Board.DIRS[dir])[len - 1];
-        let newEnd = [end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[dir][1]]
+        let newEnd = [end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[dir][1]];
 
-        console.log(end);
-        console.log([end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[dir][1]]);
-        console.log(this.isMine(newEnd));
-        
-        // return this.isMine([end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[1]]);
+        // console.log(end);
+        // console.log([end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[dir][1]]);
+        // console.log(this.isMine(newEnd, color));
+
+        if (this.isMine(newEnd, color) === true) {
+          return true;
+        }
       }
 
   }
-
-
-  // if (this.isOccupied(pos) === true ||
-  // for (const dir in Board.DIRS) {
-  //   if (this._positionsToFlip(pos, color, Board.DIRS[dir]).length > 0) {
-  //     return true;
-  //   }
-  // }
-
-  // return false;
+  return false;
 };
 
 /**
