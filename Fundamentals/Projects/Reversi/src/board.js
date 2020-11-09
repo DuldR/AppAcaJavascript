@@ -45,9 +45,9 @@ Board.DIRS = [
  * Checks if a given position is on the Board.
  */
 Board.prototype.isValidPos = function (pos) {
-  if (pos[0] < 0 || pos[0] > 8) {
+  if (pos[0] < 0 || pos[0] > 7) {
     return false;
-  } else if (pos[1] < 0 || pos[1] > 8) {
+  } else if (pos[1] < 0 || pos[1] > 7) {
     return false;
   } else {
     return true;
@@ -186,6 +186,17 @@ Board.prototype.placePiece = function (pos, color) {
  * the Board for a given color.
  */
 Board.prototype.validMoves = function (color) {
+
+  var validMove = [];
+
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      console.log(i)
+      console.log(j)
+      console.log(this.validMove([i,j], color))
+    }
+  }
+
 };
 
 /**
