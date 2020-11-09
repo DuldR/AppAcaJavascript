@@ -135,7 +135,7 @@ Board.prototype.validMove = function (pos, color) {
 
   // }
   for (const dir in Board.DIRS) { 
-
+      console.log(Board.DIRS[dir])
       if (this._positionsToFlip(pos, color, Board.DIRS[dir]).length > 0) {
         let len = this._positionsToFlip(pos, color, Board.DIRS[dir]).length;
         let end = this._positionsToFlip(pos, color, Board.DIRS[dir])[len - 1];
@@ -145,7 +145,7 @@ Board.prototype.validMove = function (pos, color) {
         // console.log([end[0] + Board.DIRS[dir][0], end[1] + Board.DIRS[dir][1]]);
         // console.log(this.isMine(newEnd, color));
 
-        if (this.isMine(newEnd, color) === true) {
+        if (this.isValidPos(newEnd) === true && this.isMine(newEnd, color) === true) {
           return true;
         }
       }
@@ -187,15 +187,21 @@ Board.prototype.placePiece = function (pos, color) {
  */
 Board.prototype.validMoves = function (color) {
 
-  var validMove = [];
+  var posMoves = [];
 
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
-      console.log(i)
-      console.log(j)
-      console.log(this.validMove([i,j], color))
+
+      // console.log(i);
+      // console.log(j);
+      if (this.validMove([i,j], color) === true) {
+        // console.log([i,j]);
+        posMoves.push([i,j]);
+      }
     }
   }
+
+  return posMoves;
 
 };
 
@@ -229,3 +235,13 @@ if (typeof window === 'undefined'){
   module.exports = Board;
 }
 // DON'T TOUCH THIS CODE
+
+// TEST SHIT
+
+const fillBoard = function (board) {
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        board.grid[i][j] = new Piece("white");
+      }
+    }
+}
