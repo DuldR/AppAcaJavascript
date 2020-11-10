@@ -209,6 +209,11 @@ Board.prototype.validMoves = function (color) {
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (color) {
+  if (this.validMoves(color).length > 0) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 
@@ -218,6 +223,11 @@ Board.prototype.hasMove = function (color) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  if (this.hasMove("white") === false && this.hasMove("black") === false) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 
@@ -235,13 +245,3 @@ if (typeof window === 'undefined'){
   module.exports = Board;
 }
 // DON'T TOUCH THIS CODE
-
-// TEST SHIT
-
-const fillBoard = function (board) {
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
-        board.grid[i][j] = new Piece("white");
-      }
-    }
-}
