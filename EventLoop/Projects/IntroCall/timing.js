@@ -11,8 +11,8 @@ class Clock {
     this.minute = date.getMinutes();
 
 
-    this.printTime;
-    // setInterval(this._tick(), 1000);
+    this.printTime();
+    setInterval(this._tick.bind(this), 1000);
   }
 
   printTime() {
@@ -22,29 +22,33 @@ class Clock {
     console.log(`The time is ${this.hour}:${this.minute}:${this.second}.`);
   }
 
-//   _tick() {
-//     // 1. Increment the time by one second.
-//     // 2. Call printTime.
+  _tick() {
+    // 1. Increment the time by one second.
+    // 2. Call printTime.
 
-//     second = second + 1;
+    this.second = this.second + 1;
 
-//     if (second === 60) {
-//         minute = minute + 1;
-//         second = 0;
+    if (this.second === 60) {
+        this.minute = this.minute + 1;
+        this.second = 0;
         
-//         if (minute === 60) {
-//             hour = hour + 1;
-//             minute = 0;
+        if (this.minute === 60) {
+            this.hour = this.hour + 1;
+            this.minute = 0;
 
-//             if (hour === 24) {
-//                 hour = 0;
-//             }
-//         }
-//     }
+            if (this.hour === 24) {
+                this.hour = 0;
+            }
+        }
+    }
 
-//     this.printTime();
+    // console.log(this.second)
+    // console.log(this.minute)
+    // console.log(this.hour)
 
-//   }
+    this.printTime();
+
+  }
 }
 
 const clock = new Clock();
