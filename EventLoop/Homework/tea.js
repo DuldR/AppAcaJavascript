@@ -59,8 +59,8 @@ const reader = readline.createInterface({
 
 let first, second;
 
-reader.question("Would you like some tea?", function(answer) {
-    reader.question("Woudl you like some biscuits?", function(ans2) {
+reader.question("Would you like some tea? ", function(answer) {
+    reader.question("Woudl you like some biscuits? ", function(ans2) {
         first = answer
         second = ans2
 
@@ -70,5 +70,3 @@ reader.question("Would you like some tea?", function(answer) {
         console.log(`So you ${firstRes} want tea and you ${secondRes} want biscuits.`);
     });
 });
-
-reader.close();
