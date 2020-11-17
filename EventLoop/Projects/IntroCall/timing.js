@@ -12,7 +12,7 @@ class Clock {
 
 
     this.printTime();
-    setInterval(this._tick.bind(this), 1000);
+    setInterval(this._tick(), 1000);
   }
 
   printTime() {
@@ -26,27 +26,26 @@ class Clock {
     // 1. Increment the time by one second.
     // 2. Call printTime.
 
-    this.second = this.second + 1;
+    return () => {
+      this.second = this.second + 1;
 
-    if (this.second === 60) {
-        this.minute = this.minute + 1;
-        this.second = 0;
-        
-        if (this.minute === 60) {
-            this.hour = this.hour + 1;
-            this.minute = 0;
+      if (this.second === 60) {
+          this.minute = this.minute + 1;
+          this.second = 0;
+          
+          if (this.minute === 60) {
+              this.hour = this.hour + 1;
+              this.minute = 0;
 
-            if (this.hour === 24) {
-                this.hour = 0;
-            }
-        }
+              if (this.hour === 24) {
+                  this.hour = 0;
+              }
+          }
+      }
+
+      this.printTime();
+
     }
-
-    // console.log(this.second)
-    // console.log(this.minute)
-    // console.log(this.hour)
-
-    this.printTime();
 
   }
 }
