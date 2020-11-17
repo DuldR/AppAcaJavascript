@@ -1,27 +1,26 @@
-class Clock {
-  constructor() {
+const readline = require('readline');
 
-    const date = new Date();
-    this.hour = date.getHours();
-    this.second = date.getSeconds();
-    this.minute = date.getMinutes();
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
+function addTwoNumbers(callback) {
+  // Notice how nowhere do I return anything here! You never return in
+  // async code. Since the caller will not wait for the result, you
+  // can't return anything to them.
 
-    this.printTime();
-    setInterval(this._tick(), 1000);
-  }
+  reader.question("Enter #1: ", function (numString1) {
+    reader.question("Enter #2: ", function (numString2) {
+      const num1 = parseInt(numString1);
+      const num2 = parseInt(numString2);
 
-  printTime() {
-    console.log(`The time is ${this.hour}:${this.minute}:${this.second}.`);
-  }
-
-  _tick() {
-
-    return () => {
-        this.second = this.second + 1;
-        this.printTime();
-    }
-  }
+      callback(num1 + num2);
+    });
+  });
 }
 
-const clock = new Clock();
+addTwoNumbers(function (result) {
+  console.log(`The result is: ${result}`);
+  reader.close();
+});
