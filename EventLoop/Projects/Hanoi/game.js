@@ -18,11 +18,35 @@ class Game {
     promptMove() {
         console.log(this.towers);
 
+        // let initialIdx = readline.question("Enter the first tower: ", first => {
+        //     console.log(`You picked: ${first}`);
+        // });
+
+        // let finalIdx = readline.question("Enter the last tower: ", last => {
+        //     console.log(`You picked: ${last}`);
+        // });
+
+        // const initialIdx = () => {
+        //     return new Promise((resolve, reject) => {
+        //         readline.question('First tower?', (answer) => {
+        //             console.log(`You chose ${answer}`);
+        //             resolve();
+        //         })
+        //     })
+        // }
+
+
         let initialIdx = readline.question("Enter the first tower: ", first => {
-            console.log(`You picked: ${first}`);
-            readline.close();
+            let finalIdx = readline.question("Enter the final tower: ", final => {
+                console.log(`You picked: ${first} and ${final}`);
+                this.printMove(first, final);
+            })
         });
 
+    }
+
+    printMove(f, l) {
+        console.log(f + l);
     }
 }
 
