@@ -39,14 +39,25 @@ class Game {
         let initialIdx = readline.question("Enter the first tower: ", first => {
             let finalIdx = readline.question("Enter the final tower: ", final => {
                 console.log(`You picked: ${first} and ${final}`);
-                this.printMove(first, final);
+                console.log(this.isValidMove(first, final));
             })
         });
 
     }
 
     printMove(f, l) {
-        console.log(f + l);
+        console.log(`This is the first choice: ${f}`);
+        console.log(`THis is the second choice: ${l}`);
+    }
+
+    isValidMove(start, end) {
+        if (this.towers[start].length === 0) {
+            return false;
+        } else if (start === end) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
