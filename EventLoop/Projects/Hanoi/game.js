@@ -11,7 +11,7 @@ const readline = require('readline').createInterface({
 class Game {
     constructor() {
 
-        this.towers = [[], [], [1,2,3]]
+        this.towers = [[1,2,3], [], []]
 
     };
 
@@ -22,6 +22,11 @@ class Game {
         let initialIdx = readline.question("Enter the first tower: ", first => {
             let finalIdx = readline.question("Enter the final tower: ", final => {
                 console.log(`You picked: ${first} and ${final}`);
+
+                let movePiece = this.towers[first].shift();
+                this.towers[final].push(movePiece);
+                this.print();
+
             })
         });
 
@@ -71,7 +76,7 @@ class Game {
 
         let checkVal = JSON.stringify([1,2,3]);
         let finalVal = false;
-
+        b.promptMove();
         for (let i = 1; i < this.towers.length; i++) {
             if (JSON.stringify(this.towers[i]) === checkVal) {
                 finalVal = true;
@@ -84,8 +89,8 @@ class Game {
 
 b = new Game();
 
-console.log(b.isWon());
-// b.promptMove();
+// console.log(b.isWon());
+b.promptMove();
 // b.print();
 // b.move(1, 2);
 // b.move(0, 0);
