@@ -17,16 +17,18 @@ class Game {
 
 
 
-    promptMove() {
+    promptMove(cb) {
 
         let initialIdx = readline.question("Enter the first tower: ", first => {
             let finalIdx = readline.question("Enter the final tower: ", final => {
                 console.log(`You picked: ${first} and ${final}`);
+                this.move(first, final);
 
-                let movePiece = this.towers[first].shift();
-                this.towers[final].push(movePiece);
-                this.print();
-
+                if (cb === true) {
+                    console.log('You won');
+                } else {
+                    this.run(cb);
+                }
             })
         });
 
@@ -49,9 +51,14 @@ class Game {
 
     move(startIdx, finalIdx) {
         if (this.isValidMove(startIdx, finalIdx)) {
-        console.log(true);
+
+            let movePiece = this.towers[startIdx].shift();
+
+            this.towers[finalIdx].push(movePiece);
+            this.print();
+
         } else {
-        console.log(false);
+            console.log("Not a valid move");
         }
     };
 
@@ -61,22 +68,9 @@ class Game {
 
     isWon() {
 
-        // Don't use forEach because javascript is a stupid fuckign language
-        // let checkVal = JSON.stringify([1,2,3])
-        // this.towers.forEach((ele, idx) => {
-
-        //     if (idx === 0) {
-        //         return;
-        //     } else if (JSON.stringify(ele) === checkVal) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // })
-
         let checkVal = JSON.stringify([1,2,3]);
         let finalVal = false;
-        b.promptMove();
+
         for (let i = 1; i < this.towers.length; i++) {
             if (JSON.stringify(this.towers[i]) === checkVal) {
                 finalVal = true;
@@ -85,14 +79,19 @@ class Game {
 
         return finalVal;
     }
+
+    run(cb) {
+        this.promptMove(this.isWon);
+    }
 }
 
 b = new Game();
 
 // console.log(b.isWon());
-b.promptMove();
+// b.promptMove();
 // b.print();
 // b.move(1, 2);
 // b.move(0, 0);
 // b.move(2, 1);
 // b.move(0, 1);
+b.run(false);
