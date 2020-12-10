@@ -11,14 +11,13 @@ const readline = require('readline').createInterface({
 class Game {
     constructor() {
 
-        this.towers = [[1,2,3], [], []]
+        this.towers = [[], [], [1,2,3]]
 
     };
 
 
 
     promptMove() {
-        console.log(this.towers);
 
         let initialIdx = readline.question("Enter the first tower: ", first => {
             let finalIdx = readline.question("Enter the final tower: ", final => {
@@ -50,11 +49,45 @@ class Game {
         console.log(false);
         }
     };
+
+    print() {
+        console.log(JSON.stringify(this.towers));
+    }
+
+    isWon() {
+
+        // Don't use forEach because javascript is a stupid fuckign language
+        // let checkVal = JSON.stringify([1,2,3])
+        // this.towers.forEach((ele, idx) => {
+
+        //     if (idx === 0) {
+        //         return;
+        //     } else if (JSON.stringify(ele) === checkVal) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // })
+
+        let checkVal = JSON.stringify([1,2,3]);
+        let finalVal = false;
+
+        for (let i = 1; i < this.towers.length; i++) {
+            if (JSON.stringify(this.towers[i]) === checkVal) {
+                finalVal = true;
+            }
+        }
+
+        return finalVal;
+    }
 }
 
 b = new Game();
-b.promptMove();
-b.move(1, 2);
-b.move(0, 0);
-b.move(2, 1);
-b.move(0, 1);
+
+console.log(b.isWon());
+// b.promptMove();
+// b.print();
+// b.move(1, 2);
+// b.move(0, 0);
+// b.move(2, 1);
+// b.move(0, 1);
