@@ -11,7 +11,7 @@ const readline = require('readline').createInterface({
 class Game {
     constructor() {
 
-        this.towers = [[1,2,3], [], []]
+        this.towers = [[1], [], [2,3]]
 
     };
 
@@ -24,8 +24,8 @@ class Game {
                 console.log(`You picked: ${first} and ${final}`);
                 this.move(first, final);
 
-                if (cb === true) {
-                    console.log('You won');
+                if (this.isWon() === true) {
+                    cb("You won!");
                 } else {
                     this.run(cb);
                 }
@@ -54,7 +54,7 @@ class Game {
 
             let movePiece = this.towers[startIdx].shift();
 
-            this.towers[finalIdx].push(movePiece);
+            this.towers[finalIdx].unshift(movePiece);
             this.print();
 
         } else {
@@ -81,7 +81,7 @@ class Game {
     }
 
     run(cb) {
-        this.promptMove(this.isWon);
+        this.promptMove(cb);
     }
 }
 
@@ -94,4 +94,4 @@ b = new Game();
 // b.move(0, 0);
 // b.move(2, 1);
 // b.move(0, 1);
-b.run(false);
+b.run(console.log);
