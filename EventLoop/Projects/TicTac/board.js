@@ -1,7 +1,7 @@
 class Board {
     constructor () {
 
-        this.board = [['x'],['o','o', 'x'],['x','o','o']];
+        this.board = [['x'],['x','o', 'x'],['x','o','o']];
 
     }
 
@@ -40,6 +40,10 @@ class Board {
 
     }
 
+    diagonalCheck(player) {
+
+    }
+
     won() {
 
     }
@@ -62,5 +66,6 @@ class Board {
 b = new Board();
 // console.log(b.horizontalCheck('x'));
 console.log(b.verticalCheck('x'));
+console.log(b.verticalCheck('o'));
 
 // export { Board }
