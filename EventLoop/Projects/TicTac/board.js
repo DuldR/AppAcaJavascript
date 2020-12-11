@@ -1,7 +1,7 @@
 class Board {
     constructor () {
 
-        this.board = [['o'],['x','x', 'x'],[]];
+        this.board = [['x'],['o','o', 'x'],['x','o','o']];
 
     }
 
@@ -9,7 +9,7 @@ class Board {
 
         // This verifies a horizontal win.
         let horCheck = (checkArr) => {
-            
+
             return (JSON.stringify(checkArr) === JSON.stringify([`${player}`, `${player}`, `${player}`]));
         }
 
@@ -17,7 +17,26 @@ class Board {
 
     }
 
-    verticalCheck() {
+    verticalCheck(player) {
+
+        // This verifies a vertical win.
+        let checkVal = JSON.stringify([`${player}`, `${player}`, `${player}`]);
+        let boolVal = false;
+
+        for (let i = 0; i < 3; i++) {
+
+            let emptyArr = [];
+
+            for (let j = 0; j < 3; j++) {
+                emptyArr.push(this.board[j][i]);
+            }
+
+            if (JSON.stringify(emptyArr) === checkVal) {
+                boolVal = true;
+            }
+        }
+
+        return boolVal;
 
     }
 
@@ -41,6 +60,7 @@ class Board {
 }
 
 b = new Board();
-console.log(b.horizontalCheck('x'));
+// console.log(b.horizontalCheck('x'));
+console.log(b.verticalCheck('x'));
 
 // export { Board }
