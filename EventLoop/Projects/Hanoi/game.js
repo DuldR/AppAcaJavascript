@@ -2,11 +2,6 @@ const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
   });
-   
-//   readline.question('Who are you?', name => {
-//     console.log(`Hey there ${name}!`);
-//     readline.close();
-//   });
 
 class Game {
     constructor() {
@@ -26,6 +21,7 @@ class Game {
 
                 if (this.isWon() === true) {
                     cb("You won!");
+                    readline.close();
                 } else {
                     this.run(cb);
                 }
@@ -84,14 +80,3 @@ class Game {
         this.promptMove(cb);
     }
 }
-
-b = new Game();
-
-// console.log(b.isWon());
-// b.promptMove();
-// b.print();
-// b.move(1, 2);
-// b.move(0, 0);
-// b.move(2, 1);
-// b.move(0, 1);
-b.run(console.log);
