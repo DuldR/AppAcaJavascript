@@ -1,17 +1,23 @@
 class Board {
     constructor () {
 
-        this.board = [[],['x','x','x'],[]];
+        this.board = [['o'],['x','x', 'x'],[]];
 
     }
 
-    horizontalCheck() {
+    horizontalCheck(player) {
 
+        // This verifies a horizontal win.
         let horCheck = (checkArr) => {
-            return (JSON.stringify(checkArr) === JSON.stringify(['x', 'x', 'x']));
+            
+            return (JSON.stringify(checkArr) === JSON.stringify([`${player}`, `${player}`, `${player}`]));
         }
 
         return this.board.some(horCheck);
+
+    }
+
+    verticalCheck() {
 
     }
 
@@ -35,6 +41,6 @@ class Board {
 }
 
 b = new Board();
-console.log(b.horizontalCheck());
+console.log(b.horizontalCheck('x'));
 
 // export { Board }
