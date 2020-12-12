@@ -1,7 +1,7 @@
 class Board {
     constructor () {
 
-        this.board = [['x', 'x', 'x'],['x','x', 'o'],['o','o','o']];
+        this.board = [['x', null, null],[null, null, null],[null, null, null]];
 
     }
 
@@ -66,15 +66,40 @@ class Board {
 
     }
 
-    won() {
+    won(player) {
+
+        if (this.horizontalCheck(player) || this.verticalCheck(player) || this.diagonalCheck(player)) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
     winner() {
 
+        if (this.won('x')) {
+            console.log('X is the winner!');
+        } else if (this.won('o')) {
+            console.log('O is the winner!');
+        } else {
+            console.log('No winner yet!');
+        }
+
     }
 
-    empty() {
+    getPos(pos) {
+
+        return this.board[pos[0]][pos[1]];
+
+    }
+
+    empty(pos) {
+        if (this.getPos(pos) === null) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
@@ -89,6 +114,9 @@ b = new Board();
 // console.log(b.horizontalCheck('x'));
 // console.log(b.verticalCheck('x'));
 // console.log(b.verticalCheck('o'));
-console.log(b.diagonalCheck('x'));
+// console.log(b.winner())
+console.log(b.getPos([0,0]));
+console.log(b.empty([0,0]));
+console.log(b.empty([0,1]));
 
 // export { Board }
