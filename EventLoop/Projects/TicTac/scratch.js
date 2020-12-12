@@ -23,28 +23,29 @@
 
 //  console.log(test());
 
-function helperTest(row, col) {
-    let a = [[1], [2,3]];
-
-    console.log(a[row][col]);
-
-}
-
-helperTest(1,1);
-// function diagTest() {
-
-//     let testArr = [['x'], ['o', 'x', 'o'], ['o', 'o', 'x']]
-//     let diagOne = [[0,0], [1, 1], [2,2]];
-//     let diagTwo = [[2,0], [1,1], [0,2]];
-
-
-//     testArr.forEach(ele => {
-//         let emptyArr = []
-
-
-//         console.log(emptyArr);
-//     })
+// function helperTest(arr, row, col) {
+//     return arr[row][col]
 
 // }
 
-// diagTest();
+function diagTest() {
+
+    let testArr = [['x'], ['o', 'x', 'o'], ['o', 'o', 'x']]
+    let diagOne = [[0,0], [1, 1], [2,2]];
+    let diagTwo = [[2,0], [1,1], [0,2]];
+    let emptyArr = [];
+
+
+    diagOne.forEach(ele => {
+        console.log(`The first element: ${ele[0]}`);
+        console.log(`The second element: ${ele[1]}`);
+
+        console.log(testArr[ele[0]][ele[1]]);
+        // emptyArr.push(testArr[ele[0]]);
+    })
+
+    console.log(emptyArr);
+
+}
+
+diagTest();

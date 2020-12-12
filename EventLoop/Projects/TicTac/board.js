@@ -1,7 +1,7 @@
 class Board {
     constructor () {
 
-        this.board = [['x'],['x','o', 'x'],['x','o','o']];
+        this.board = [['x', 'x', 'x'],['x','x', 'o'],['o','o','o']];
 
     }
 
@@ -42,6 +42,28 @@ class Board {
 
     diagonalCheck(player) {
 
+        let diagOne = [[0,0], [1, 1], [2,2]];
+        let diagTwo = [[2,0], [1,1], [0,2]];
+        let emptyArrOne = [];
+        let emptyArrTwo = [];
+        let checkVal = JSON.stringify([`${player}`, `${player}`, `${player}`]);
+        let boolVal = false;
+
+        diagOne.forEach(ele => {
+            emptyArrOne.push(this.board[ele[0]][ele[1]]);
+        })
+
+        diagTwo.forEach(ele => {
+            emptyArrTwo.push(this.board[ele[0]][ele[1]]);
+        })
+
+        if ((JSON.stringify(emptyArrOne) === checkVal) ||  (JSON.stringify(emptyArrTwo) === checkVal)) {
+            boolVal = true;
+        }
+
+        return boolVal;
+
+
     }
 
     won() {
@@ -65,7 +87,8 @@ class Board {
 
 b = new Board();
 // console.log(b.horizontalCheck('x'));
-console.log(b.verticalCheck('x'));
-console.log(b.verticalCheck('o'));
+// console.log(b.verticalCheck('x'));
+// console.log(b.verticalCheck('o'));
+console.log(b.diagonalCheck('x'));
 
 // export { Board }
