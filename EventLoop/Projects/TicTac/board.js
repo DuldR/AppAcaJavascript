@@ -105,6 +105,12 @@ class Board {
 
     placeMark(pos, mark) {
 
+        if (this.empty(pos)) {
+            this.board[pos[0]][pos[1]] = mark;
+        } else {
+            console.log("Not a vlid pos. Choose somewhere else");
+        }
+
     }
 
 
@@ -115,8 +121,13 @@ b = new Board();
 // console.log(b.verticalCheck('x'));
 // console.log(b.verticalCheck('o'));
 // console.log(b.winner())
-console.log(b.getPos([0,0]));
-console.log(b.empty([0,0]));
-console.log(b.empty([0,1]));
+// console.log(b.getPos([0,0]));
+// console.log(b.empty([0,0]));
+// console.log(b.empty([0,1]));
+b.placeMark([0, 1], "x");
+b.placeMark([0, 2], "x");
+b.placeMark([1, 2], "x");
+b.placeMark([2, 2], "x");
+console.log(b.board);
 
 // export { Board }
