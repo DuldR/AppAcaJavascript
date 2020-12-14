@@ -116,18 +116,4 @@ class Board {
 
 }
 
-b = new Board();
-// console.log(b.horizontalCheck('x'));
-// console.log(b.verticalCheck('x'));
-// console.log(b.verticalCheck('o'));
-// console.log(b.winner())
-// console.log(b.getPos([0,0]));
-// console.log(b.empty([0,0]));
-// console.log(b.empty([0,1]));
-b.placeMark([0, 1], "x");
-b.placeMark([0, 2], "x");
-b.placeMark([1, 2], "x");
-b.placeMark([2, 2], "x");
-console.log(b.board);
-
-// export { Board }
+module.exports = Board;
