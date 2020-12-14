@@ -1,7 +1,7 @@
 class Board {
     constructor () {
 
-        this.board = [['x', 'x', null],[null, null, null],[null, null, null]];
+        this.board = [[null,null, null],[null, null, null],[null, null, null]];
 
     }
 

@@ -8,7 +8,6 @@ class Comp {
 
         this.mark = mark;
         this.positions = [[0,0], [0,1],[0,2], [1,0], [1,1], [1,2], [2,0], [2,1], [2,2]];
-        // this.positions = ["0,0", "0,1", "0,2", "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"]
 
         this.board = currentBoard;
 
@@ -18,21 +17,21 @@ class Comp {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    // getRandPos() {
+    getRandPos(board) {
 
-    //     let boolVal = false;
+        let boolVal = false;
 
-    //     let randPos = this.positions[this.getRandomArbitrary(0, 8)];
+        let randPos = this.positions[this.getRandomArbitrary(0, 8)];
         
-    //     while(this.getValidPos(randPos) != false) {
-    //         randPost = this.positions[this.getRandomArbitrary(0, 8)];
-    //     }
+        while(this.getValidPos(randPos, board) != true) {
+            randPos = this.positions[this.getRandomArbitrary(0, 8)];
+        }
 
-    //     return randPos;
-    // }
+        return randPos;
+    }
 
-    getValidPos(pos) {
-        if (this.board.empty(pos) === true) {
+    getValidPos(pos, board) {
+        if (board.empty(pos) === true) {
             return true;
         } else {
             return false;
@@ -43,9 +42,9 @@ class Comp {
 
 }
 
-b = new Board();
-c = new Comp("x", b);
+// b = new Board();
+// c = new Comp('x');
 
-console.log(c.getValidPos([1,2]));
+// console.log(c.getRandPos(b));
 
 module.exports = Comp;

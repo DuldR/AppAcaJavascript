@@ -1,5 +1,6 @@
 const Game = require('./game.js');
 const Human = require('./humanPlayer.js');
+const Comp = require('./compPlayer.js');
 
 const readline = require('readline');
 const reader = readline.createInterface({
@@ -8,7 +9,7 @@ const reader = readline.createInterface({
 });
 
 let p1 = new Human("x");
-let p2 = new Human("o");
+let p2 = new Comp("o");
 let g = new Game(p1, p2);
 
 g.run(reader, completion);

@@ -10,13 +10,17 @@ class Game {
 
     }
 
+    
+
     run(reader, callback) {
 
         reader.question('Enter a pos: ', pos => {
-            
-            let inputPos = pos.split(',').map(Number);
 
+            let inputPos = pos.split(',').map(Number);
             this.board.placeMark(inputPos, this.human.mark);
+
+            let compPos = this.comp.getRandPos(this.board);
+            this.board.placeMark(compPos, this.comp.mark);
 
             this.board.print();
 
