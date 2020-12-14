@@ -17,9 +17,17 @@ class Game {
     run(reader, callback) {
 
         reader.question('Enter a pos: ', pos => {
-            let inputPos = pos.split(',').map(Number);
-            this.board.placeMark(inputPos, 'x');
-            console.log(this.board.board);
+            reader.question('Enter mark: ', mark => {
+                let inputPos = pos.split(',').map(Number);
+                let inputMark = mark;
+
+                this.board.placeMark(inputPos, mark);
+
+
+                if (this.board.won('x') === true || this.board.won('o') === true) {
+                    console.log(this.board.winner());
+                }
+            })
         })
         
     }
