@@ -66,6 +66,10 @@ class Board {
 
     }
 
+    print() {
+        console.log(this.board.join('\r\n'));
+    }
+
     won(player) {
 
         if (this.horizontalCheck(player) || this.verticalCheck(player) || this.diagonalCheck(player)) {

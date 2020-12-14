@@ -1,8 +1,3 @@
-const readline = require('readline');
-const reader = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 const Board = require('./board.js');
 
 
@@ -23,9 +18,14 @@ class Game {
 
                 this.board.placeMark(inputPos, mark);
 
+                this.board.print();
+
 
                 if (this.board.won('x') === true || this.board.won('o') === true) {
                     console.log(this.board.winner());
+                    callback();
+                } else {
+                    this.run(reader, callback);
                 }
             })
         })
@@ -34,11 +34,4 @@ class Game {
 
 
 }
-
-g = new Game();
-let cb = function() {
-
-};
-g.run(reader, cb);
-
 module.exports = Game;
