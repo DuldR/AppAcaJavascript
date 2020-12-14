@@ -16,7 +16,7 @@ g.run(reader, completion);
 function completion() {
   reader.question("Play again? y or n: ", restartGame => {
     if (restartGame === "y") {
-      g = new Game();
+      g = new Game(p1, p2);
       g.run(reader, completion);
     } else {
       reader.close();

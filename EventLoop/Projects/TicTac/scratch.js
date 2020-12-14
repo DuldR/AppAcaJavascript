@@ -28,24 +28,40 @@
 
 // }
 
-function diagTest() {
+// function diagTest() {
 
-    let testArr = [['x'], ['o', 'x', 'o'], ['o', 'o', 'x']]
-    let diagOne = [[0,0], [1, 1], [2,2]];
-    let diagTwo = [[2,0], [1,1], [0,2]];
-    let emptyArr = [];
+//     let testArr = [['x'], ['o', 'x', 'o'], ['o', 'o', 'x']]
+//     let diagOne = [[0,0], [1, 1], [2,2]];
+//     let diagTwo = [[2,0], [1,1], [0,2]];
+//     let emptyArr = [];
 
 
-    diagOne.forEach(ele => {
-        console.log(`The first element: ${ele[0]}`);
-        console.log(`The second element: ${ele[1]}`);
+//     diagOne.forEach(ele => {
+//         console.log(`The first element: ${ele[0]}`);
+//         console.log(`The second element: ${ele[1]}`);
 
-        console.log(testArr[ele[0]][ele[1]]);
-        // emptyArr.push(testArr[ele[0]]);
-    })
+//         console.log(testArr[ele[0]][ele[1]]);
+//         // emptyArr.push(testArr[ele[0]]);
+//     })
 
-    console.log(emptyArr);
+//     console.log(emptyArr);
 
+// }
+
+// diagTest();
+
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-diagTest();
+function randTest() {
+
+    let g = getRandomArbitrary(0, 8);
+
+    while (g != 1) {
+        console.log(g);
+        g = getRandomArbitrary(0,8);
+    }
+}
+
+randTest();
