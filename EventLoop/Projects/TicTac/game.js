@@ -19,12 +19,19 @@ class Game {
             let inputPos = pos.split(',').map(Number);
             this.board.placeMark(inputPos, this.human.mark);
 
-            let compPos = this.comp.getRandPos(this.board);
-            this.board.placeMark(compPos, this.comp.mark);
+            // Check for full board before completing comp placement
+
+            if (this.board.full() === true ) {
+                console.log(this.board.winner());
+                callback();
+            }
+
+            // let compPos = this.comp.getRandPos(this.board);
+            // this.board.placeMark(compPos, this.comp.mark);
 
             this.board.print();
 
-            if (this.board.won('x') === true || this.board.won('o') === true ) {
+            if (this.board.won('x') === true || this.board.won('o') === true) {
                 console.log(this.board.winner());
                 callback();
             } else {

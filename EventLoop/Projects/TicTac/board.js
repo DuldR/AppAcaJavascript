@@ -2,6 +2,7 @@ class Board {
     constructor () {
 
         this.board = [[null,null, null],[null, null, null],[null, null, null]];
+        this.positions = [[0,0], [0,1],[0,2], [1,0], [1,1], [1,2], [2,0], [2,1], [2,2]];
 
     }
 
@@ -87,7 +88,7 @@ class Board {
         } else if (this.won('o')) {
             console.log('O is the winner!');
         } else {
-            console.log('No winner yet!');
+            console.log('Tie!');
         }
 
     }
@@ -104,6 +105,14 @@ class Board {
         } else {
             return false;
         }
+
+    }
+
+    full() {
+
+        return this.positions.every(ele => {
+            this.empty(ele);
+        });
 
     }
 
