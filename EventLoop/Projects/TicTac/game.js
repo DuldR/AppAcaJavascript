@@ -21,13 +21,17 @@ class Game {
 
             // Check for full board before completing comp placement
 
+
             if (this.board.full() === true ) {
                 console.log(this.board.winner());
                 callback();
+
+                // This breaks you out of running the rest of the code.
+                return;
             }
 
-            // let compPos = this.comp.getRandPos(this.board);
-            // this.board.placeMark(compPos, this.comp.mark);
+            let compPos = this.comp.getRandPos(this.board);
+            this.board.placeMark(compPos, this.comp.mark);
 
             this.board.print();
 

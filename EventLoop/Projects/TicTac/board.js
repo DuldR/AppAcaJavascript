@@ -2,6 +2,8 @@ class Board {
     constructor () {
 
         this.board = [[null,null, null],[null, null, null],[null, null, null]];
+
+        // this.board = [[null,'o', 'x'],['o', 'x', 'o'],['o', 'x', 'o']];
         this.positions = [[0,0], [0,1],[0,2], [1,0], [1,1], [1,2], [2,0], [2,1], [2,2]];
 
     }
@@ -110,9 +112,16 @@ class Board {
 
     full() {
 
-        return this.positions.every(ele => {
-            this.empty(ele);
-        });
+        // This code works.
+        let boolVal = true;
+        
+        for (let i = 0; i < this.positions.length; i++) {
+            if (this.empty(this.positions[i]) === true) {
+                boolVal = false;
+            }
+        }
+
+        return boolVal;
 
     }
 
@@ -128,5 +137,6 @@ class Board {
 
 
 }
+
 
 module.exports = Board;
