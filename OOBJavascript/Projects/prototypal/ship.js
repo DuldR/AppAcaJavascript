@@ -25,11 +25,10 @@ Dog.prototype.bark = function () {
 };    
 
 
-function Butts() {}
+let newFunc = function Butts() {}
+newFunc.inherits(Dog);
 
-Butts.inherits(Dog);
-
-t = new Butts();
+t = new newFunc();
 
 t.bark();
 
