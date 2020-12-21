@@ -8,12 +8,10 @@ Function.prototype.inherits = function(sup) {
 
 }
 
-// Function.prototype.inherits1 = function (BaseClass) {
-//     function Surrogate () {}
-//     Surrogate.prototype = BaseClass.prototype;
-//     this.prototype = new Surrogate();
-//     this.prototype.constructor = this;
-// };
+Function.prototype.inherits2 = function(sup) {
+    this.prototype = Object.create(sup.prototype);
+    this.prototype.constructor = this;
+}
   
 
 function Dog (name) {
@@ -26,7 +24,7 @@ Dog.prototype.bark = function () {
 
 
 let newFunc = function Butts() {}
-newFunc.inherits(Dog);
+newFunc.inherits2(Dog);
 
 t = new newFunc();
 
