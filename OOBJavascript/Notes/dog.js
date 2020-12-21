@@ -8,7 +8,10 @@ function Dog(name) {
 
 let Surr = function() {};
 
+console.log(Animal);
+
 Surr.prototype = Animal.prototype;
+
 Dog.prototype = new Surr();
 
 
