@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     b.draw(ctx);
 
-    console.log(b);
     
 
     
