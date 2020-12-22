@@ -15,12 +15,12 @@ MovingObject.prototype.print = function() {
     console.log("HUH");
 }
 
-// MovingObject.prototype.draw(ctx) {
+MovingObject.prototype.draw = function(ctx) {
 
-//     ctx.beginPath();
-//     ctx.arc(100, 100, 100, 0, 2 * Math.PI, false);
-//     ctx.fillStyle = 'red';
-//     ctx.fill();
-// }
+    ctx.beginPath();
+    ctx.arc(100, 100, 100, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'red';
+    ctx.fill();
+}
 
 module.exports = MovingObject;

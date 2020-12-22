@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-    // const canvas = document.getElementById('game-canvas');
-    // const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
     window.MovingObject = MovingObject;
     const b = new MovingObject({
         pos: [30, 30],
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
         color: "#00FF00"
     });
 
-    b.print();
+    b.draw(ctx);
     
 
     
