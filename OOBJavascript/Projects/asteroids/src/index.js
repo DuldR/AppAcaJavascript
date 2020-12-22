@@ -11,13 +11,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const ctx = canvas.getContext('2d');
     window.MovingObject = MovingObject;
     const b = new MovingObject({
-        pos: [30, 30],
+        pos: [100, 100],
         vel: [10, 10],
-        radius: 5,
-        color: "#00FF00"
+        radius: 100,
+        color: "red"
     });
 
     b.draw(ctx);
+
+    console.log(b);
     
 
     
