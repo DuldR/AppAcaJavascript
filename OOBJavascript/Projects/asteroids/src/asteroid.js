@@ -10,7 +10,11 @@ const DEFAULTS = {
 function Asteroid(options) {
 
     options = options || {};
+    options.color = DEFAULTS.COLOR;
+    options.rad = DEFAULTS.RADIUS;
+    
 
+    // This calls the super constructor functions :)
     MovingObject.call(this, options);
 
 }

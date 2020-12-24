@@ -3,7 +3,7 @@ function MovingObject(options) {
 
     this.pos = options.pos;
     this.vel = options.vel;
-    this.rad = options.radius;
+    this.rad = options.rad;
     this.color = options.color;
 
 
@@ -25,7 +25,8 @@ MovingObject.prototype.move = function() {
 
 MovingObject.prototype.print = function() {
 
-    console.log("I'm a test function to make sure inherit worked");
+    console.log(this.color);
+    console.log(this.pos);
 }
 
 module.exports = MovingObject;
