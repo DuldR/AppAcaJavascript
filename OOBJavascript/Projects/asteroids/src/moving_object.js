@@ -1,13 +1,11 @@
-class MovingObject {
+function MovingObject(options) {
 
-    constructor (obj) {
 
-        this.pos = obj.pos;
-        this.vel = obj.vel;
-        this.rad = obj.radius;
-        this.color = obj.color;
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.rad = options.radius;
+    this.color = options.color;
 
-    }
 
 }
 
@@ -23,6 +21,11 @@ MovingObject.prototype.draw = function(ctx) {
 MovingObject.prototype.move = function() {
     this.pos[0] = this.pos[0] + this.vel[0];
     this.pos[1] = this.pos[1] + this.vel[1];
+}
+
+MovingObject.prototype.print = function() {
+
+    console.log("I'm a test function to make sure inherit worked");
 }
 
 module.exports = MovingObject;
