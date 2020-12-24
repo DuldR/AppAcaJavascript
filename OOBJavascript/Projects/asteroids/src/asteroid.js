@@ -10,13 +10,16 @@ const DEFAULTS = {
 function Asteroid(options) {
 
     options = options || {};
-    options.color = DEFAULTS.COLOR;
-    options.rad = DEFAULTS.RADIUS;
+    options.color = options.color || DEFAULTS.COLOR;
+    options.rad = options.rad || DEFAULTS.RADIUS;
+    options.vec = options.vec || Utils.randomVec(2);
     
 
     // This calls the super constructor functions :)
     MovingObject.call(this, options);
 
 }
+
+Utils.inherits(Asteroid, MovingObject);
 
 module.exports = Asteroid;

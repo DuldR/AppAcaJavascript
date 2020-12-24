@@ -6,7 +6,7 @@ const Utils = {
 
     randomVec: function randomVec(length) {
         const deg = 2 * Math.PI * Math.random();
-        return Util.scale([Math.sin(deg), Math.cos(deg)], length);
+        return Utils.scale([Math.sin(deg), Math.cos(deg)], length);
     },
 
     scale: function scale(vec, m) {

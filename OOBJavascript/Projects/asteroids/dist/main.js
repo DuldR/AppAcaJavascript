@@ -15,7 +15,7 @@
   \*************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\n\nconst DEFAULTS = {\n    COLOR: \"#505050\",\n    RADIUS: 25,\n    SPEED: 4\n  };\n\nfunction Asteroid(options) {\n\n    options = options || {};\n    options.color = DEFAULTS.COLOR;\n    options.rad = DEFAULTS.RADIUS;\n    \n\n    // This calls the super constructor functions :)\n    MovingObject.call(this, options);\n\n}\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\n\nconst DEFAULTS = {\n    COLOR: \"#505050\",\n    RADIUS: 25,\n    SPEED: 4\n  };\n\nfunction Asteroid(options) {\n\n    options = options || {};\n    options.color = options.color || DEFAULTS.COLOR;\n    options.rad = options.rad || DEFAULTS.RADIUS;\n    options.vec = options.vec || Utils.randomVec(2);\n    \n\n    // This calls the super constructor functions :)\n    MovingObject.call(this, options);\n\n}\n\nUtils.inherits(Asteroid, MovingObject);\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ eval("function MovingObject(options) {\n\n\n    this.pos = options.pos;\n    thi
   \**********************/
 /***/ ((module) => {
 
-eval("const Utils = {\n    inherits: function inherits(childClass, parentClass) {\n        childClass.prototype = Object.create(parentClass.prototype);\n        childClass.prototype.constructor = childClass;\n    },\n\n    randomVec: function randomVec(length) {\n        const deg = 2 * Math.PI * Math.random();\n        return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n    },\n\n    scale: function scale(vec, m) {\n        return [vec[0] * m, vec[1] * m];\n    }\n}\n\nmodule.exports = Utils;\n\n//# sourceURL=webpack:///./src/utils.js?");
+eval("const Utils = {\n    inherits: function inherits(childClass, parentClass) {\n        childClass.prototype = Object.create(parentClass.prototype);\n        childClass.prototype.constructor = childClass;\n    },\n\n    randomVec: function randomVec(length) {\n        const deg = 2 * Math.PI * Math.random();\n        return Utils.scale([Math.sin(deg), Math.cos(deg)], length);\n    },\n\n    scale: function scale(vec, m) {\n        return [vec[0] * m, vec[1] * m];\n    }\n}\n\nmodule.exports = Utils;\n\n//# sourceURL=webpack:///./src/utils.js?");
 
 /***/ })
 
@@ -69,7 +69,7 @@ eval("const Utils = {\n    inherits: function inherits(childClass, parentClass) 
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("// console.log(\"Webpack is working\");\nconst MovingObject = __webpack_require__(/*! ../src/moving_object.js */ \"./src/moving_object.js\");\nconst Asteroid = __webpack_require__(/*! ../src/asteroid.js */ \"./src/asteroid.js\");\n\nconsole.log(MovingObject);\nconsole.log(Asteroid);\n\ndocument.addEventListener(\"DOMContentLoaded\", function(){\n\n\n\n\n    const canvas = document.getElementById('game-canvas');\n    const ctx = canvas.getContext('2d');\n    window.MovingObject = MovingObject;\n    const b = new MovingObject({\n        pos: [100, 100],\n        vel: [10, 10],\n        radius: 100,\n        color: \"red\"\n    });\n\n    b.draw(ctx);\n\n    \n\n    \n    // Need to draw moving object here.\n    // How to fill in the window? May need webpack\n    // ctx.beginPath();\n    // ctx.arc(100, 100, 100, 0, 2 * Math.PI, false);\n    // ctx.fillStyle = 'red';\n    // ctx.fill();\n\n\n    \n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("// console.log(\"Webpack is working\");\nconst MovingObject = __webpack_require__(/*! ../src/moving_object.js */ \"./src/moving_object.js\");\nconst Asteroid = __webpack_require__(/*! ../src/asteroid.js */ \"./src/asteroid.js\");\n\nconsole.log(MovingObject);\nconsole.log(Asteroid);\n\ndocument.addEventListener(\"DOMContentLoaded\", function(){\n\n\n\n\n    const canvas = document.getElementById('game-canvas');\n    const ctx = canvas.getContext('2d');\n    window.MovingObject = MovingObject;\n    window.Asteroid = Asteroid;\n    const b = new MovingObject({\n        pos: [100, 100],\n        vel: [10, 10],\n        radius: 100,\n        color: \"red\"\n    });\n\n    const a = new Asteroid({\n        pos: [200, 200]\n    });\n\n    b.draw(ctx);\n    a.draw(ctx);\n\n    \n\n    \n    // Need to draw moving object here.\n    // How to fill in the window? May need webpack\n    // ctx.beginPath();\n    // ctx.arc(100, 100, 100, 0, 2 * Math.PI, false);\n    // ctx.fillStyle = 'red';\n    // ctx.fill();\n\n\n    \n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 })();
 
 /******/ })()
