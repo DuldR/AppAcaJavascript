@@ -1,7 +1,8 @@
 console.log("Webpack is working");
 const MovingObject = require('../src/moving_object.js');
 const Asteroid = require('../src/asteroid.js');
-const Game = require('../src/game')
+const Game = require('../src/game.js');
+const GameView = require('../src/game_view.js');
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -11,29 +12,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
-    window.MovingObject = MovingObject;
-    const b = new MovingObject({
-        pos: [100, 100],
-        vel: [10, 10],
-        rad: 100,
-        color: "red"
-    });
+    window.GameView = GameView
+    let g = new GameView(ctx);
 
-    const a = new Asteroid({
-        pos: [300, 300]
-    });
+    g.start();
 
-    const g = new Game();
-
-    for (let i = 0; i < 10; i++) {
-        g.draw(ctx);
-        g.move();
-    }
-
-    // b.draw(ctx);
- 
-
-    g.print();
     
 
 });

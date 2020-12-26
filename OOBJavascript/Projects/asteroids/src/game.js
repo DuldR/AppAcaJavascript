@@ -6,7 +6,7 @@ const GAME_DEFAULTS = {
 
     DIM_X: 1920,
     DIM_Y: 1200,
-    NUM_ASTEROIDS: 5
+    NUM_ASTEROIDS: 600
     
 };
 
@@ -27,7 +27,7 @@ function getRandomInt(min, max) {
 Game.prototype.addAsteroids = function() {
 
     for (let i = 0; i < GAME_DEFAULTS.NUM_ASTEROIDS; i++) {
-        this.asteroids.push(new Asteroid({pos: this.randomPosition(), vel: [10,10]}));
+        this.asteroids.push(new Asteroid({pos: this.randomPosition(), vel: [1,1]}));
     }
 
 }
@@ -47,19 +47,15 @@ Game.prototype.move = function() {
 Game.prototype.draw = function(ctx) {
 
     ctx.clearRect(0, 0, GAME_DEFAULTS.DIM_X, GAME_DEFAULTS.DIM_Y);
-    
+
     this.asteroids.forEach(ele => {
         ele.draw(ctx);
     })
 
-    // for (let i = 0; i < this.asteroids.length; i++) {
-    //     this.asteroids[i].draw(ctx);
-    // }
-
 }
 
 Game.prototype.print = function() {
-    this.asteroids[0].print();
+    console.log(this.asteroid);
 }
 
 
