@@ -25,12 +25,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const g = new Game();
 
-    g.draw(ctx);
+    for (let i = 0; i < 10; i++) {
+        g.draw(ctx);
+        g.move();
+    }
 
     // b.draw(ctx);
  
 
-    // g.print();
+    g.print();
     
 
 });
