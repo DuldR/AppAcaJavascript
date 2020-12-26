@@ -5,7 +5,7 @@ const DEFAULTS = {
     COLOR: "#505050",
     RADIUS: 25,
     SPEED: 4
-  };
+};
 
 function Asteroid(options) {
 

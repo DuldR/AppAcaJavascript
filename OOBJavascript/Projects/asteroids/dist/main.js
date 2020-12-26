@@ -15,7 +15,7 @@
   \*************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\n\nconst DEFAULTS = {\n    COLOR: \"#505050\",\n    RADIUS: 25,\n    SPEED: 4\n  };\n\nfunction Asteroid(options) {\n\n    options = options || {};\n    options.color = options.color || DEFAULTS.COLOR;\n    options.rad = options.rad || DEFAULTS.RADIUS;\n    options.vec = options.vec || Utils.randomVec(2);\n    \n\n    // This calls the super constructor functions :)\n    MovingObject.call(this, options);\n\n}\n\nUtils.inherits(Asteroid, MovingObject);\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nconst Utils = __webpack_require__(/*! ./utils.js */ \"./src/utils.js\");\n\nconst DEFAULTS = {\n    COLOR: \"#505050\",\n    RADIUS: 25,\n    SPEED: 4\n};\n\nfunction Asteroid(options) {\n\n    options = options || {};\n    options.color = options.color || DEFAULTS.COLOR;\n    options.rad = options.rad || DEFAULTS.RADIUS;\n    options.vec = options.vec || Utils.randomVec(2);\n    \n\n    // This calls the super constructor functions :)\n    MovingObject.call(this, options);\n\n}\n\nUtils.inherits(Asteroid, MovingObject);\n\nmodule.exports = Asteroid;\n\n//# sourceURL=webpack:///./src/asteroid.js?");
 
 /***/ }),
 
