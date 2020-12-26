@@ -38,17 +38,17 @@ Game.prototype.randomPosition = function() {
     return [xCoord, yCoord];
 }
 
-// Game.prototype.draw = function(ctx) {
+Game.prototype.draw = function(ctx) {
 
-//     for (let i = 0; i < this.asteroids.length; i++) {
-//         this.asteroids[i].draw(ctx);
-//     }
+    for (let i = 0; i < this.asteroids.length; i++) {
+        this.asteroids[i].draw(ctx);
+    }
 
-// }
-
-Game.prototype.print = function() {
-    console.log(this.asteroids[0].print());
 }
+
+// Game.prototype.print = function() {
+//     console.log(this.asteroids[0].print());
+// }
 
 
 
