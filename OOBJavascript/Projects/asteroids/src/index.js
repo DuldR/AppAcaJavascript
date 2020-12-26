@@ -1,6 +1,7 @@
 console.log("Webpack is working");
 const MovingObject = require('../src/moving_object.js');
 const Asteroid = require('../src/asteroid.js');
+const Game = require('../src/game')
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -22,8 +23,12 @@ document.addEventListener("DOMContentLoaded", function(){
         pos: [300, 300]
     });
 
-    b.draw(ctx);
-    a.draw(ctx);
+    const g = new Game();
+
+    // b.draw(ctx);
+ 
+
+    g.print();
     
 
 });

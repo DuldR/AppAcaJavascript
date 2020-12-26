@@ -27,6 +27,7 @@ MovingObject.prototype.print = function() {
 
     console.log(this.color);
     console.log(this.pos);
+    console.log(this);
 }
 
 module.exports = MovingObject;
