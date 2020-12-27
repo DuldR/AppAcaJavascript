@@ -13,7 +13,6 @@ GameView.prototype.start = function() {
 
     window.setInterval(() => {
         this.game.draw(this.ctx);
-
         this.game.move();
     }, 20);
     // console.log(this.game);
