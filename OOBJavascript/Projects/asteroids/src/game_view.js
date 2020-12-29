@@ -12,6 +12,7 @@ GameView.prototype.start = function() {
     // window.setInterval(this.game.print, 1000);
 
     window.setInterval(() => {
+        this.game.checkCollisions();
         this.game.draw(this.ctx);
         this.game.move();
     }, 20);

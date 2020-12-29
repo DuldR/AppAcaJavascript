@@ -54,6 +54,26 @@ Game.prototype.draw = function(ctx) {
 
 }
 
+Game.prototype.checkCollisions = function() {
+    
+    // Need to two for loops. Otherwise you'll need to verify the asteroid doesnt check itself with stringify or some other method.
+    for (let i = 0; i < this.asteroids.length; i++) {
+        for (let j = 0; j < this.asteroids.length; j++) {
+            if (j === i) {
+                continue
+            } else {
+
+                if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
+                    alert("COLLISION!!!");
+                };
+                
+            }
+        }
+
+    }
+
+}
+
 Game.prototype.wrap = function(pos) {
 
     if (pos[0] > GAME_DEFAULTS.DIM_X) {
@@ -72,10 +92,11 @@ Game.prototype.wrap = function(pos) {
 
 let g = new Game();
 
-console.log(g.wrap([1930, 1200]));
-console.log(g.wrap([-10, 1200]));
-console.log(g.wrap([1920, 1210]));
-console.log(g.wrap([1920, -10]));
+
+// console.log(g.wrap([1930, 1200]));
+// console.log(g.wrap([-10, 1200]));
+// console.log(g.wrap([1920, 1210]));
+// console.log(g.wrap([1920, -10]));
 
 // Game.prototype.print = function() {
 //     console.log(this.asteroid);
