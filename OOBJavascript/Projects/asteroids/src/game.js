@@ -27,7 +27,7 @@ function getRandomInt(min, max) {
 Game.prototype.addAsteroids = function() {
 
     for (let i = 0; i < GAME_DEFAULTS.NUM_ASTEROIDS; i++) {
-        this.asteroids.push(new Asteroid({pos: this.randomPosition(), vel: [-10, 0], game: this}));
+        this.asteroids.push(new Asteroid({pos: this.randomPosition(), game: this}));
     }
 
 }
