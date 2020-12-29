@@ -27,7 +27,7 @@ const Utils = {
 }
 
 // console.log(Utils.norm([2,0]));
-console.log(Utils.randomVec(2));
+// console.log(Utils.randomVec(2));
 
 
 module.exports = Utils;

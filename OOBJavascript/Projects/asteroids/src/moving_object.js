@@ -29,7 +29,12 @@ MovingObject.prototype.move = function() {
 }
 
 MovingObject.prototype.isCollidedWith = function(obj) {
+    let sumRadii = this.rad + obj.rad;
+    if (Utils.dist(this.pos, obj.pos) < sumRadii) {
+        return true;
+    }
 
+    return false;
 }
 
 MovingObject.prototype.print = function() {
@@ -38,5 +43,10 @@ MovingObject.prototype.print = function() {
     console.log(this.pos);
     console.log(this);
 }
+
+// let m = new MovingObject({pos: [0,0], vel: [1,1], rad: 1})
+// let c = new MovingObject({pos: [0,2], vel: [1,1], rad: 1})
+
+console.log(m.isCollidedWith(c));
 
 module.exports = MovingObject;
