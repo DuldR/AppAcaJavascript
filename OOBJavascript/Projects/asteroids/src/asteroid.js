@@ -3,8 +3,8 @@ const Utils = require('./utils.js');
 
 const DEFAULTS = {
     COLOR: "#505050",
-    RADIUS: 25,
-    SPEED: 4
+    RADIUS: 50,
+    SPEED: 10
 };
 
 function Asteroid(options) {

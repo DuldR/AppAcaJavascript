@@ -12,9 +12,9 @@ GameView.prototype.start = function() {
     // window.setInterval(this.game.print, 1000);
 
     window.setInterval(() => {
-        this.game.checkCollisions();
+        this.game.step();
         this.game.draw(this.ctx);
-        this.game.move();
+        
     }, 20);
     // console.log(this.game);
     // for (let i = 0; i < 100000; i++) {
