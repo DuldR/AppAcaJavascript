@@ -1,18 +1,20 @@
 const MovingObject = require('./moving_object.js');
 const Asteroid = require('./asteroid.js');
+const Ship = require('./ship.js');
 const Utils = require('./utils.js');
 
 const GAME_DEFAULTS = {
 
     DIM_X: 1920,
     DIM_Y: 1200,
-    NUM_ASTEROIDS: 15
+    NUM_ASTEROIDS: 3
     
 };
 
 function Game(options) {
     
     this.asteroids = [];
+    this.ship = new Ship({pos: this.randomPosition(), game: this})
     this.addAsteroids();
 
 
@@ -44,11 +46,24 @@ Game.prototype.move = function() {
     })
 }
 
+Game.prototype.allObjects = function() {
+    let allArr = [];
+
+    this.asteroids.forEach(ele => {
+        allArr.push(ele);
+    })
+
+    allArr.push(this.ship);
+
+    return allArr;
+}
+
+
 Game.prototype.draw = function(ctx) {
 
     ctx.clearRect(0, 0, GAME_DEFAULTS.DIM_X, GAME_DEFAULTS.DIM_Y);
 
-    this.asteroids.forEach(ele => {
+    this.allObjects().forEach(ele => {
         ele.draw(ctx);
     })
 
@@ -104,7 +119,8 @@ Game.prototype.step = function() {
 }
 
 
-let g = new Game();
+// let g = new Game();
+// g.print();
 // console.log(g.asteroids.splice(0, 1));
 // g.remove(0);
 

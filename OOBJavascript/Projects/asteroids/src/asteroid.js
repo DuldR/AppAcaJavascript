@@ -12,7 +12,7 @@ function Asteroid(options) {
     options = options || {};
     options.color = options.color || DEFAULTS.COLOR;
     options.rad = options.rad || DEFAULTS.RADIUS;
-    options.vel = options.vels || Utils.randomVec(2);
+    options.vel = options.vel || Utils.randomVec(2);
     options.game = options.game;
     
 
