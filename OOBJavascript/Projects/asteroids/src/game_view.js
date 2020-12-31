@@ -4,27 +4,31 @@ function GameView (ctx) {
 
     this.game = new Game();
     this.ctx = ctx;
-    this.ship = this.game.addShip();
+    this.ship = this.game.ship;
 
 }
 
 GameView.prototype.bindKeyHandlers = function() {
 
-    const ship = this.ship;
+    const ship = this.game.ship;
     let print = function() {
         console.log(ship);
         console.log(ship.vel);
     }
 
     // Wow look ath this you habve tyo DEIFNei ti AS  FGUnction FJfuidgkdfgsdkl
-    let shithead = function() {
-        ship.power();
+    let up = function() {
+        ship.power(1)
+    }
+
+    let down = function() {
+        ship.power(2)
     }
 
     // key('w', this.game.ship.power([0, 10]) });
     key('a', function(){ alert('you pressed a!') });
-    key('w', print);
-    key('d', shithead);
+    key('w', up);
+    key('s', down);
 }
 
 GameView.prototype.start = function() {
@@ -38,7 +42,7 @@ GameView.prototype.start = function() {
     window.setInterval(() => {
         this.game.step();
         this.game.draw(this.ctx);
-    }, 1000);
+    }, 20);
     // console.log(this.game);
     // for (let i = 0; i < 100000; i++) {
     //     this.game.move();

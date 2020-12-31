@@ -14,7 +14,7 @@ const GAME_DEFAULTS = {
 function Game(options) {
     
     this.asteroids = [];
-    // this.ship = new Ship({pos: this.randomPosition(), game: this})
+    this.ship = new Ship({pos: this.randomPosition(), game: this})
     this.addAsteroids();
 
 
@@ -52,7 +52,7 @@ Game.prototype.randomPosition = function() {
 }
 
 Game.prototype.move = function() {
-    this.asteroids.forEach(ele => {
+    this.allObjects().forEach(ele => {
         ele.move();
     })
 }
