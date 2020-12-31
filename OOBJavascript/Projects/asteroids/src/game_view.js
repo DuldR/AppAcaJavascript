@@ -27,7 +27,7 @@ GameView.prototype.bindKeyHandlers = function() {
 
     // key('w', this.game.ship.power([0, 10]) });
     key('a', function(){ alert('you pressed a!') });
-    key('w', up);
+    key('w', ship.power(1));
     key('s', down);
 }
 
