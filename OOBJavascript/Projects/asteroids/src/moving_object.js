@@ -44,9 +44,9 @@ MovingObject.prototype.print = function() {
     console.log(this);
 }
 
-let m = new MovingObject({pos: [0,0], vel: [1,1], rad: 1})
-let c = new MovingObject({pos: [0,2], vel: [1,1], rad: 2})
+// let m = new MovingObject({pos: [0,0], vel: [1,1], rad: 1})
+// let c = new MovingObject({pos: [0,2], vel: [1,1], rad: 2})
 
-console.log(m.isCollidedWith(c));
+// console.log(m.isCollidedWith(c));
 
 module.exports = MovingObject;

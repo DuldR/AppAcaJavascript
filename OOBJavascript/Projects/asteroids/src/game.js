@@ -7,7 +7,7 @@ const GAME_DEFAULTS = {
 
     DIM_X: 1920,
     DIM_Y: 1200,
-    NUM_ASTEROIDS: 3
+    NUM_ASTEROIDS: 5
     
 };
 
@@ -34,6 +34,7 @@ Game.prototype.addAsteroids = function() {
 
 }
 
+
 Game.prototype.randomPosition = function() {
     let xCoord = getRandomInt(0, GAME_DEFAULTS.DIM_X);
     let yCoord = getRandomInt(0, GAME_DEFAULTS.DIM_Y);
@@ -58,6 +59,9 @@ Game.prototype.allObjects = function() {
     return allArr;
 }
 
+Game.prototype.getShip = function() {
+    return this.ship;
+}
 
 Game.prototype.draw = function(ctx) {
 
@@ -70,27 +74,12 @@ Game.prototype.draw = function(ctx) {
 }
 
 Game.prototype.checkCollisions = function() {
-    
-    // Need to two for loops. Otherwise you'll need to verify the asteroid doesnt check itself with stringify or some other method.
 
-    let toBeRemoved = [];
-
-    for (let i = 0; i < this.asteroids.length; i++) {
-        for (let j = 0; j < this.asteroids.length; j++) {
-            if (j === i) {
-                continue
-            } else {
-
-                if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
-                    this.remove(i);
-                    this.remove(j-1);
-  
-                };
-                
-            }
+    this.asteroids.forEach(ele => {
+        if (ele.isCollidedWith(this.ship)) {
+            this.ship.relocate(this.randomPosition())
         }
-
-    }
+    })
 
 }
 
@@ -118,24 +107,6 @@ Game.prototype.step = function() {
     this.checkCollisions();
 }
 
-
-// let g = new Game();
-// g.print();
-// console.log(g.asteroids.splice(0, 1));
-// g.remove(0);
-
-// console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-// console.log(g.asteroids)
-
-
-// console.log(g.wrap([1930, 1200]));
-// console.log(g.wrap([-10, 1200]));
-// console.log(g.wrap([1920, 1210]));
-// console.log(g.wrap([1920, -10]));
-
-// Game.prototype.print = function() {
-//     console.log(this.asteroid);
-// }
 
 
 
