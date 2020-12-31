@@ -4,15 +4,27 @@ function GameView (ctx) {
 
     this.game = new Game();
     this.ctx = ctx;
-    this.ship = this.game.getShip();
+    this.ship = this.game.addShip();
 
 }
 
 GameView.prototype.bindKeyHandlers = function() {
 
+    const ship = this.ship;
+    let print = function() {
+        console.log(ship);
+        console.log(ship.vel);
+    }
+
+    // Wow look ath this you habve tyo DEIFNei ti AS  FGUnction FJfuidgkdfgsdkl
+    let shithead = function() {
+        ship.power();
+    }
+
     // key('w', this.game.ship.power([0, 10]) });
     key('a', function(){ alert('you pressed a!') });
-    key('w', this.ship.power);
+    key('w', print);
+    key('d', shithead);
 }
 
 GameView.prototype.start = function() {

@@ -14,7 +14,7 @@ const GAME_DEFAULTS = {
 function Game(options) {
     
     this.asteroids = [];
-    this.ship = new Ship({pos: this.randomPosition(), game: this})
+    // this.ship = new Ship({pos: this.randomPosition(), game: this})
     this.addAsteroids();
 
 
@@ -34,6 +34,16 @@ Game.prototype.addAsteroids = function() {
 
 }
 
+Game.prototype.addShip = function addShip() {
+    const ship = new Ship({
+      pos: this.randomPosition(),
+      game: this
+    });
+
+    this.ship = ship;
+  
+    return ship;
+  };
 
 Game.prototype.randomPosition = function() {
     let xCoord = getRandomInt(0, GAME_DEFAULTS.DIM_X);
