@@ -48,34 +48,29 @@ Ship.prototype.power = function(amount) {
 
 Ship.prototype.fireBullet = function() {
 
-    const norm = Utils.norm(this.vel);
+    let relVel = [0,0];
     let relPos = [0,0];
 
-    if (norm === 0) {
-      // Can't fire unless moving.
-      return;
-    }
-  
-    const relVel = Utils.scale(
-      this.vel,
-      2
-    );
-  
     const bulletVel = [
-      relVel[0] + this.vel[0], relVel[1] + this.vel[1]
-    ];
+
+        relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+
+    ]
 
     const bulletPos = [
-        relPos[0] + this.pos[0], relPos[1] + this.pos[1]
-    ];
-  
-    const bullet = new Bullet({
-      pos: bulletPos,
-      vel: bulletVel,
-      game: this.game
-    });
 
-    this.game.addBullet(bullet);
+        relPos[0] + this.pos[0], relPos[1] + this.pos[1]
+
+    ]
+
+
+
+
+    this.game.addBullet(new Bullet({pos: bulletPos, vel: bulletVel, game: this.game}))
+
+
+
+
 }
 
 // let g = new Game();
