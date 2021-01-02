@@ -37,7 +37,18 @@ Game.prototype.addAsteroids = function() {
 }
 
 Game.prototype.addBullet = function addBullet(obj) {
+    // if (this.bullets.length > 4) {
+    //     this.bullets.pop();
+    //     this.bullets.push(obj);
+    // } else {
+    //     this.bullets.push(obj);
+    // }
+    // console.log(obj);
+    // console.log(this.bullets);
+
     this.bullets.push(obj);
+    console.log(this.bullets);
+    console.log(this.ship);
 }
 
 Game.prototype.randomPosition = function() {
@@ -54,16 +65,18 @@ Game.prototype.move = function() {
 
 Game.prototype.allObjects = function() {
 
-    let testBullet = new Bullet({pos: this.ship.pos, vel: [10,10], game: this})
+
     let allArr = [];
 
     this.asteroids.forEach(ele => {
         allArr.push(ele);
     })
 
+    this.bullets.forEach(ele => {
+        allArr.push(ele);
+    })
+
     allArr.push(this.ship);
-    allArr.push(testBullet);
-    // allArr.push(this.bullets[0]);
 
     return allArr;
 };

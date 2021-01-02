@@ -1,5 +1,6 @@
 const MovingObject = require('./moving_object.js');
 const Bullet = require('./bullet.js');
+const Game = require('./game.js');
 const Utils = require('./utils.js');
 
 const SHIP_DEFAULTS = {
@@ -46,9 +47,35 @@ Ship.prototype.power = function(amount) {
 }
 
 Ship.prototype.fireBullet = function() {
-    let newBullet = new Bullet({pos: this.pos, vel: this.vel});
-    // this.game.addBullet(newBullet);
+
+    const norm = Utils.norm(this.vel);
+
+    if (norm === 0) {
+      // Can't fire unless moving.
+      return;
+    }
+  
+    const relVel = Utils.scale(
+      this.vel,
+      2
+    );
+  
+    const bulletVel = [
+      relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+    ];
+  
+    const bullet = new Bullet({
+      pos: this.pos,
+      vel: bulletVel,
+      game: this.game
+    });
+
+    this.game.addBullet(bullet);
 }
 
+// let g = new Game();
+// let ship = new Ship({pos: [10,10], vel: [10,10]})
+// let b = new Ship();
+// b.fireBullet();
 
 module.exports = Ship;

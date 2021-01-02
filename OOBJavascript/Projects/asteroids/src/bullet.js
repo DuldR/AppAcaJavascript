@@ -4,7 +4,7 @@ const Utils = require('./utils.js');
 
 const BULLET_DEFAULTS = {
     COLOR: "blue",
-    RADIUS: 10,
+    RADIUS: 50,
     SPEED: [5, 5]
 }
 function Bullet(options) {
@@ -12,7 +12,7 @@ function Bullet(options) {
     options.color = BULLET_DEFAULTS.COLOR;
     options.rad = BULLET_DEFAULTS.RADIUS;
     options.pos = options.pos;
-    options.vel = [options.vel[0] + BULLET_DEFAULTS.SPEED[0], options.vel[1] + BULLET_DEFAULTS.SPEED[1]];
+    options.vel = options.vel;
 
     MovingObject.call(this, options);
 }

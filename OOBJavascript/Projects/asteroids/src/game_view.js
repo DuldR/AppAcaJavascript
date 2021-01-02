@@ -13,12 +13,16 @@ GameView.prototype.bindKeyHandlers = function() {
     // Have to do this so the scope of the ship gets passed in
     const ship = this.game.ship;
 
+    let fire = function fire() {
+        ship.fireBullet();
+    }
+
 
     key('w', function() {ship.power("w")});
     key('s', function() {ship.power("s")});
     key('a', function() {ship.power("a")});
     key('d', function() {ship.power("d")});
-    key('f', function() {ship.fireBullet});
+    key('t', fire);
 }
 
 GameView.prototype.start = function() {
