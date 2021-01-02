@@ -10,43 +10,25 @@ function GameView (ctx) {
 
 GameView.prototype.bindKeyHandlers = function() {
 
+    // Have to do this so the scope of the ship gets passed in
     const ship = this.game.ship;
-    let print = function() {
-        console.log(ship);
-        console.log(ship.vel);
-    }
 
-    // Wow look ath this you habve tyo DEIFNei ti AS  FGUnction FJfuidgkdfgsdkl
-    let up = function() {
-        ship.power(1)
-    }
 
-    let down = function() {
-        ship.power(2)
-    }
-
-    // key('w', this.game.ship.power([0, 10]) });
-    key('a', function(){ alert('you pressed a!') });
-    key('w', ship.power(1));
-    key('s', down);
+    key('w', function() {ship.power("w")});
+    key('s', function() {ship.power("s")});
+    key('a', function() {ship.power("a")});
+    key('d', function() {ship.power("d")});
 }
 
 GameView.prototype.start = function() {
-    // window.setInterval(this.game.draw(this.ctx), 1000);
-    // window.setInterval(this.game.print, 1000);
-
 
     this.bindKeyHandlers();
-    console.log(this.ship);
 
     window.setInterval(() => {
         this.game.step();
         this.game.draw(this.ctx);
     }, 20);
-    // console.log(this.game);
-    // for (let i = 0; i < 100000; i++) {
-    //     this.game.move();
-    // }
+
 }
 
 module.exports = GameView;

@@ -32,10 +32,14 @@ Ship.prototype.power = function(amount) {
 
     // this.vel = [this.vel[0] + amount[0], this.vel[1] + amount[1]];
 
-    if (amount === 1) {
-        this.vel[1] = this.vel[1] - 10;
+    if (amount === "w") {
+        this.vel[1] = this.vel[1] - 5;
+    } else if (amount === "s") {
+        this.vel[1] = this.vel[1] + 5;
+    } else if (amount === "a") {
+        this.vel[0] = this.vel[0] - 5;
     } else {
-        this.vel[1] = this.vel[1] + 10;
+        this.vel[0] = this.vel[0] + 5;
     }
 
 }
