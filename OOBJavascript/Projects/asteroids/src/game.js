@@ -1,6 +1,7 @@
 const MovingObject = require('./moving_object.js');
 const Asteroid = require('./asteroid.js');
 const Ship = require('./ship.js');
+const Bullet = require('./bullet.js');
 const Utils = require('./utils.js');
 
 const GAME_DEFAULTS = {
@@ -14,6 +15,7 @@ const GAME_DEFAULTS = {
 function Game(options) {
     
     this.asteroids = [];
+    this.bullets = [];
     this.ship = new Ship({pos: this.randomPosition(), game: this})
     this.addAsteroids();
 
@@ -34,30 +36,25 @@ Game.prototype.addAsteroids = function() {
 
 }
 
-Game.prototype.addShip = function addShip() {
-    const ship = new Ship({
-      pos: this.randomPosition(),
-      game: this
-    });
-
-    this.ship = ship;
-  
-    return ship;
-  };
+Game.prototype.addBullet = function addBullet(obj) {
+    this.bullets.push(obj);
+}
 
 Game.prototype.randomPosition = function() {
     let xCoord = getRandomInt(0, GAME_DEFAULTS.DIM_X);
     let yCoord = getRandomInt(0, GAME_DEFAULTS.DIM_Y);
     return [xCoord, yCoord];
-}
+};
 
 Game.prototype.move = function() {
     this.allObjects().forEach(ele => {
         ele.move();
     })
-}
+};
 
 Game.prototype.allObjects = function() {
+
+    let testBullet = new Bullet({pos: this.ship.pos, vel: [10,10], game: this})
     let allArr = [];
 
     this.asteroids.forEach(ele => {
@@ -65,13 +62,11 @@ Game.prototype.allObjects = function() {
     })
 
     allArr.push(this.ship);
+    allArr.push(testBullet);
+    // allArr.push(this.bullets[0]);
 
     return allArr;
-}
-
-Game.prototype.getShip = function() {
-    return this.ship;
-}
+};
 
 Game.prototype.draw = function(ctx) {
 
@@ -81,7 +76,7 @@ Game.prototype.draw = function(ctx) {
         ele.draw(ctx);
     })
 
-}
+};
 
 Game.prototype.checkCollisions = function() {
 
@@ -91,11 +86,11 @@ Game.prototype.checkCollisions = function() {
         }
     })
 
-}
+};
 
 Game.prototype.remove = function(asteroid) {
     this.asteroids.splice(asteroid, 1);
-}
+};
 
 Game.prototype.wrap = function(pos) {
 
@@ -110,12 +105,12 @@ Game.prototype.wrap = function(pos) {
     } else {
         return pos;
     }
-}
+};
 
 Game.prototype.step = function() {
     this.move();
     this.checkCollisions();
-}
+};
 
 
 

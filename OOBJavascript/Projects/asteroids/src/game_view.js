@@ -18,6 +18,7 @@ GameView.prototype.bindKeyHandlers = function() {
     key('s', function() {ship.power("s")});
     key('a', function() {ship.power("a")});
     key('d', function() {ship.power("d")});
+    key('f', function() {ship.fireBullet});
 }
 
 GameView.prototype.start = function() {
