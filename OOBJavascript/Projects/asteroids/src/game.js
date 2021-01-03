@@ -37,18 +37,12 @@ Game.prototype.addAsteroids = function() {
 }
 
 Game.prototype.addBullet = function addBullet(obj) {
-    // if (this.bullets.length > 4) {
-    //     this.bullets.pop();
-    //     this.bullets.push(obj);
-    // } else {
-    //     this.bullets.push(obj);
-    // }
-    // console.log(obj);
-    // console.log(this.bullets);
-
-    this.bullets.push(obj);
-    console.log(this.bullets);
-    console.log(this.ship);
+    if (this.bullets.length > 4) {
+        this.bullets.shift();
+        this.bullets.push(obj);
+    } else {
+        this.bullets.push(obj);
+    }
 }
 
 Game.prototype.randomPosition = function() {
@@ -60,8 +54,29 @@ Game.prototype.randomPosition = function() {
 Game.prototype.move = function() {
     this.allObjects().forEach(ele => {
         ele.move();
+
+        if (this.isOutOfBounds(ele.pos) === true && ele.isWrappable === false) {
+
+            // Gon do some HACKY SHIT
+            let findEle = (findEle) => findEle === ele;
+            let knownEle = this.allObjects().findIndex(findEle);
+            let removeEle = (knownEle - this.asteroids.length)
+            this.remove(removeEle);
+        }
     })
+
+    
 };
+
+Game.prototype.remove = function remove(ele) {
+    console.log(ele);
+    this.bullets.splice(ele, 1);
+}
+
+// Game.prototype.remove = function(asteroid) {
+//     this.asteroids.splice(asteroid, 1);
+// };
+
 
 Game.prototype.allObjects = function() {
 
@@ -91,6 +106,19 @@ Game.prototype.draw = function(ctx) {
 
 };
 
+Game.prototype.isOutOfBounds = function isOutOfBounds(pos) {
+    if (pos[0] > GAME_DEFAULTS.DIM_X) {
+        return true;
+    } else if (pos[0] < 0) {
+        return true;
+    } else if (pos[1] > GAME_DEFAULTS.DIM_Y) {
+        return true;
+    } else if (pos[1] < 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 Game.prototype.checkCollisions = function() {
 
     this.asteroids.forEach(ele => {
@@ -99,10 +127,6 @@ Game.prototype.checkCollisions = function() {
         }
     })
 
-};
-
-Game.prototype.remove = function(asteroid) {
-    this.asteroids.splice(asteroid, 1);
 };
 
 Game.prototype.wrap = function(pos) {

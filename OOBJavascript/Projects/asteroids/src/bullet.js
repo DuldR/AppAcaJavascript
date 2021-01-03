@@ -14,9 +14,12 @@ function Bullet(options) {
     options.pos = options.pos;
     options.vel = options.vel;
 
+    this.isWrappable = false;
+
     MovingObject.call(this, options);
 }
 
 Utils.inherits(Bullet, MovingObject);
+
 
 module.exports = Bullet;

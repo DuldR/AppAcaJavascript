@@ -37,6 +37,8 @@ MovingObject.prototype.isCollidedWith = function(obj) {
     return false;
 }
 
+MovingObject.prototype.isWrappable = true;
+
 MovingObject.prototype.print = function() {
 
     console.log(this.color);
@@ -44,9 +46,10 @@ MovingObject.prototype.print = function() {
     console.log(this);
 }
 
-// let m = new MovingObject({pos: [0,0], vel: [1,1], rad: 1})
+let m = new MovingObject({pos: [0,0], vel: [1,1], rad: 1})
 // let c = new MovingObject({pos: [0,2], vel: [1,1], rad: 2})
 
+// console.log(m.isWrappable);
 // console.log(m.isCollidedWith(c));
 
 module.exports = MovingObject;
