@@ -61,21 +61,22 @@ Game.prototype.move = function() {
             let findEle = (findEle) => findEle === ele;
             let knownEle = this.allObjects().findIndex(findEle);
             let removeEle = (knownEle - this.asteroids.length)
-            this.remove(removeEle);
+            this.removeBullet(removeEle);
         }
     })
 
     
 };
 
-Game.prototype.remove = function remove(ele) {
+// Bad code
+Game.prototype.removeBullet = function remove(ele) {
 
     this.bullets.splice(ele, 1);
 }
 
-// Game.prototype.remove = function(asteroid) {
-//     this.asteroids.splice(asteroid, 1);
-// };
+Game.prototype.removeAsteroid = function(asteroid) {
+    this.asteroids.splice(asteroid, 1);
+};
 
 
 Game.prototype.allObjects = function() {
@@ -125,7 +126,16 @@ Game.prototype.checkCollisions = function() {
         if (ele.isCollidedWith(this.ship)) {
             this.ship.relocate(this.randomPosition())
         }
+
+        this.bullets.forEach(bull => {
+            if (ele.isCollidedWith(bull)) {
+                let findEle = (findEle) => findEle === ele;
+                let knownEle = this.allObjects().findIndex(findEle);
+                this.removeAsteroid(knownEle);
+            }
+        })
     })
+
 
 };
 
