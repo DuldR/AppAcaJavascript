@@ -69,7 +69,7 @@ Game.prototype.move = function() {
 };
 
 Game.prototype.remove = function remove(ele) {
-    console.log(ele);
+
     this.bullets.splice(ele, 1);
 }
 

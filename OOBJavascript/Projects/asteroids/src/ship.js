@@ -48,12 +48,16 @@ Ship.prototype.power = function(amount) {
 
 Ship.prototype.fireBullet = function() {
 
-    let relVel = [0,0];
+    if (this.vel[0] === 0 && this.vel[1] === 0) {
+        return;
+    }
+    
+    let relVel = [3,3];
     let relPos = [0,0];
 
     const bulletVel = [
 
-        relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+        relVel[0] * this.vel[0], relVel[1] * this.vel[1]
 
     ]
 

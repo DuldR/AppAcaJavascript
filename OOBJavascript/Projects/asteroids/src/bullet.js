@@ -4,8 +4,8 @@ const Utils = require('./utils.js');
 
 const BULLET_DEFAULTS = {
     COLOR: "blue",
-    RADIUS: 50,
-    SPEED: [5, 5]
+    RADIUS: 5,
+    SPEED: [50, 50]
 }
 function Bullet(options) {
     options = options || {};
