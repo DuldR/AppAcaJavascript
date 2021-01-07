@@ -88,7 +88,12 @@ View.prototype.exercise5 = function () {
 
   // This fails as its using an arrow function
   // $("li.square").click( (e) => {
-  //   alert($(e.currentTarget).attr('data-pos'));
+
+    // Can'tbe used as this is bound from the global window
+    // alert($(this).attr('data-pos'));
+
+    // This is OK as currentTarget is the event scope that was called
+    // alert($(e.currentTarget).attr('data-pos'));
   // })
 
 
@@ -108,6 +113,14 @@ View.prototype.exercise6 = function () {
   //hint: use window._randomColorString() (defined at top) to get a random color!
 
   //your code here!
+
+  // This changes everything at once lol.
+  // $("li.square").css("background-color", window._randomColorString())
+
+  $("li.square").each( function(idx, ele) {
+    $(ele).css("background-color", window._randomColorString())
+  })
+  
 };
 
 View.prototype.exercise7 = function(){
@@ -118,6 +131,10 @@ View.prototype.exercise7 = function(){
   //rainbow.
 
   //your code here!
+
+  $("li.square").mouseover(function () {
+    console.log(($(this).css("background-color")))
+  })
 };
 
 
