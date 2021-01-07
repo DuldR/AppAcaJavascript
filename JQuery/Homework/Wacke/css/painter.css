@@ -8,6 +8,10 @@ li {
   float: left;
 }
 
+.name {
+  font-size: 7px;
+}
+
 .square {
   outline: 1px solid gray;
   width: 25px;

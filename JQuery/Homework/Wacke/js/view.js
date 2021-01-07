@@ -32,6 +32,8 @@ View.prototype.exercise2 = function () {
   //Result: Every square vanishes
 
   //your code here!
+
+  $('li.square').remove();
 };
 
 View.prototype.exercise3 = function () {
@@ -39,6 +41,7 @@ View.prototype.exercise3 = function () {
   //Result: An <h1> with the text 'i love jquery' appears under the grid.
 
   //your code here!
+  $('div').append("<h1>I love jquery</h1>")
 };
 
 View.prototype.exercise4 = function () {
@@ -46,6 +49,25 @@ View.prototype.exercise4 = function () {
   //Result: Your name appears in every other square.
 
   //your code here!
+
+  // THis works
+  // let listItems = $('li')
+
+  // listItems.each( (idx, ele) => {
+  //   if (idx % 2 === 0) {
+  //     let li = $(ele)
+  //     li.addClass('orange');
+  //   }
+  // })
+
+  $("li").each( (idx,ele) => {
+
+    if (idx % 2 === 0) {
+      $(ele).addClass('name');
+      $(ele).text('garrett');
+    }
+    // $(ele).addClass('orange');
+  })
 };
 
 View.prototype.exercise5 = function () {
