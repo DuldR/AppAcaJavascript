@@ -79,6 +79,25 @@ View.prototype.exercise5 = function () {
   //  'data-pos' of every square
 
   //your code here!
+
+  // This prints out the pos
+  // $("li").each( (idx, ele) => {
+  //   let txt = $(ele).attr('data-pos');
+  //   $(ele).text(txt);
+  // })
+
+  // This fails as its using an arrow function
+  // $("li.square").click( (e) => {
+  //   alert($(e.currentTarget).attr('data-pos'));
+  // })
+
+
+  // This works as this then references the local function it was caleld in, IE: the event that was fired off.
+  $("li.square").click(function () {
+    alert($(this).attr('data-pos'));
+  })
+
+
 };
 
 View.prototype.exercise6 = function () {
