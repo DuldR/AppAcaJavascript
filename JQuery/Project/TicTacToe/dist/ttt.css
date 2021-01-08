@@ -12,17 +12,24 @@ figure {
     list-style: none;
 }
 
+.checked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 79.2px;
+
+}
+
 
 .square {
-    outline: 1px solid gray;
     width: 400px;
-    height: 120px;
+    height: 130px;
     float: left;
     transition: outline 0.5s, background-color 0.5s;
     cursor: crosshair;
     background-color:grey;
     border: 1px solid black;
-    list-style: none;
+
 }
 
 .square:hover {

@@ -4,7 +4,7 @@ class View {
     this.$el = $el;
   }
 
-  // So annoying
+  // So annoying - Which is more readable? Neither.
   bindEvents() {
     $("li.square").click((ele) => {
 
@@ -12,9 +12,17 @@ class View {
       // let pos = $(this).attr('data-pos');
 
       // Use arrow functions and reference current target
+
       let pos = $(ele.currentTarget).attr('data-pos').split(',').map(Number);
-      this.game.playMove(pos);
-      $(ele.currentTarget).css('background-color', 'white');
+      try {
+        this.game.playMove(pos);
+        $(ele.currentTarget).css('background-color', 'white');
+        $(ele.currentTarget).text(this.game.currentPlayer).addClass('checked');
+      } catch (error) {
+        alert(error.msg);
+      }
+
+      
 
     })
   }
