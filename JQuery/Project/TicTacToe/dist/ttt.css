@@ -20,8 +20,13 @@ figure {
     float: left;
     transition: outline 0.5s, background-color 0.5s;
     cursor: crosshair;
-    background-color: white;
+    background-color:grey;
+    border: 1px solid black;
     list-style: none;
+}
+
+.square:hover {
+    background-color: yellow;
 }
 
 .group:after {
