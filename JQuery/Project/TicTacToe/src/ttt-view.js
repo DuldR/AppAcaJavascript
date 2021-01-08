@@ -5,34 +5,30 @@ class View {
   }
 
   // So annoying
-  // bindEvents() {
-  //   $("li.square").click((ele) => {
-
-  //     // This only allows if you use an anon function. But you dont get to reference this.game
-  //     // let pos = $(this).attr('data-pos');
-
-  //     // Use arrow functions and reference current target
-
-  //     // let pos = $(ele.currentTarget).attr('data-pos');
-  //     // console.log(this.game);
-  //     // console.log(pos);
-  //   //   this.game.playMove(pos);
-  //   //   $(this).css('background-color', "white");
-  //   //   console.log($(this).css('background-color'))
-  //   // })
-  //   })
-  // }
-
   bindEvents() {
-    // WHAT IS THIS MADNESS????
-    var that = this;
-    $('li.square').click(function() {
-      let pos = $(this).attr('data-pos').split(",").map(Number);
-      console.log(pos);
-      // that.game.playMove(pos);
-      // $(this).css('background-color', 'white');
+    $("li.square").click((ele) => {
+
+      // This only allows if you use an anon function. But you dont get to reference this.game
+      // let pos = $(this).attr('data-pos');
+
+      // Use arrow functions and reference current target
+      let pos = $(ele.currentTarget).attr('data-pos').split(',').map(Number);
+      this.game.playMove(pos);
+      $(ele.currentTarget).css('background-color', 'white');
+
     })
   }
+
+  // Anonymous function and binding that to this<- View Object
+  // bindEvents() {
+  //   // WHAT IS THIS MADNESS????
+  //   var that = this;
+  //   $('li.square').click(function() {
+  //     let pos = $(this).attr('data-pos').split(",").map(Number);
+  //     that.game.playMove(pos);
+  //     $(this).css('background-color', 'white');
+  //   })
+  // }
 
   makeMove($square) {}
 
