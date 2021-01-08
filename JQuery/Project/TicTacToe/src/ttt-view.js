@@ -4,21 +4,33 @@ class View {
     this.$el = $el;
   }
 
+  // So annoying
+  // bindEvents() {
+  //   $("li.square").click((ele) => {
+
+  //     // This only allows if you use an anon function. But you dont get to reference this.game
+  //     // let pos = $(this).attr('data-pos');
+
+  //     // Use arrow functions and reference current target
+
+  //     // let pos = $(ele.currentTarget).attr('data-pos');
+  //     // console.log(this.game);
+  //     // console.log(pos);
+  //   //   this.game.playMove(pos);
+  //   //   $(this).css('background-color', "white");
+  //   //   console.log($(this).css('background-color'))
+  //   // })
+  //   })
+  // }
+
   bindEvents() {
-    $("li.square").click((ele) => {
-
-      // This only allows if you use an anon function. But you dont get to reference this.game
-      // let pos = $(this).attr('data-pos');
-
-      // Use arrow functions and reference current target
-
-      let pos = $(ele.currentTarget).attr('data-pos');
-      console.log(this.game);
+    // WHAT IS THIS MADNESS????
+    var that = this;
+    $('li.square').click(function() {
+      let pos = $(this).attr('data-pos').split(",").map(Number);
       console.log(pos);
-    //   this.game.playMove(pos);
-    //   $(this).css('background-color', "white");
-    //   console.log($(this).css('background-color'))
-    // })
+      // that.game.playMove(pos);
+      // $(this).css('background-color', 'white');
     })
   }
 
