@@ -8,5 +8,6 @@ const Game = require('../src/game.js')
     let v = new View(g, $("figure.ttt"));
 
     v.setupBoard();
+    v.bindEvents();
   
   });

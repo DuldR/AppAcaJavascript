@@ -5,9 +5,20 @@ class View {
   }
 
   bindEvents() {
-    $("li.square").click(function() {
-      // I need position first
-      // this.game.playMove();
+    $("li.square").click((ele) => {
+
+      // This only allows if you use an anon function. But you dont get to reference this.game
+      // let pos = $(this).attr('data-pos');
+
+      // Use arrow functions and reference current target
+
+      let pos = $(ele.currentTarget).attr('data-pos');
+      console.log(this.game);
+      console.log(pos);
+    //   this.game.playMove(pos);
+    //   $(this).css('background-color', "white");
+    //   console.log($(this).css('background-color'))
+    // })
     })
   }
 
