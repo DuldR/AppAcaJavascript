@@ -12,22 +12,21 @@ class View {
 
       let pos = $(target).attr('data-pos').split(',').map(Number);
       try {
-        console.log(this.game.currentPlayer);
+        console.log(this.game);
         this.game.playMove(pos);
-        console.log(this.game.currentPlayer);
         this.makeMove($(target))
         // console.log(this.game);
 
         // alert(this.game.winner());
         // alert(this.game.isOver())
-        if (this.game.isOver()) {
+        // if (this.game.isOver()) {
 
-          let win = this.game.winner();
-          $('li').not(':contains(' + win + ')').addClass('loser');
-          $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
+        //   let win = this.game.winner();
+        //   $('li').not(':contains(' + win + ')').addClass('loser');
+        //   $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
 
-          alert(win + " is the winner!")
-        }
+        //   alert(win + " is the winner!")
+        // }
 
       } catch (error) {
         alert(error.msg);
