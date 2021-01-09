@@ -8,37 +8,37 @@ class View {
   bindEvents() {
     $("li.square").click((ele) => {
 
-      // This only allows if you use an anon function. But you dont get to reference this.game
-      // let pos = $(this).attr('data-pos');
+      let target = $(ele.currentTarget);
 
-      // Use arrow functions and reference current target
-
-      let pos = $(ele.currentTarget).attr('data-pos').split(',').map(Number);
+      let pos = $(target).attr('data-pos').split(',').map(Number);
       try {
         this.game.playMove(pos);
-        $(ele.currentTarget).css('background-color', 'white');
-        $(ele.currentTarget).text(this.game.currentPlayer).addClass('checked');
+        this.makeMove($(target))
+        // console.log(this.game);
+
+        // alert(this.game.winner());
+        // alert(this.game.isOver())
+        if (this.game.isOver()) {
+
+          let win = this.game.winner();
+          $('li').not(':contains(' + win + ')').addClass('loser');
+          $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
+
+          alert(win + " is the winner!")
+        }
+
       } catch (error) {
         alert(error.msg);
       }
-
-      
-
     })
   }
 
-  // Anonymous function and binding that to this<- View Object
-  // bindEvents() {
-  //   // WHAT IS THIS MADNESS????
-  //   var that = this;
-  //   $('li.square').click(function() {
-  //     let pos = $(this).attr('data-pos').split(",").map(Number);
-  //     that.game.playMove(pos);
-  //     $(this).css('background-color', 'white');
-  //   })
-  // }
+  makeMove($square) {
+    
+    $square.css('background-color', 'white');
+    $square.text(this.game.currentPlayer).addClass('checked');
 
-  makeMove($square) {}
+  }
 
   setupBoard() {
 
@@ -50,19 +50,10 @@ class View {
       $("ul.row").append("<li class=square></li>")
     }
 
-    // This doesnt work as yu're collecting all of the LI items every loop
-    // const rowIdx = this.$el.find(".row").length;
-    // for (let rowIdx = 0; rowIdx < 3; rowIdx++) {
-    //   for (let colIdx = 0; colIdx < 3; colIdx++) {
-    //     $("li.square").attr("data-pos", [rowIdx, colIdx]);
-    //   }
-    // }
-
     let listItems = $("li.square");
     let colIdx = 0;
     let rowIdx = 0;
     listItems.each( (idx, ele) => {
-      // console.log(idx);
       $(ele).attr("data-pos", [rowIdx, colIdx])
       if (idx % 3 === 2) {
         colIdx = 0;
