@@ -10,29 +10,6 @@ class View {
 
       let target = $(ele.currentTarget);
       this.makeMove(target);
-
-      // Do all this in makeMove
-      // try {
-      //   console.log(this.game.currentPlayer);
-      //   this.game.playMove(pos);
-      //   console.log(this.game.currentPlayer);
-      //   this.makeMove($(target))
-      //   // console.log(this.game);
-
-      //   // alert(this.game.winner());
-      //   // alert(this.game.isOver())
-      //   if (this.game.isOver()) {
-
-      //     let win = this.game.winner();
-      //     $('li').not(':contains(' + win + ')').addClass('loser');
-      //     $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
-
-      //     alert(win + " is the winner!")
-      //   }
-
-      // } catch (error) {
-      //   alert(error.msg);
-      // }
     })
   }
 
@@ -42,19 +19,22 @@ class View {
     let pos = $($square).attr('data-pos').split(',').map(Number);
 
     $square.css('background-color', 'white');
-    // box.text(this.game.currentPlayer).addClass('checked');
 
     try {
-      console.log(player);
       this.game.playMove(pos);
-      console.log(player);
-      // Here's the problem :)
-      console.log(this.game.currentPlayer);
-
+      $square.text(player).addClass('checked');
     } catch (e) {
       alert(e.msg);
     }
 
+    if (this.game.isOver()) {
+
+      let win = this.game.winner();
+      $('li').not(':contains(' + win + ')').addClass('loser');
+      $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
+
+      alert(win + " is the winner!")
+    }
   }
 
   setupBoard() {
