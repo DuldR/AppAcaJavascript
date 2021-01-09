@@ -9,36 +9,51 @@ class View {
     $("li.square").click((ele) => {
 
       let target = $(ele.currentTarget);
+      this.makeMove(target);
 
-      let pos = $(target).attr('data-pos').split(',').map(Number);
-      try {
-        console.log(this.game.currentPlayer);
-        this.game.playMove(pos);
-        console.log(this.game.currentPlayer);
-        this.makeMove($(target))
-        // console.log(this.game);
+      // Do all this in makeMove
+      // try {
+      //   console.log(this.game.currentPlayer);
+      //   this.game.playMove(pos);
+      //   console.log(this.game.currentPlayer);
+      //   this.makeMove($(target))
+      //   // console.log(this.game);
 
-        // alert(this.game.winner());
-        // alert(this.game.isOver())
-        if (this.game.isOver()) {
+      //   // alert(this.game.winner());
+      //   // alert(this.game.isOver())
+      //   if (this.game.isOver()) {
 
-          let win = this.game.winner();
-          $('li').not(':contains(' + win + ')').addClass('loser');
-          $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
+      //     let win = this.game.winner();
+      //     $('li').not(':contains(' + win + ')').addClass('loser');
+      //     $('li:contains(' + win + ')').css("background-color", "green").addClass("winner");
 
-          alert(win + " is the winner!")
-        }
+      //     alert(win + " is the winner!")
+      //   }
 
-      } catch (error) {
-        alert(error.msg);
-      }
+      // } catch (error) {
+      //   alert(error.msg);
+      // }
     })
   }
 
   makeMove($square) {
-    
+
+    let player = this.game.currentPlayer;
+    let pos = $($square).attr('data-pos').split(',').map(Number);
+
     $square.css('background-color', 'white');
-    $square.text(this.game.currentPlayer).addClass('checked');
+    // box.text(this.game.currentPlayer).addClass('checked');
+
+    try {
+      console.log(player);
+      this.game.playMove(pos);
+      console.log(player);
+      // Here's the problem :)
+      console.log(this.game.currentPlayer);
+
+    } catch (e) {
+      alert(e.msg);
+    }
 
   }
 
