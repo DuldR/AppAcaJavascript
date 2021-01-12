@@ -1,5 +1,6 @@
-const HanoiGame = require('./game.js');
+const HanoiGame = require('../src/game.js');
 
+console.log("Webpack work");
 
 $(() => {
   const rootEl = $('.hanoi');
