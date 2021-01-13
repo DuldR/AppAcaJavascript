@@ -9,18 +9,26 @@ class View {
 
     // }
 
+    bindEvents() {
+        $("ul.row").
+    }
+
 
 }
 
 View.prototype.setupTowers = function() {
 
+
+
+    // Applied ID using the for loop :)
     for (let i = 0; i < 3; i++) {
-        $(this.dom).append('<ul class="row">test</ul>')
+        $(this.dom).append('<ul class="row" id=' + i + '></ul>')
     }
 
-    for (let j = 0; j < 3; j++) {
-        $("ul.row").append("<li class=top-square></li>")
-    }
+
+    $("#0").append("<li class=top-square></li>")
+    $("#0").append("<li class=middle-square></li>")
+    $("#0").append("<li class=bottom-square></li>")
 
 }
 
