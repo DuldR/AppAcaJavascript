@@ -23,9 +23,9 @@ eval("class Game {\n  constructor() {\n    this.towers = [[3, 2, 1], [], []];\n 
 /*!***************************!*\
   !*** ./src/hanoi-view.js ***!
   \***************************/
-/***/ (() => {
+/***/ ((module) => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (14:4)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|     bindEvents() {\\n|         $(\\\"ul.row\\\").\\n>     }\\n| \\n| \");\n\n//# sourceURL=webpack:///./src/hanoi-view.js?");
+eval("class View {\n\n    constructor (game, dom) {\n        this.game = game;\n        this.dom = dom;\n    }\n\n    // View.prototype.setupTowers = function() {\n\n    // }\n\n    bindEvents() {\n        $(\"ul.row\").click((ele) => {\n            let target = $(ele.currentTarget);\n            // Use this to give the tower index :)\n            console.log($(target).attr(\"id\"));\n        })\n    }\n\n\n}\n\nView.prototype.render = function () {\n\n}\n\nView.prototype.setupTowers = function() {\n\n\n\n    // Applied ID using the for loop :)\n    for (let i = 0; i < 3; i++) {\n        $(this.dom).append('<ul class=\"row\" id=' + i + '></ul>')\n    }\n\n\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi-view.js?");
 
 /***/ })
 
@@ -59,7 +59,7 @@ eval("throw new Error(\"Module parse failed: Unexpected token (14:4)\\nYou may n
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("const HanoiGame = __webpack_require__(/*! ../src/game.js */ \"./src/game.js\");\nconst HanoiView = __webpack_require__(/*! ../src/hanoi-view.js */ \"./src/hanoi-view.js\");\n\nconsole.log(\"Webpack work\");\n\n$(() => {\n  const rootEl = $('.hanoi');\n  const game = new HanoiGame();\n  const view = new HanoiView(game, rootEl);\n\n  view.setupTowers();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const HanoiGame = __webpack_require__(/*! ../src/game.js */ \"./src/game.js\");\nconst HanoiView = __webpack_require__(/*! ../src/hanoi-view.js */ \"./src/hanoi-view.js\");\n\nconsole.log(\"Webpack work\");\n\n$(() => {\n  const rootEl = $('.hanoi');\n  const game = new HanoiGame();\n  const view = new HanoiView(game, rootEl);\n\n  view.setupTowers();\n  view.bindEvents();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 })();
 
 /******/ })()

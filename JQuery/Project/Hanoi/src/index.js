@@ -9,4 +9,5 @@ $(() => {
   const view = new HanoiView(game, rootEl);
 
   view.setupTowers();
+  view.bindEvents();
 });
