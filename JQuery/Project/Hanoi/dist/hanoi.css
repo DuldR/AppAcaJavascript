@@ -2,7 +2,13 @@ h1 {
     text-align: center;
 }
 
+.row {
+    margin: 0px 10px 0px 10px;
+}
 figure {
     width: 1920;
     height: 1200;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }

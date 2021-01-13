@@ -15,7 +15,7 @@ class View {
 View.prototype.setupTowers = function() {
 
     for (let i = 0; i < 3; i++) {
-        $(this.dom).append('<ul class="row group">test</ul>')
+        $(this.dom).append('<ul class="row">test</ul>')
     }
 
 }

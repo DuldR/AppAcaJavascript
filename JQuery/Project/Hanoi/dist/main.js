@@ -25,7 +25,7 @@ eval("class Game {\n  constructor() {\n    this.towers = [[3, 2, 1], [], []];\n 
   \***************************/
 /***/ ((module) => {
 
-eval("class View {\n\n    constructor (game, dom) {\n        this.game = game;\n        this.dom = dom;\n    }\n\n    // View.prototype.setupTowers = function() {\n\n    // }\n\n\n}\n\nView.prototype.setupTowers = function() {\n\n    for (let i = 0; i < 3; i++) {\n        $(this.dom).append('<ul class=\"row group\">test</ul>')\n    }\n\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi-view.js?");
+eval("class View {\n\n    constructor (game, dom) {\n        this.game = game;\n        this.dom = dom;\n    }\n\n    // View.prototype.setupTowers = function() {\n\n    // }\n\n\n}\n\nView.prototype.setupTowers = function() {\n\n    for (let i = 0; i < 3; i++) {\n        $(this.dom).append('<ul class=\"row\">test</ul>')\n    }\n\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack:///./src/hanoi-view.js?");
 
 /***/ })
 
