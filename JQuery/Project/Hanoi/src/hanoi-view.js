@@ -27,7 +27,6 @@ class View {
 
             this.endIdx = $($tower).attr("id");
             this.render();
-            // this.game.move(this.initialIdx, this.endIdx);
             this.wipeVars();
 
         } else {
@@ -46,16 +45,11 @@ class View {
 
 View.prototype.render = function () {
 
-    // try {
-    //     this.game.move(this.initialIdx, this.endIdx);
-        
-    // } catch (e) {
-    //     console.log(e);
-    //     alert("Not a valid move");
-    // }
-
     // Original code doesnt throw an error. Only false
-    if (this.game.move(this.initialIdx, this.endIdx) === false) {
+    if (this.game.move(this.initialIdx, this.endIdx)) {
+        let firstMove = $("#" + this.initialIdx + " li:first-child")
+        $("#" + this.endIdx).prepend(firstMove);
+    } else {
         alert("Not a vlid move");
     }
 
