@@ -23,12 +23,14 @@ class View {
 
         if (this.initialIdx) {
 
+            $("#" + this.initialIdx).removeClass("highlighted");
             this.endIdx = $($tower).attr("id");
             this.render();
             this.wipeVars();
 
         } else {
             this.initialIdx = $($tower).attr("id");
+            $("#" + this.initialIdx).addClass("highlighted");
         }
 
     }
