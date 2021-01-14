@@ -17,23 +17,18 @@ class View {
             // console.log($(target).attr("id"));
 
             this.clickTower(target);
-
-            console.log(this.initialIdx);
-            console.log(this.endIdx);
+            console.log(this.game.towers);
         })
     }
 
     clickTower($tower) {
 
-        if (this.endIdx) {
-            this.initialIdx = undefined;
-            this.endIdx = undefined;
-            return
-        }
-
         if (this.initialIdx) {
 
             this.endIdx = $($tower).attr("id");
+            this.render();
+            // this.game.move(this.initialIdx, this.endIdx);
+            this.wipeVars();
 
         } else {
             this.initialIdx = $($tower).attr("id");
@@ -41,10 +36,28 @@ class View {
 
     }
 
+    wipeVars() {
+        this.initialIdx = undefined;
+        this.endIdx = undefined;
+    }
+
 
 }
 
 View.prototype.render = function () {
+
+    // try {
+    //     this.game.move(this.initialIdx, this.endIdx);
+        
+    // } catch (e) {
+    //     console.log(e);
+    //     alert("Not a valid move");
+    // }
+
+    // Original code doesnt throw an error. Only false
+    if (this.game.move(this.initialIdx, this.endIdx) === false) {
+        alert("Not a vlid move");
+    }
 
 }
 
