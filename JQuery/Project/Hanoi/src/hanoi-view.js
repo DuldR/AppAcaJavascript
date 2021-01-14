@@ -12,12 +12,10 @@ class View {
 
     bindEvents() {
         $("ul.row").click((ele) => {
-            let target = $(ele.currentTarget);
-            // Use this to give the tower index :)
-            // console.log($(target).attr("id"));
 
+            let target = $(ele.currentTarget);
             this.clickTower(target);
-            console.log(this.game.towers);
+
         })
     }
 
@@ -49,8 +47,12 @@ View.prototype.render = function () {
     if (this.game.move(this.initialIdx, this.endIdx)) {
         let firstMove = $("#" + this.initialIdx + " li:first-child")
         $("#" + this.endIdx).prepend(firstMove);
+
+        if (this.game.isWon()) {
+            alert("You're the cutest! ;)")
+        }
     } else {
-        alert("Not a vlid move");
+        alert("Not a valid move");
     }
 
 }
