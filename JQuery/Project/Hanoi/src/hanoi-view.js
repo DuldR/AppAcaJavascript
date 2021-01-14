@@ -33,6 +33,10 @@ View.prototype.setupTowers = function() {
         $(this.dom).append('<ul class="row" id=' + i + '></ul>')
     }
 
+    $("#0").append('<li class=top-square></li>')
+    $("#0").append('<li class=middle-square></li>')
+    $("#0").append('<li class=bottom-square></li>')
+
 
 }
 
