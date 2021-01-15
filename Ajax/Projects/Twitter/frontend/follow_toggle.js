@@ -6,14 +6,10 @@ class FollowToggle {
 
 
         this.render();
+        this.$ele.on("click", this.handleClick.bind(this))
     
     }
 
-    // bindEvents() {
-    //     this.$ele.click((ele) => {
-    //         alert("I'm clicked");
-    //     })
-    // }
 
     render() {
         if (this.followState === true) {
@@ -23,22 +19,20 @@ class FollowToggle {
         }
     }
 
-    method() {
-        if (this.followState === true) {
-            return "DELETE";
-        } else {
-            return "POST";
-        }
-    }
 
     handleClick(e) {
+        console.log(e);
         e.preventDefault();
         $.ajax({
             method: (this.followState) ? "DELETE" : "POST",
-            url: "/users/:id/follow",
+            url: "/users/" + this.userId + "/follow",
             dataType: "json",
-            
-        })
+            data: this.$ele.serialize(),
+            success: function(message){
+                alert("OKRAT");
+            }
+        });
+        this.render();
     }
 
 }
