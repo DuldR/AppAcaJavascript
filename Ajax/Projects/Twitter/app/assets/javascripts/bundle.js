@@ -65,7 +65,7 @@ $(() => {
     const toggle = new FollowToggle(rootEl);
     
     
-    console.log(toggle);
+    toggle.bindEvents();
     
 })
 })();

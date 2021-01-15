@@ -6996,3 +6996,72 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 35ms (Views: 28.1ms | ActiveRecord: 1.5ms)
 
 
+Started GET "/users/2" for 127.0.0.1 at 2021-01-15 13:24:36 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2Yee3hoRZtnnPm1qm9SiIg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2Yee3hoRZtnnPm1qm9SiIg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mTweet Load (0.2ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mMention Load (0.4ms)[0m  [1m[34mSELECT "mentions".* FROM "mentions" WHERE "mentions"."tweet_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40)[0m  [["tweet_id", 41], ["tweet_id", 42], ["tweet_id", 43], ["tweet_id", 44], ["tweet_id", 45], ["tweet_id", 46], ["tweet_id", 47], ["tweet_id", 48], ["tweet_id", 49], ["tweet_id", 50], ["tweet_id", 51], ["tweet_id", 52], ["tweet_id", 53], ["tweet_id", 54], ["tweet_id", 55], ["tweet_id", 56], ["tweet_id", 57], ["tweet_id", 58], ["tweet_id", 59], ["tweet_id", 60], ["tweet_id", 61], ["tweet_id", 62], ["tweet_id", 63], ["tweet_id", 64], ["tweet_id", 65], ["tweet_id", 66], ["tweet_id", 67], ["tweet_id", 68], ["tweet_id", 69], ["tweet_id", 70], ["tweet_id", 71], ["tweet_id", 72], ["tweet_id", 73], ["tweet_id", 74], ["tweet_id", 75], ["tweet_id", 76], ["tweet_id", 77], ["tweet_id", 78], ["tweet_id", 79], ["tweet_id", 80]]
+  ↳ app/controllers/users_controller.rb:31
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2Yee3hoRZtnnPm1qm9SiIg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered follows/_form.html.erb (1.2ms)
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  Rendered tweets/_tweet.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 2]]
+  ↳ app/views/users/show.html.erb:14
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 2]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (15.1ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2Yee3hoRZtnnPm1qm9SiIg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 66ms (Views: 57.2ms | ActiveRecord: 1.2ms)
+
+
