@@ -5,9 +5,12 @@ class FollowToggle {
         this.followState = this.$ele.data("initial-follow-state");
     }
 
-    alert() {
-        alert("OK");
+    bindEvents() {
+        this.$ele.click((ele) => {
+            alert("I'm clicked");
+        })
     }
+
 }
 
 module.exports = FollowToggle;

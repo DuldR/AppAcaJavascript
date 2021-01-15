@@ -14,9 +14,12 @@ class FollowToggle {
         this.followState = this.$ele.data("initial-follow-state");
     }
 
-    alert() {
-        alert("OK");
+    bindEvents() {
+        this.$ele.click((ele) => {
+            alert("I'm clicked");
+        })
     }
+
 }
 
 module.exports = FollowToggle;
@@ -55,11 +58,13 @@ module.exports = FollowToggle;
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
 
+console.log("Webpack work");
 
 $(() => {
     const rootEl = $("button.follow-toggle");
     const toggle = new FollowToggle(rootEl);
-    toggle.alert();
+    toggle.bindEvents();
+    
 })
 })();
 
