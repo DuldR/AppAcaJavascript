@@ -12,12 +12,24 @@ class FollowToggle {
         this.$ele = $($el);
         this.userId = this.$ele.data("user-id");
         this.followState = this.$ele.data("initial-follow-state");
+
+
+        this.render();
+    
     }
 
-    bindEvents() {
-        this.$ele.click((ele) => {
-            alert("I'm clicked");
-        })
+    // bindEvents() {
+    //     this.$ele.click((ele) => {
+    //         alert("I'm clicked");
+    //     })
+    // }
+
+    render() {
+        if (this.followState === true) {
+            this.$ele.text("Unfollow!");
+        } else {
+            this.$ele.text("Follow!")
+        }
     }
 
 }
@@ -61,11 +73,13 @@ const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/f
 console.log("Webpack work");
 
 $(() => {
+    // This collects all of the buttons
     const rootEl = $("button.follow-toggle");
-    const toggle = new FollowToggle(rootEl);
+
     
-    
-    toggle.bindEvents();
+    rootEl.each(function(idx, ele) {
+        new FollowToggle(ele);
+    })
     
 })
 })();

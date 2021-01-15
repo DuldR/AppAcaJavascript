@@ -3,10 +3,12 @@ const FollowToggle = require('./follow_toggle.js');
 console.log("Webpack work");
 
 $(() => {
+    // This collects all of the buttons
     const rootEl = $("button.follow-toggle");
-    const toggle = new FollowToggle(rootEl);
+
     
-    
-    toggle.bindEvents();
+    rootEl.each(function(idx, ele) {
+        new FollowToggle(ele);
+    })
     
 })
