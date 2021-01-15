@@ -6,6 +6,7 @@
     "webpack": "webpack --mode=development --watch"
   },
   "dependencies": {
+    "eslint": "^7.17.0",
     "webpack": "^4.6.0"
   },
   "devDependencies": {
