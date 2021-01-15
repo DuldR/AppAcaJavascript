@@ -6,6 +6,8 @@ class FollowToggle {
 
 
         this.render();
+
+        // This works.
         this.$ele.on("click", this.handleClick.bind(this))
     
     }
@@ -28,11 +30,12 @@ class FollowToggle {
             url: "/users/" + this.userId + "/follow",
             dataType: "json",
             data: this.$ele.serialize(),
-            success: function(message){
-                alert("OKRAT");
-            }
+            success: function(ele){
+                this.followState = (!this.followState);
+                this.render();
+            }.bind(this)
         });
-        this.render();
+
     }
 
 }
