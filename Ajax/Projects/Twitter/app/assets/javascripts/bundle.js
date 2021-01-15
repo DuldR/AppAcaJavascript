@@ -63,7 +63,9 @@ console.log("Webpack work");
 $(() => {
     const rootEl = $("button.follow-toggle");
     const toggle = new FollowToggle(rootEl);
-    toggle.bindEvents();
+    
+    
+    console.log(toggle);
     
 })
 })();
