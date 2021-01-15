@@ -23,6 +23,24 @@ class FollowToggle {
         }
     }
 
+    method() {
+        if (this.followState === true) {
+            return "DELETE";
+        } else {
+            return "POST";
+        }
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        $.ajax({
+            method: (this.followState) ? "DELETE" : "POST",
+            url: "/users/:id/follow",
+            dataType: "json",
+            
+        })
+    }
+
 }
 
 module.exports = FollowToggle;
