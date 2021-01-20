@@ -11,12 +11,3 @@
     </ul>
     
 </nav>
-
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <a href="<%= user_url(user) %>"><%= user.username %></a>
-      <%= render 'follows/form', user: user %>
-    </li>
-  <% end %>
-</ul>

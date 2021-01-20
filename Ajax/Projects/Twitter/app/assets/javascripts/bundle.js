@@ -128,10 +128,10 @@ class UsersSearch {
     }
 
     renderResults(data) {
-
-        console.log("UH");
-
-
+        data.forEach(ele => {
+            console.log(ele);
+            this.$ul.append("<li>" + `<a href='http://localhost:3000/users/${ele.id}'>` + ele.username + "</a></li>")
+        })
     }
 
     handleInput(e) {
@@ -140,10 +140,10 @@ class UsersSearch {
 
         e.preventDefault();
 
-        console.log(input.$input);
+        this.$ul.empty();
 
-        util.searchUsers(this.$input).then(() => {
-            input.renderResults();
+        util.searchUsers(this.$input).then((data) => {
+            this.renderResults(data);
         })
     }
 
