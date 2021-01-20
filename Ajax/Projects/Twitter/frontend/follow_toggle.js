@@ -21,36 +21,20 @@ class FollowToggle {
         } else {
             this.$ele.text("Follow!")
         }
+
+        this.$ele.prop('disabled', false);
     }
 
 
     handleClick(e) {
 
+        // Got to have this otherwise util will use the globalthis
         const followToggle = this;
+
+        console.log(this.$ele);
+        this.$ele.prop('disabled', true);
     
         e.preventDefault();
-        // $.ajax({
-        //     method: (this.followState) ? "DELETE" : "POST",
-        //     url: "/users/" + this.userId + "/follow",
-        //     dataType: "json",
-        //     data: this.$ele.serialize(),
-        //     success: function(ele){
-        //         this.followState = (!this.followState);
-        //         this.render();
-        //     }.bind(this)
-        // });
-
-        // if (this.followState === true) {
-        //     util.unfollowUser(this.userId).then(() => {
-        //         console.log("Win");
-        //     });
-        // } else if (this.followState === false) {
-
-        //     console.log(this.userId);
-        //     util.followUser(this.userId).then(() => {
-        //         console.log("Fail");
-        //     })
-        // }
 
         if (this.followState === true) {
             util.unfollowUser(this.userId).then(() => {
@@ -66,7 +50,7 @@ class FollowToggle {
             })
         }
 
-        console.log(this.userId);
+        
 
     }
 
