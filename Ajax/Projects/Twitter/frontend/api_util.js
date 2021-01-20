@@ -13,9 +13,13 @@ const APIUtil = {
         })
     ),
 
-    searchUsers: (queryVal) => {
-        
-    }
+    searchUsers: (queryVal) => (
+        $.ajax({
+            url: "/users/search",
+            dataType: 'json',
+            data: queryVal
+        })
+    )
 };
 
 module.exports = APIUtil;

@@ -22,9 +22,13 @@ const APIUtil = {
         })
     ),
 
-    searchUsers: (queryVal) => {
-        
-    }
+    searchUsers: (queryVal) => (
+        $.ajax({
+            url: "/users/search",
+            dataType: 'json',
+            data: queryVal
+        })
+    )
 };
 
 module.exports = APIUtil;
@@ -112,7 +116,7 @@ class UsersSearch {
     constructor($el) {
         this.$ele = $($el);
         this.$input = $($el).find("input");
-        this.$ul = $($el).find("ul");
+        this.$ul = $($el).find("ul.users");
 
 
         // This is working.
@@ -123,17 +127,24 @@ class UsersSearch {
         this.$ele.on("input", this.handleInput.bind(this));
     }
 
+    renderResults(data) {
+
+        console.log("UH");
+
+
+    }
+
     handleInput(e) {
+
+        const input = this;
 
         e.preventDefault();
 
-        $.ajax({
-            url: "/users/search",
-            dataType: 'html',
-            data: this.$input
-        })
+        console.log(input.$input);
 
-        
+        util.searchUsers(this.$input).then(() => {
+            input.renderResults();
+        })
     }
 
 
@@ -191,9 +202,9 @@ $(() => {
         new FollowToggle(ele);
     })
 
-    // userEl.each(function(idx, ele) {
-    //     new UsersSearch(ele);
-    // })
+    userEl.each(function(idx, ele) {
+        new UsersSearch(ele);
+    })
     
 })
 })();

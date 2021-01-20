@@ -15,8 +15,8 @@ $(() => {
         new FollowToggle(ele);
     })
 
-    // userEl.each(function(idx, ele) {
-    //     new UsersSearch(ele);
-    // })
+    userEl.each(function(idx, ele) {
+        new UsersSearch(ele);
+    })
     
 })
