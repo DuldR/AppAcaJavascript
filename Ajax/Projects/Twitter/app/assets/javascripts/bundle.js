@@ -114,16 +114,24 @@ class UsersSearch {
         this.$input = $($el).find("input");
         this.$ul = $($el).find("ul");
 
-        this.$input.on('input', function() {
-            alert("I've gotten it");
-        })
+
+        // This is working.
+        // this.$input.on('input', function() {
+        //     alert("I've gotten it");
+        // })
+
+        this.$ele.on("input", this.handleInput.bind(this));
     }
 
     handleInput(e) {
 
         e.preventDefault();
 
-
+        $.ajax({
+            url: "/users/search",
+            dataType: 'html',
+            data: this.$input
+        })
 
         
     }
@@ -183,9 +191,9 @@ $(() => {
         new FollowToggle(ele);
     })
 
-    userEl.each(function(idx, ele) {
-        new UsersSearch(ele);
-    })
+    // userEl.each(function(idx, ele) {
+    //     new UsersSearch(ele);
+    // })
     
 })
 })();
