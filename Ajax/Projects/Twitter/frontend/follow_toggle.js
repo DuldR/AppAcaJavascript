@@ -16,6 +16,7 @@ class FollowToggle {
 
 
     render() {
+        
         if (this.followState === true) {
             this.$ele.text("Unfollow!");
         } else {
@@ -31,7 +32,6 @@ class FollowToggle {
         // Got to have this otherwise util will use the globalthis
         const followToggle = this;
 
-        console.log(this.$ele);
         this.$ele.prop('disabled', true);
     
         e.preventDefault();

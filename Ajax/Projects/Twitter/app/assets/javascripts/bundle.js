@@ -20,7 +20,11 @@ const APIUtil = {
             dataType: "json",
             method
         })
-    )
+    ),
+
+    searchUsers: (queryVal) => {
+        
+    }
 };
 
 module.exports = APIUtil;
@@ -51,6 +55,7 @@ class FollowToggle {
 
 
     render() {
+        
         if (this.followState === true) {
             this.$ele.text("Unfollow!");
         } else {
@@ -66,7 +71,6 @@ class FollowToggle {
         // Got to have this otherwise util will use the globalthis
         const followToggle = this;
 
-        console.log(this.$ele);
         this.$ele.prop('disabled', true);
     
         e.preventDefault();
@@ -92,6 +96,43 @@ class FollowToggle {
 }
 
 module.exports = FollowToggle;
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const util = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+class UsersSearch {
+
+    constructor($el) {
+        this.$ele = $($el);
+        this.$input = $($el).find("input");
+        this.$ul = $($el).find("ul");
+
+        this.$input.on('input', function() {
+            alert("I've gotten it");
+        })
+    }
+
+    handleInput(e) {
+
+        e.preventDefault();
+
+
+
+        
+    }
+
+
+
+}
+
+module.exports = UsersSearch;
 
 /***/ })
 
@@ -126,6 +167,7 @@ module.exports = FollowToggle;
   !*** ./frontend/twitter.js ***!
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 
 console.log("Webpack work");
 
@@ -133,9 +175,16 @@ $(() => {
     // This collects all of the buttons
     const rootEl = $("button.follow-toggle");
 
+    // this collects all of the user searchs
+    const userEl = $("nav.users-search");
+
     
     rootEl.each(function(idx, ele) {
         new FollowToggle(ele);
+    })
+
+    userEl.each(function(idx, ele) {
+        new UsersSearch(ele);
     })
     
 })

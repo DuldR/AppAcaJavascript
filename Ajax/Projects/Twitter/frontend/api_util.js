@@ -11,7 +11,11 @@ const APIUtil = {
             dataType: "json",
             method
         })
-    )
+    ),
+
+    searchUsers: (queryVal) => {
+        
+    }
 };
 
 module.exports = APIUtil;
