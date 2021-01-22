@@ -1,10 +1,10 @@
 const util = require("./api_util.js");
 
 class FollowToggle {
-    constructor($el) {
+    constructor($el, options) {
         this.$ele = $($el);
-        this.userId = this.$ele.data("user-id");
-        this.followState = this.$ele.data("initial-follow-state");
+        this.userId = this.$ele.data("user-id") || options.userId;
+        this.followState = this.$ele.data("initial-follow-state") || options.followState;
 
 
         this.render();

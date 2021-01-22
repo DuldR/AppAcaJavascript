@@ -1,4 +1,5 @@
 const util = require("./api_util.js");
+const FollowToggle = require("./follow_toggle.js");
 
 class UsersSearch {
 
@@ -19,7 +20,18 @@ class UsersSearch {
     renderResults(data) {
         data.forEach(ele => {
             console.log(ele);
-            this.$ul.append("<li>" + `<a href='http://localhost:3000/users/${ele.id}'>` + ele.username + "</a></li>")
+            this.$ul.append("<li>" + `<a href='http://localhost:3000/users/${ele.id}'>` + ele.username + '</a><button></button></li>')
+            // new FollowToggle(this.$ul.find("li:contains('Duld')"), {userId: ele.id, followState: ele.followed});
+
+            // This find it well enough.
+            // this.$ul.find("li:contains('Duld')").find('button').addClass("follow-toggle");
+
+            let buttonEle = this.$ul.find(`li:contains(${ele.username})`).find('button')
+            new FollowToggle(buttonEle, {userId: ele.id, followState: ele.followed});
+        })
+
+        this.$ul.find("li").each((idx, ele) => {
+            console.log(ele);
         })
     }
 

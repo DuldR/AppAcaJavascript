@@ -27821,3 +27821,1016 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 26ms (Views: 12.8ms | ActiveRecord: 1.1ms)
 
 
+Started GET "/" for ::1 at 2021-01-22 15:17:50 -0600
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/garrett/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Started GET "/feed" for ::1 at 2021-01-22 15:17:50 -0600
+Processing by FeedsController#show as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in! rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2021-01-22 15:17:50 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 191ms (Views: 190.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2021-01-22 15:17:55 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"rWafN/UJoRSwCR4RMZED3IKLtyYLbTLcwyjQT5L02gEYmyqQVOjDPRSVL/CsnTaCkjocSlM4rZa5qWAJI6LHag==", "user"=>{"username"=>"Duld", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Duld"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:28
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:52
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Duld"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:52
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["updated_at", "2021-01-22 21:17:55.903014"], ["id", 8]]
+  ↳ app/models/user.rb:52
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:52
+Redirected to http://localhost:3000/feed
+Completed 302 Found in 172ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/feed" for ::1 at 2021-01-22 15:17:55 -0600
+Processing by FeedsController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  Rendering feeds/show.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mSQL (2.5ms)[0m  [1m[34mSELECT DISTINCT "tweets"."id" AS t0_r0, "tweets"."content" AS t0_r1, "tweets"."user_id" AS t0_r2, "tweets"."created_at" AS t0_r3, "tweets"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."username" AS t1_r1, "users"."password_digest" AS t1_r2, "users"."session_token" AS t1_r3, "users"."created_at" AS t1_r4, "users"."updated_at" AS t1_r5 FROM "tweets" INNER JOIN "users" ON "users"."id" = "tweets"."user_id" LEFT OUTER JOIN follows ON users.id = follows.followee_id WHERE (tweets.user_id = 8 OR follows.follower_id = 8) ORDER BY tweets.created_at DESC[0m
+  ↳ app/views/feeds/show.html.erb:5
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 281]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (10.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 30]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 33]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 2]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 17]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 27]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 9]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 29]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 7]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 20]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 8]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (12.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 18]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 3]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 13]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 25]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 39]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 16]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 32]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 24]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 12]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 40]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 4]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 37]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 15]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 1]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 14]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 11]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 6]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 23]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 38]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 31]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 21]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 19]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 5]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 36]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 10]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 22]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 28]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 26]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 35]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 34]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/tweets/_form.html.erb:18
+  Rendered tweets/_form.html.erb (0.8ms)
+  Rendered feeds/show.html.erb within layouts/application (76.4ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 91ms (Views: 73.6ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:17:58 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 7ms (Views: 7.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=Duld" for ::1 at 2021-01-22 15:17:59 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"Duld"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'Duld')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (6.6ms)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/8" for ::1 at 2021-01-22 15:18:00 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mTweet Load (0.2ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mMention Load (0.1ms)[0m  [1m[34mSELECT "mentions".* FROM "mentions" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 281]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:31
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered follows/_form.html.erb (1.2ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 8]]
+  ↳ app/views/users/show.html.erb:14
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (7.2ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 30ms (Views: 13.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:18:03 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 14ms (Views: 13.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:18:06 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.9ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:21:34 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 42ms (Views: 41.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:21:37 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.0ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:21:51 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 40ms (Views: 39.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:21:52 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.3ms)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:22:33 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:22:36 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.0ms)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:23:04 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 41ms (Views: 40.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:23:05 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.6ms)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:25:19 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 38ms (Views: 38.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:25:20 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (3.6ms)
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:26:06 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 36ms (Views: 35.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:26:07 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.6ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:36:17 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 39ms (Views: 38.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:36:18 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.0ms)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:42:33 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:42:34 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (6.0ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/search?query=duld" for ::1 at 2021-01-22 15:42:38 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"duld"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'duld')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  Rendered users/search.json.jbuilder (1.2ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:42:40 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.2ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/9/follow" for ::1 at 2021-01-22 15:42:41 -0600
+Started DELETE "/users/8/follow" for ::1 at 2021-01-22 15:42:41 -0600
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Create (0.8ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 9], ["follower_id", 8], ["created_at", "2021-01-22 21:42:42.860019"], ["updated_at", "2021-01-22 21:42:42.860019"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+Completed 200 OK in 1015ms (Views: 0.2ms | ActiveRecord: 4.3ms)
+
+
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mFollow Load (0.4ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Destroy (0.3ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 30]]
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1008ms (Views: 0.4ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/users/9/follow" for ::1 at 2021-01-22 15:42:44 -0600
+Started POST "/users/8/follow" for ::1 at 2021-01-22 15:42:44 -0600
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"9"}
+Processing by FollowsController#create as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  Parameters: {"user_id"=>"8"}
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Load (0.7ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Destroy (0.7ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 31]]
+  [1m[36mFollow Create (0.2ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 8], ["follower_id", 8], ["created_at", "2021-01-22 21:42:45.761106"], ["updated_at", "2021-01-22 21:42:45.761106"]]
+  ↳ app/controllers/follows_controller.rb:8
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1009ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1012ms (Views: 0.4ms | ActiveRecord: 3.6ms)
+
+
+Started DELETE "/users/8/follow" for ::1 at 2021-01-22 15:42:46 -0600
+Started POST "/users/9/follow" for ::1 at 2021-01-22 15:42:46 -0600
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"8"}
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"9"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Load (0.7ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Destroy (0.3ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 32]]
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1011ms (Views: 0.4ms | ActiveRecord: 3.1ms)
+
+
+  [1m[36mFollow Create (1.0ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 9], ["follower_id", 8], ["created_at", "2021-01-22 21:42:47.839850"], ["updated_at", "2021-01-22 21:42:47.839850"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1012ms (Views: 0.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:43:51 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 41ms (Views: 40.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:43:52 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.7ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:44:07 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 14ms (Views: 13.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:44:08 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.4ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:44:22 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 37ms (Views: 36.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:44:23 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.8ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:44:34 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 39ms (Views: 38.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:44:36 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.6ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/users/9/follow" for ::1 at 2021-01-22 15:44:37 -0600
+Started POST "/users/8/follow" for ::1 at 2021-01-22 15:44:37 -0600
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"9"}
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Load (0.6ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mFollow Destroy (0.6ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 33]]
+  ↳ app/controllers/follows_controller.rb:8
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1011ms (Views: 0.3ms | ActiveRecord: 3.3ms)
+
+
+  [1m[36mFollow Create (0.9ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 8], ["follower_id", 8], ["created_at", "2021-01-22 21:44:38.907622"], ["updated_at", "2021-01-22 21:44:38.907622"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1011ms (Views: 0.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:49:16 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:49:17 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.4ms)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:50:14 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 12ms (Views: 12.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:50:14 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.0ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:50:19 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:50:21 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.6ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:54:02 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 44ms (Views: 43.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:54:03 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (4.7ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/users/8/follow" for ::1 at 2021-01-22 15:54:06 -0600
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mFollow Load (0.3ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Destroy (0.2ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 34]]
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1007ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/users/8/follow" for ::1 at 2021-01-22 15:54:09 -0600
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Create (0.2ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 8], ["follower_id", 8], ["created_at", "2021-01-22 21:54:10.093094"], ["updated_at", "2021-01-22 21:54:10.093094"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1009ms (Views: 0.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:56:51 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 35ms (Views: 34.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:56:52 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.0ms)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/search" for ::1 at 2021-01-22 15:59:28 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 41ms (Views: 40.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 15:59:29 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.6ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users/9/follow" for ::1 at 2021-01-22 15:59:30 -0600
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Create (0.2ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 9], ["follower_id", 8], ["created_at", "2021-01-22 21:59:31.451603"], ["updated_at", "2021-01-22 21:59:31.451603"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1008ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started DELETE "/users/8/follow" for ::1 at 2021-01-22 15:59:32 -0600
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mFollow Load (0.4ms)[0m  [1m[34mSELECT  "follows".* FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[36mFollow Destroy (0.2ms)[0m  [1m[31mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 35]]
+  ↳ app/controllers/follows_controller.rb:21
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21
+Completed 200 OK in 1006ms (Views: 0.4ms | ActiveRecord: 1.4ms)
+
+
