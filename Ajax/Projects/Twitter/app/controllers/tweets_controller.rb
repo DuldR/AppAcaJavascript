@@ -15,6 +15,22 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show
+
+    if current_user.nil?
+      # let them log in
+      redirect_to new_session_url
+      return
+    end
+
+    @tweet = Tweet.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :show }
+    end
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:content, mentioned_user_ids: [])

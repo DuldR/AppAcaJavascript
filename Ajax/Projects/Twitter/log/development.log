@@ -28834,3 +28834,374 @@ Processing by FollowsController#destroy as JSON
 Completed 200 OK in 1006ms (Views: 0.4ms | ActiveRecord: 1.4ms)
 
 
+Started GET "/users/search" for ::1 at 2021-01-22 16:00:44 -0600
+Processing by UsersController#search as HTML
+  Rendering users/search.html.erb within layouts/application
+  Rendered users/search.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 43ms (Views: 42.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/search?query=d" for ::1 at 2021-01-22 16:00:45 -0600
+Processing by UsersController#search as JSON
+  Parameters: {"query"=>"d"}
+  Rendering users/search.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username ~ 'd')[0m
+  ↳ app/views/users/search.json.jbuilder:1
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "follows"."followee_id" FROM "follows" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 8]]
+  ↳ app/models/user.rb:69
+  Rendered users/search.json.jbuilder (5.4ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/8/follow" for ::1 at 2021-01-22 16:00:48 -0600
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "follows" WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = $2 LIMIT $3[0m  [["follower_id", 8], ["followee_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[36mFollow Create (0.3ms)[0m  [1m[32mINSERT INTO "follows" ("followee_id", "follower_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["followee_id", 8], ["follower_id", 8], ["created_at", "2021-01-22 22:00:49.248882"], ["updated_at", "2021-01-22 22:00:49.248882"]]
+  ↳ app/controllers/follows_controller.rb:8
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:8
+Completed 200 OK in 1009ms (Views: 0.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/feed" for ::1 at 2021-01-22 16:04:17 -0600
+Processing by FeedsController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  Rendering feeds/show.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mSQL (1.5ms)[0m  [1m[34mSELECT DISTINCT "tweets"."id" AS t0_r0, "tweets"."content" AS t0_r1, "tweets"."user_id" AS t0_r2, "tweets"."created_at" AS t0_r3, "tweets"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."username" AS t1_r1, "users"."password_digest" AS t1_r2, "users"."session_token" AS t1_r3, "users"."created_at" AS t1_r4, "users"."updated_at" AS t1_r5 FROM "tweets" INNER JOIN "users" ON "users"."id" = "tweets"."user_id" LEFT OUTER JOIN follows ON users.id = follows.followee_id WHERE (tweets.user_id = 8 OR follows.follower_id = 8) ORDER BY tweets.created_at DESC[0m
+  ↳ app/views/feeds/show.html.erb:5
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 282]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (1.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 281]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 30]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 33]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 2]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 17]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 27]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 9]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 29]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 7]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 20]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 8]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 18]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 3]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 13]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 25]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 39]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 16]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 32]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 24]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 12]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 40]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 4]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 37]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 15]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 1]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 14]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 11]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 6]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 23]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 38]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 31]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 21]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 19]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 5]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 36]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 10]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 22]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 28]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 26]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 35]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 34]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/tweets/_form.html.erb:18
+  Rendered tweets/_form.html.erb (0.7ms)
+  Rendered feeds/show.html.erb within layouts/application (35.9ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 45ms (Views: 37.9ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/tweets" for ::1 at 2021-01-22 16:04:36 -0600
+Processing by TweetsController#create as HTML
+  Parameters: {"authenticity_token"=>"nbcTx6nWk4hJvWzgk3I/YmuEDzMOvOCSTony1TsqMY4oSqZgCDfxoe0hXQEOfgo8ezWkX1bpf9g0CEKTinws5Q==", "tweet"=>{"content"=>"ddddd", "mentioned_user_ids"=>["7"]}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/tweets_controller.rb:8
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[36mMention Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "mentions" WHERE "mentions"."user_id" = $1 AND "mentions"."tweet_id" IS NULL LIMIT $2[0m  [["user_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "sally"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[36mTweet Create (0.8ms)[0m  [1m[32mINSERT INTO "tweets" ("content", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["content", "ddddd"], ["user_id", 8], ["created_at", "2021-01-22 22:04:37.707045"], ["updated_at", "2021-01-22 22:04:37.707045"]]
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[36mMention Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "mentions" WHERE "mentions"."user_id" = $1 AND "mentions"."tweet_id" = $2 LIMIT $3[0m  [["user_id", 7], ["tweet_id", 283], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[36mMention Create (0.5ms)[0m  [1m[32mINSERT INTO "mentions" ("tweet_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tweet_id", 283], ["user_id", 7], ["created_at", "2021-01-22 22:04:37.709386"], ["updated_at", "2021-01-22 22:04:37.709386"]]
+  ↳ app/controllers/tweets_controller.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:10
+Redirected to http://localhost:3000/feed
+Completed 302 Found in 1012ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/feed" for ::1 at 2021-01-22 16:04:37 -0600
+Processing by FeedsController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  Rendering feeds/show.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35mSQL (0.7ms)[0m  [1m[34mSELECT DISTINCT "tweets"."id" AS t0_r0, "tweets"."content" AS t0_r1, "tweets"."user_id" AS t0_r2, "tweets"."created_at" AS t0_r3, "tweets"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."username" AS t1_r1, "users"."password_digest" AS t1_r2, "users"."session_token" AS t1_r3, "users"."created_at" AS t1_r4, "users"."updated_at" AS t1_r5 FROM "tweets" INNER JOIN "users" ON "users"."id" = "tweets"."user_id" LEFT OUTER JOIN follows ON users.id = follows.followee_id WHERE (tweets.user_id = 8 OR follows.follower_id = 8) ORDER BY tweets.created_at DESC[0m
+  ↳ app/views/feeds/show.html.erb:5
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 283]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (1.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 282]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 281]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 30]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 33]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 2]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 17]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 27]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 9]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 29]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 7]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 20]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 8]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 18]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 3]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 13]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 25]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 39]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 16]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 32]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 24]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 12]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 40]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 4]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 37]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 15]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 1]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 14]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 11]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 6]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 23]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 38]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 31]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 21]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 19]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 5]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 36]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 10]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 22]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 28]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 26]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 35]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "mentions" ON "users"."id" = "mentions"."user_id" WHERE "mentions"."tweet_id" = $1[0m  [["tweet_id", 34]]
+  ↳ app/views/tweets/_tweet.html.erb:5
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/tweets/_form.html.erb:18
+  Rendered tweets/_form.html.erb (0.8ms)
+  Rendered feeds/show.html.erb within layouts/application (36.7ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7yjKfA-949WAZHm-qCETiA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+Completed 200 OK in 49ms (Views: 43.5ms | ActiveRecord: 3.9ms)
+
+
