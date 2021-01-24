@@ -3,19 +3,24 @@ const util = require("./api_util.js");
 class FollowToggle {
     constructor($el, options) {
 
-        console.log(options);
+
  
 
 
         this.$ele = $($el);
         this.userId = this.$ele.data("user-id") || options.userId;
 
-        console.log(this.$ele.data("initial-follow-state"));
-        // this.followState = this.$ele.data("initial-follow-state");
+        // this.followState = if (this.$ele.data("initial-follow-state") === undefined) {
+        //     options.followState;
+        // } else {
+        //     this.$ele.data('initial-follow-state');
+        // }
 
-        this.followState = false || options.followState;
-        
-
+        if (this.$ele.data("initial-follow-state") === undefined) {
+            this.followState = options.followState;
+        } else {
+            this.followState = this.$ele.data('initial-follow-state');
+        }
 
         this.render();
 
