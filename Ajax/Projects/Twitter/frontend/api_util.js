@@ -19,7 +19,16 @@ const APIUtil = {
             dataType: 'json',
             data: queryVal
         })
-    )
+    ),
+
+    createTweet: (form) => {
+        $.ajax({
+            url: "/tweets",
+            dataType: "json",
+            method: "POST",
+            data: form
+        })
+    }
 };
 
 module.exports = APIUtil;

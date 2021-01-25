@@ -10,12 +10,7 @@ class FollowToggle {
         this.$ele = $($el);
         this.userId = this.$ele.data("user-id") || options.userId;
 
-        // this.followState = if (this.$ele.data("initial-follow-state") === undefined) {
-        //     options.followState;
-        // } else {
-        //     this.$ele.data('initial-follow-state');
-        // }
-
+  
         if (this.$ele.data("initial-follow-state") === undefined) {
             this.followState = options.followState;
         } else {
