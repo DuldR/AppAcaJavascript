@@ -141,22 +141,26 @@ class TweetCompose {
     handleSubmit(e) {
 
         this.$ele.children(':input').prop('disabled', true);
-        let b = this.$ele.find(':submit');
+        this.$ele.find(':submit').val("Posting");
 
         e.preventDefault();
-        // this.submit();
-
-        b.val("POsting");
+        this.submit();
     
 
     }
 
     submit() {
-        util.createTweet(this.$ele.serializeJSON());
+
+        const comp = this;
+
+        util.createTweet(this.$ele.serializeJSON()).then(() => {
+            console.log("OK");
+        });
         
     }
 
     enable() {
+        this.$ele.find(':submit').val("Post Tweet");
         this.$ele.children(':input').prop('disabled', false);
         
     }
