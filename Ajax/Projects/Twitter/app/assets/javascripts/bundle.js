@@ -30,14 +30,14 @@ const APIUtil = {
         })
     ),
 
-    createTweet: (form) => {
+    createTweet: (form) => (
         $.ajax({
             url: "/tweets",
             dataType: "json",
             method: "POST",
             data: form
         })
-    }
+    )
 };
 
 module.exports = APIUtil;
@@ -140,15 +140,24 @@ class TweetCompose {
 
     handleSubmit(e) {
 
-        e.preventDefault();
-        this.submit();
+        this.$ele.children(':input').prop('disabled', true);
+        let b = this.$ele.find(':submit');
 
+        e.preventDefault();
+        // this.submit();
+
+        b.val("POsting");
+    
 
     }
 
     submit() {
-
         util.createTweet(this.$ele.serializeJSON());
+        
+    }
+
+    enable() {
+        this.$ele.children(':input').prop('disabled', false);
         
     }
 
