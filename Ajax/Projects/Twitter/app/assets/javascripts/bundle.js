@@ -150,11 +150,14 @@ class TweetCompose {
     }
 
     submit() {
+        // let t = this.$ele.find('textarea');
+        // console.log(t);
 
-        const comp = this;
 
         util.createTweet(this.$ele.serializeJSON()).then(() => {
-            console.log("OK");
+            this.clearInput();
+            this.enable();
+            
         });
         
     }
@@ -163,6 +166,11 @@ class TweetCompose {
         this.$ele.find(':submit').val("Post Tweet");
         this.$ele.children(':input').prop('disabled', false);
         
+    }
+
+    clearInput() {
+        this.$ele.find('textarea').val("");
+        this.$ele.find('select').val("");
     }
 
 }

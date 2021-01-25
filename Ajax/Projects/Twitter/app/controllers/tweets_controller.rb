@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
 
     @tweet = current_user.tweets.build(tweet_params)
 
+    # Modified here to render the tweet instead of changing the page. This might cause problems?
     if @tweet.save
       render json: @tweet
     else
@@ -26,7 +27,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to request.referrer }
+      format.html { render :show }
       format.json { render :show }
     end
   end
