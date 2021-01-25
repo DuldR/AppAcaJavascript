@@ -140,21 +140,16 @@ class TweetCompose {
 
     handleSubmit(e) {
 
-        this.$ele.children(':input').prop('disabled', true);
-        this.$ele.find(':submit').val("Posting");
-
         e.preventDefault();
         this.submit();
-    
-
     }
 
     submit() {
-        // let t = this.$ele.find('textarea');
-        // console.log(t);
+        let serialized = this.$ele.serializeJSON();
+        this.$ele.children(':input').prop('disabled', true);
+        this.$ele.find(':submit').val("Posting");
 
-
-        util.createTweet(this.$ele.serializeJSON()).then(() => {
+        util.createTweet(serialized).then(() => {
             this.clearInput();
             this.enable();
             
@@ -165,7 +160,6 @@ class TweetCompose {
     enable() {
         this.$ele.find(':submit').val("Post Tweet");
         this.$ele.children(':input').prop('disabled', false);
-        
     }
 
     clearInput() {
