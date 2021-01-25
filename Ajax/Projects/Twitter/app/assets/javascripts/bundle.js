@@ -149,9 +149,11 @@ class TweetCompose {
         this.$ele.children(':input').prop('disabled', true);
         this.$ele.find(':submit').val("Posting");
 
-        util.createTweet(serialized).then(() => {
+        util.createTweet(serialized).then((data) => {
             this.clearInput();
             this.enable();
+            // Use this to append to the top of the ul feed.
+            console.log(data);
             
         });
         
