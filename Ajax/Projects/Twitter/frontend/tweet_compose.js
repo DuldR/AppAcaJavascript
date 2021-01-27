@@ -4,7 +4,10 @@ class TweetCompose {
 
     constructor($el) {
         this.$ele = $($el);
+        this.ulId = this.$ele.data("tweets-ul");
+        this.$ul = $(this.ulId);
 
+        console.log(this.$ul);
         this.$ele.on("submit", this.handleSubmit.bind(this));
     }
 
@@ -24,6 +27,7 @@ class TweetCompose {
             this.enable();
             // Use this to append to the top of the ul feed.
             console.log(data);
+            this.$ul.prepend(`<li>${JSON.stringify(data)}</li>`);
             
         });
         
