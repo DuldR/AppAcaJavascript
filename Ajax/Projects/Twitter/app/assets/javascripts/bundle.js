@@ -137,7 +137,11 @@ class TweetCompose {
         this.ulId = this.$ele.data("tweets-ul");
         this.$ul = $(this.ulId);
 
-        console.log(this.$ul);
+        this.$textArea = this.$ele.find('textarea');
+        this.$charLeft = this.$ele.find('.chars-left');
+
+        
+        this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
     }
 
@@ -145,6 +149,18 @@ class TweetCompose {
 
         e.preventDefault();
         this.submit();
+    }
+
+    handleInput(e) {
+        e.preventDefault();
+        console.log(e);
+        this.renderChar();
+    }
+
+    renderChar() {
+        this.$charLeft.empty();
+        let userEntry = this.$textArea.val().length
+        this.$charLeft.append((140 - userEntry) + " characters left.");
     }
 
     submit() {
@@ -156,7 +172,6 @@ class TweetCompose {
             this.clearInput();
             this.enable();
             // Use this to append to the top of the ul feed.
-            console.log(data);
             this.$ul.prepend(`<li>${JSON.stringify(data)}</li>`);
             
         });
