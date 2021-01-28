@@ -145,12 +145,14 @@ class TweetCompose {
         this.$ele.on("submit", this.handleSubmit.bind(this));
     }
 
+    // Update feed with new tweet
     handleSubmit(e) {
 
         e.preventDefault();
         this.submit();
     }
 
+    // Tweet character length
     handleInput(e) {
         e.preventDefault();
         console.log(e);
@@ -186,6 +188,13 @@ class TweetCompose {
     clearInput() {
         this.$ele.find('textarea').val("");
         this.$ele.find('select').val("");
+    }
+
+
+    // Mentions
+
+    newUserSelect() {
+        
     }
 
 }
