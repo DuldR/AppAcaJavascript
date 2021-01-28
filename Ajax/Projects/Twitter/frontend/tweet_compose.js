@@ -10,11 +10,15 @@ class TweetCompose {
         this.$textArea = this.$ele.find('textarea');
         this.$charLeft = this.$ele.find('.chars-left');
 
+        this.$addMent = this.$ele.find('.add-mention');
+
         
         this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
 
-        this.newUserSelect();
+        console.log(this.$addMent);
+        this.$addMent.on('click', this.handleClick.bind(this));
+
     }
 
     // Update feed with new tweet
@@ -27,8 +31,13 @@ class TweetCompose {
     // Tweet character length
     handleInput(e) {
         e.preventDefault();
-        console.log(e);
         this.renderChar();
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        this.newUserSelect();
+
     }
 
     renderChar() {
@@ -67,7 +76,7 @@ class TweetCompose {
 
     newUserSelect() {
         let users = window.users;
-        console.log(users);
+        alert("Clicked");
     }
 
 }
