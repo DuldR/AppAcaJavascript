@@ -13,6 +13,8 @@ class TweetCompose {
         
         this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
+
+        this.newUserSelect();
     }
 
     // Update feed with new tweet
@@ -64,7 +66,8 @@ class TweetCompose {
     // Mentions
 
     newUserSelect() {
-        
+        let users = window.users;
+        console.log(users);
     }
 
 }
