@@ -145,8 +145,6 @@ class TweetCompose {
         
         this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
-
-        console.log(this.$addMent);
         this.$addMent.on('click', this.handleClick.bind(this));
 
     }
@@ -206,7 +204,7 @@ class TweetCompose {
 
     newUserSelect() {
         let users = window.users;
-        alert("Clicked");
+        this.$addMent.after("<p>Test</p>")
     }
 
 }
