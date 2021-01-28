@@ -126,90 +126,9 @@ module.exports = FollowToggle;
 /*!***********************************!*\
   !*** ./frontend/tweet_compose.js ***!
   \***********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ (() => {
 
-const util = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
-
-class TweetCompose {
-
-    constructor($el) {
-        this.$ele = $($el);
-        this.ulId = this.$ele.data("tweets-ul");
-        this.$ul = $(this.ulId);
-
-        this.$textArea = this.$ele.find('textarea');
-        this.$charLeft = this.$ele.find('.chars-left');
-
-        this.$addMent = this.$ele.find('.add-mention');
-
-        
-        this.$textArea.on('input', this.handleInput.bind(this));
-        this.$ele.on("submit", this.handleSubmit.bind(this));
-        this.$addMent.on('click', this.handleClick.bind(this));
-
-    }
-
-    // Update feed with new tweet
-    handleSubmit(e) {
-
-        e.preventDefault();
-        this.submit();
-    }
-
-    // Tweet character length
-    handleInput(e) {
-        e.preventDefault();
-        this.renderChar();
-    }
-
-    handleClick(e) {
-        e.preventDefault();
-        this.newUserSelect();
-
-    }
-
-    renderChar() {
-        this.$charLeft.empty();
-        let userEntry = this.$textArea.val().length
-        this.$charLeft.append((140 - userEntry) + " characters left.");
-    }
-
-    submit() {
-        let serialized = this.$ele.serializeJSON();
-        this.$ele.children(':input').prop('disabled', true);
-        this.$ele.find(':submit').val("Posting");
-
-        util.createTweet(serialized).then((data) => {
-            this.clearInput();
-            this.enable();
-            // Use this to append to the top of the ul feed.
-            this.$ul.prepend(`<li>${JSON.stringify(data)}</li>`);
-            
-        });
-        
-    }
-
-    enable() {
-        this.$ele.find(':submit').val("Post Tweet");
-        this.$ele.children(':input').prop('disabled', false);
-    }
-
-    clearInput() {
-        this.$ele.find('textarea').val("");
-        this.$ele.find('select').val("");
-    }
-
-
-    // Mentions
-
-    newUserSelect() {
-        let users = window.users;
-        this.$addMent.after("<p>Test</p>")
-    }
-
-}
-
-module.exports = TweetCompose;
+throw new Error("Module parse failed: Unexpected token (79:44)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|         \n|         // Need to figure out to iterature over user and add them as options.\n>         this.$addMent.after(\"<select class=\"mention\">\"\n|             $.each(users, function(idx, ele) {\n| ");
 
 /***/ }),
 

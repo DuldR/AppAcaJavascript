@@ -74,7 +74,12 @@ class TweetCompose {
 
     newUserSelect() {
         let users = window.users;
-        this.$addMent.after("<p>Test</p>")
+        
+        // Need to figure out to iterature over user and add them as options.
+        this.$addMent.after("<select class="mention">"
+            $.each(users, function(idx, ele) {
+
+            })
     }
 
 }
