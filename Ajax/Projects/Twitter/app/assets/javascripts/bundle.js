@@ -140,14 +140,37 @@ class TweetCompose {
         this.$textArea = this.$ele.find('textarea');
         this.$charLeft = this.$ele.find('.chars-left');
 
+        
+
         this.$addMent = this.$ele.find('.add-mention');
         this.$initMent = this.$ele.find('.initial-mention');
+
+
+        this.$userButton = this.$ele.find('.test-user-id');
 
         
         this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
         this.$addMent.on('click', this.handleClick.bind(this));
 
+        this.$userButton.on('click', this.testUser.bind(this));
+
+    }
+
+    testUser(e) {
+        this.test();
+    }
+
+    test() {
+        this.$addedMention = this.$ele.find('.added-mention');
+        // $.each(this.$addedMention, function(idx,ele) {
+        //     console.log(ele);
+        // })
+        this.$addedMention.each(function(idx, ele) {
+            let val = $(ele).find('select').val();
+            console.log(val);
+            }
+        )
     }
 
     // Update feed with new tweet
@@ -210,22 +233,12 @@ class TweetCompose {
         let num = this.$ele.find('label').length;
         console.log(num);
         
-        // Need to figure out to iterature over user and add them as options.
-        // this.$addMent.after("<select class="mention">"
-        //     $.each(users, function(idx, ele) {
-
-        //     })
-
-        // $.each(users, function(idx, ele) {
-        //     console.log(ele.name);
-        // })
-
-        this.$addMent.after(`<br><label class='mention-${num}'> Mention <select><option> </option></select></label>`)
+        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <select><option> </option></select></label>`)
 
         let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
 
         $.each(users, function(idx, ele) {
-            mentionOption.append(`<option>${ele.name}</option>`)
+            mentionOption.append(`<option value='${ele.userId}'>${ele.name}</option>`)
         })
     }
 
