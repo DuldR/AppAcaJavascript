@@ -11,6 +11,7 @@ class TweetCompose {
         this.$charLeft = this.$ele.find('.chars-left');
 
         this.$addMent = this.$ele.find('.add-mention');
+        this.$initMent = this.$ele.find('.initial-mention');
 
         
         this.$textArea.on('input', this.handleInput.bind(this));
@@ -74,12 +75,25 @@ class TweetCompose {
 
     newUserSelect() {
         let users = window.users;
+
+        // Pointer for finding created element. I dont know how to append to just created element :)
+        let num = this.$ele.find('label').length;
+        console.log(num);
         
         // Need to figure out to iterature over user and add them as options.
-        this.$addMent.after("<select class="mention">"
-            $.each(users, function(idx, ele) {
+        // this.$addMent.after("<select class="mention">"
+        //     $.each(users, function(idx, ele) {
 
-            })
+        //     })
+
+        // $.each(users, function(idx, ele) {
+        //     console.log(ele);
+        // })
+
+        this.$addMent.after(`<br><label class='mention-${num}'> Mention <select><option> </option></select></label>`)
+
+        this.$ele.find(`.mention-${num}`).find('select').append("<option>test</option>");
+        
     }
 
 }
