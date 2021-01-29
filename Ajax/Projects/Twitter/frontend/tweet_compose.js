@@ -87,13 +87,16 @@ class TweetCompose {
         //     })
 
         // $.each(users, function(idx, ele) {
-        //     console.log(ele);
+        //     console.log(ele.name);
         // })
 
         this.$addMent.after(`<br><label class='mention-${num}'> Mention <select><option> </option></select></label>`)
 
-        this.$ele.find(`.mention-${num}`).find('select').append("<option>test</option>");
-        
+        let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
+
+        $.each(users, function(idx, ele) {
+            mentionOption.append(`<option>${ele.name}</option>`)
+        })
     }
 
 }
