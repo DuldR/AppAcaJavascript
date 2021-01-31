@@ -159,6 +159,11 @@ class TweetCompose {
 
     }
 
+    getMenVals(e) {
+        let vals = this.$ele.find('.mention');
+        console.log(vals);
+    }
+
     testUser(e) {
         this.test();
     }
@@ -229,26 +234,20 @@ class TweetCompose {
 
 
     // Mentions
-    // This was my hacky way of doing. It works. But cant handle the form submittion. 
-    // newUserSelect() {
-    //     let users = window.users;
-
-    //     // Pointer for finding created element. I dont know how to append to just created element :)
-    //     let num = this.$ele.find('label').length;
-        
-    //     this.$addMent.after(`<br><label class='mention-${num} added-mention mention'> Mention <select><option> </option></select></label>`)
-
-    //     let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
-
-    //     $.each(users, function(idx, ele) {
-    //         mentionOption.append(`<option value='${ele.userId}'>${ele.name}</option>`)
-    //     })
-    // }
 
     newUserSelect() {
-        let user = window.users;
-        this.$ele.find('mention-select').append('<option>Test</option>')
+        let users = window.users;
 
+        // Pointer for finding created element. I dont know how to append to just created element :)
+        let num = this.$ele.find('label').length;
+        
+        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <select name='tweet[mentioned_user_ids][]'><option> </option></select></label>`)
+
+        let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
+
+        $.each(users, function(idx, ele) {
+            mentionOption.append(`<option value='${ele.userId}'>${ele.name}</option>`)
+        })
     }
 
 }
