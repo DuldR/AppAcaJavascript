@@ -27,6 +27,11 @@ class TweetCompose {
         this.$userButton.on('click', this.testUser.bind(this));
         this.$valsButton.on('click', this.getMenVals.bind(this));
 
+        // This works.
+        this.$ele.on('click', '.remove-mentioned-user', event => {
+            $(event.currentTarget).parent().remove();
+        })
+
     }
 
     getMenVals(e) {
@@ -114,7 +119,7 @@ class TweetCompose {
         let num = this.$ele.find('label').length;
         
         // Better to set a constant to html and feed it in as a string.
-        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <div class='remove-mentioned-user'> <a href='javascript:;'>Remove?</a>  <select name='tweet[mentioned_user_ids][]'><option> </option></select></div></label>`)
+        this.$addMent.after(`<label class='mention-${num} added-mention'>Mention <div class='remove-mentioned-user'><a href='javascript:;'>Remove?</a>  <select name='tweet[mentioned_user_ids][]'><option> </option></select></div></label>`)
 
         let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
 
