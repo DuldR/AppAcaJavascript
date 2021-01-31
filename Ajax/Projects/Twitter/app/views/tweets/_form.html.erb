@@ -13,14 +13,13 @@
   </label>
   <br>
 
-  <button type="button" class="test-user-id">Print Out User Id</button>
   <button type="button" class="add-mention">Add Mention?</button>
 
   <br>
   <label>
     Mention
-    <select name="tweet[mentioned_user_ids][]" class="initial-mention">
-      <option></option>
+    <select name="tweet[mentioned_user_ids][]" class="mention-select">
+      <option></option>'
       <% User.all.each do |user| %>
         <option value="<%= user.id %>"><%= user.username %></option>
       <% end %>

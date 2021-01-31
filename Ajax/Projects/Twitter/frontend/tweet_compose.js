@@ -17,6 +17,7 @@ class TweetCompose {
 
 
         this.$userButton = this.$ele.find('.test-user-id');
+        this.$valsButton = this.$ele.find('.get-vals');
 
         
         this.$textArea.on('input', this.handleInput.bind(this));
@@ -24,6 +25,7 @@ class TweetCompose {
         this.$addMent.on('click', this.handleClick.bind(this));
 
         this.$userButton.on('click', this.testUser.bind(this));
+        this.$valsButton.on('click', this.getMenVals.bind(this));
 
     }
 
@@ -37,6 +39,8 @@ class TweetCompose {
         //     console.log(ele);
         // })
         this.$addedMention.each(function(idx, ele) {
+
+            // IT WORKS BITCH.
             let val = $(ele).find('select').val();
             console.log(val);
             }
@@ -95,21 +99,26 @@ class TweetCompose {
 
 
     // Mentions
+    // This was my hacky way of doing. It works. But cant handle the form submittion. 
+    // newUserSelect() {
+    //     let users = window.users;
+
+    //     // Pointer for finding created element. I dont know how to append to just created element :)
+    //     let num = this.$ele.find('label').length;
+        
+    //     this.$addMent.after(`<br><label class='mention-${num} added-mention mention'> Mention <select><option> </option></select></label>`)
+
+    //     let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
+
+    //     $.each(users, function(idx, ele) {
+    //         mentionOption.append(`<option value='${ele.userId}'>${ele.name}</option>`)
+    //     })
+    // }
 
     newUserSelect() {
-        let users = window.users;
+        let user = window.users;
+        this.$ele.find('mention-select').append('<option>Test</option>')
 
-        // Pointer for finding created element. I dont know how to append to just created element :)
-        let num = this.$ele.find('label').length;
-        console.log(num);
-        
-        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <select><option> </option></select></label>`)
-
-        let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
-
-        $.each(users, function(idx, ele) {
-            mentionOption.append(`<option value='${ele.userId}'>${ele.name}</option>`)
-        })
     }
 
 }
