@@ -109,8 +109,11 @@ class TweetCompose {
         let users = window.users;
 
         // Pointer for finding created element. I dont know how to append to just created element :)
+        // Easier way to do this. Just map the user options and plug that in to a new html block
+
         let num = this.$ele.find('label').length;
         
+        // Better to set a constant to html and feed it in as a string.
         this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <select name='tweet[mentioned_user_ids][]'><option> </option></select></label>`)
 
         let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
