@@ -114,7 +114,7 @@ class TweetCompose {
         let num = this.$ele.find('label').length;
         
         // Better to set a constant to html and feed it in as a string.
-        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <select name='tweet[mentioned_user_ids][]'><option> </option></select></label>`)
+        this.$addMent.after(`<br><label class='mention-${num} added-mention'> Mention <div class='remove-mentioned-user'> <a href='javascript:;'>Remove?</a>  <select name='tweet[mentioned_user_ids][]'><option> </option></select></div></label>`)
 
         let mentionOption = this.$ele.find(`.mention-${num}`).find('select');
 
