@@ -3,6 +3,8 @@ const util = require("./api_util.js");
 class TweetCompose {
 
     constructor($el) {
+
+        // This is terrible.
         this.$ele = $($el);
         this.ulId = this.$ele.data("tweets-ul");
         this.$ul = $(this.ulId);
