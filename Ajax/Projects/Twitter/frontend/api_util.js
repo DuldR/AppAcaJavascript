@@ -28,6 +28,13 @@ const APIUtil = {
             method: "POST",
             data: form
         })
+    ),
+
+    fetchTweet: (req) => (
+        $.ajax({
+            url: "/feed",
+            dataType: "json"
+        })
     )
 };
 

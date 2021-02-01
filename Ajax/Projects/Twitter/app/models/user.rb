@@ -64,11 +64,11 @@ class User < ApplicationRecord
     # TODO: How can we use limit/max_created_at here??
 
     max_created_at = @tweets.maximum(:created_at)
+
     # THis doesnt work. You're modifying the activerecord object. Dont do that.
     # @tweets = @tweets.select { |date| date }
 
-    
-
+    # This works. This acts on the active record relation.
     @tweets.where('tweets.created_at < ?', max_created_at).limit(2)
 
   end

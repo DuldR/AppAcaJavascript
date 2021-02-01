@@ -37,6 +37,13 @@ const APIUtil = {
             method: "POST",
             data: form
         })
+    ),
+
+    fetchTweet: (req) => (
+        $.ajax({
+            url: "/feed",
+            dataType: "json"
+        })
     )
 };
 
@@ -119,6 +126,33 @@ class FollowToggle {
 }
 
 module.exports = FollowToggle;
+
+/***/ }),
+
+/***/ "./frontend/infinite_tweets.js":
+/*!*************************************!*\
+  !*** ./frontend/infinite_tweets.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const util = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+class InfiniteTweets {
+
+    constructor ($ele) {
+        this.$ele = $($ele);
+        this.$ele.find('a.fetch-more').on('click', this.fetchTweets.bind(this));
+    }
+
+
+    fetchTweets () {
+        let fetched = util.fetchTweet();
+        alert(fetched);
+    }
+
+}
+
+module.exports = InfiniteTweets;
 
 /***/ }),
 
@@ -360,6 +394,7 @@ module.exports = UsersSearch;
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
 const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 const TweetCompose = __webpack_require__(/*! ./tweet_compose.js */ "./frontend/tweet_compose.js");
+const InfiniteTweets = __webpack_require__(/*! ./infinite_tweets.js */ "./frontend/infinite_tweets.js");
 
 console.log("Webpack work");
 
@@ -373,6 +408,9 @@ $(() => {
     // grab the tweet-compose form
     const composeEl = $("form.tweet-compose");
 
+    // grab infinite feed
+    const feedEl = $("div.infinite-feed");
+
     
     rootEl.each(function(idx, ele) {
         new FollowToggle(ele);
@@ -385,6 +423,11 @@ $(() => {
     composeEl.each(function(idx, ele) {
         new TweetCompose(ele);
     })
+
+    feedEl.each(function(idx, ele) {
+        new InfiniteTweets(ele);
+    })
+
     
 })
 })();
