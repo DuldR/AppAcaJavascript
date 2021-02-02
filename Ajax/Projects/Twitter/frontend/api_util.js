@@ -33,7 +33,10 @@ const APIUtil = {
     fetchTweet: (req) => (
         $.ajax({
             url: "/feed",
-            dataType: "json"
+            dataType: "json",
+            data: {
+                max_created_at: req
+            }
         })
     )
 };
