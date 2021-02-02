@@ -9,8 +9,15 @@ class InfiniteTweets {
 
 
     fetchTweets () {
-        let fetched = util.fetchTweet();
-        alert(fetched);
+        util.fetchTweet().then((data) => {
+            this.printTweets(data);
+        })
+    }
+
+    printTweets (tweet) {
+        tweet.forEach((idx,ele) => {
+            console.log(idx);
+        })
     }
 
 }
