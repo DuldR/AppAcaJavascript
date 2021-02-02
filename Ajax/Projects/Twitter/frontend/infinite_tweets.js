@@ -4,20 +4,25 @@ class InfiniteTweets {
 
     constructor ($ele) {
         this.$ele = $($ele);
+        this.$feed = $($ele).find("ul.feed");
         this.$ele.find('a.fetch-more').on('click', this.fetchTweets.bind(this));
     }
 
 
     fetchTweets () {
         util.fetchTweet().then((data) => {
-            this.printTweets(data);
+            this.insertTweets(data);
         })
     }
 
-    printTweets (tweet) {
-        tweet.forEach((idx,ele) => {
-            console.log(idx);
+    insertTweets (tweet) {
+
+        tweet.forEach((ele) => {
+            this.$feed.append(JSON.stringify(ele));
         })
+
+        console.log(tweet);
+
     }
 
 }

@@ -69,7 +69,7 @@ class User < ApplicationRecord
     # @tweets = @tweets.select { |date| date }
 
     # This works. This acts on the active record relation.
-    @tweets.where('tweets.created_at < ?', max_created_at).limit(2)
+    @tweets.where('tweets.created_at < ?', max_created_at).limit(1)
 
   end
 
