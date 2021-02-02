@@ -164,24 +164,13 @@ class InfiniteTweets {
             util.fetchTweet(this.maxCreatedAt).then((data) => {
                 this.insertTweets(data);
                 this.maxCreatedAt = data[data.length - 1].created_at;
-
-                // This is how you get the last element Lol.
-                // console.log(data[data.length - 1]);
-
-                // Json object so using the getter methdo works
-                // console.log(data[data.length - 1].created_at);
+                this.enoughTweets();
             })
         } else {
-
             util.fetchTweet().then((data) => {
                 this.insertTweets(data);
                 this.maxCreatedAt = data[data.length - 1].created_at;
-
-                // This is how you get the last element Lol.
-                // console.log(data[data.length - 1]);
-
-                // Json object so using the getter methdo works
-                // console.log(data[data.length - 1].created_at);
+                this.enoughTweets();
             })
             
         }
@@ -190,9 +179,20 @@ class InfiniteTweets {
     insertTweets (tweet) {
 
         tweet.forEach((ele) => {
-            this.$feed.append(JSON.stringify(ele));
+            this.$feed.append(`<li>${JSON.stringify(ele)}</li>`);
         })
 
+    }
+
+    enoughTweets () {
+    
+        let len = this.$feed.find('li').length;
+        console.log(len);
+        if (len > 3) {
+            this.$ele.find('a.fetch-more').text("No More Tweets");
+            this.$ele.find('a.fetch-more').off('click');
+        }
+        
     }
 
 }
