@@ -12,10 +12,16 @@ class InfiniteTweets {
         this.$ele.find('a.fetch-more').on('click', this.fetchTweets.bind(this));
 
         // custom handler?
+        // On takees the FIRST FUCKING ARGUMENT as the event. The params can then be set after that.
+        // this.$feed.on('insert-tweet', function(evt, prm) {
+        //     console.log(prm);
+        //     this.insertTweets;
+        // });
 
-        this.$feed.on('insert-tweet', function(evt, prm) {
-            console.log(prm);
-        });
+
+        this.$feed.on('insert-tweet', (evt, prm) => {
+            this.insertTweets(prm);
+        })
 
         // Limit Tweets
         this.maxCreatedAt = null;
