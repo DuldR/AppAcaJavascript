@@ -39,7 +39,7 @@ class InfiniteTweets {
     insertTweets (tweet) {
 
         tweet.forEach((ele) => {
-            this.$feed.append(`<li>${JSON.stringify(ele)}</li>`);
+            this.$feed.append(`<li>${JSON.stringify(ele.content)}</li>`);
         })
 
     }

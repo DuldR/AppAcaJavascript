@@ -179,7 +179,7 @@ class InfiniteTweets {
     insertTweets (tweet) {
 
         tweet.forEach((ele) => {
-            this.$feed.append(`<li>${JSON.stringify(ele)}</li>`);
+            this.$feed.append(`<li>${JSON.stringify(ele.content)}</li>`);
         })
 
     }
@@ -215,8 +215,7 @@ class TweetCompose {
 
         // This is terrible.
         this.$ele = $($el);
-        this.ulId = this.$ele.data("tweets-ul");
-        this.$ul = $(this.ulId);
+        this.$ul = this.$ele.find('ul.feed');
 
         this.$textArea = this.$ele.find('textarea');
         this.$charLeft = this.$ele.find('.chars-left');
@@ -224,19 +223,12 @@ class TweetCompose {
         
 
         this.$addMent = this.$ele.find('.add-mention');
-        this.$initMent = this.$ele.find('.initial-mention');
-
-
-        this.$userButton = this.$ele.find('.test-user-id');
-        this.$valsButton = this.$ele.find('.get-vals');
 
         
         this.$textArea.on('input', this.handleInput.bind(this));
         this.$ele.on("submit", this.handleSubmit.bind(this));
         this.$addMent.on('click', this.handleClick.bind(this));
 
-        this.$userButton.on('click', this.testUser.bind(this));
-        this.$valsButton.on('click', this.getMenVals.bind(this));
 
         // This works.
         this.$ele.on('click', '.remove-mentioned-user', event => {
@@ -302,7 +294,10 @@ class TweetCompose {
             this.clearInput();
             this.enable();
             // Use this to append to the top of the ul feed.
-            this.$ul.prepend(`<li>${JSON.stringify(data)}</li>`);
+            // this.$ul.append(`<li>${JSON.stringify(data)}</li>`);
+
+            console.log(this.$ul);
+            this.$ul.addClass("butts");
             
         });
         
