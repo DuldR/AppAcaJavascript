@@ -85,7 +85,10 @@ class TweetCompose {
             this.clearInput();
             this.enable();
             // Use this to append to the top of the ul feed.
-            this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
+            // this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
+
+            // This shit is wild. It utilizes inifnite tweets event handler. DRY it uP!!!!!
+            this.$ul.trigger("insert-tweet", data);
             
         });
         

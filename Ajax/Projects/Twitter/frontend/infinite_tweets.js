@@ -10,7 +10,10 @@ class InfiniteTweets {
 
         // Event Handler
         this.$ele.find('a.fetch-more').on('click', this.fetchTweets.bind(this));
-    
+
+        // custom handler?
+
+        this.$feed.on('insert-tweet', this.fetchTweets.bind(this));
 
         // Limit Tweets
         this.maxCreatedAt = null;

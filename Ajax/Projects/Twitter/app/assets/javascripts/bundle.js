@@ -150,7 +150,10 @@ class InfiniteTweets {
 
         // Event Handler
         this.$ele.find('a.fetch-more').on('click', this.fetchTweets.bind(this));
-    
+
+        // custom handler?
+
+        this.$feed.on('insert-tweet', this.fetchTweets.bind(this));
 
         // Limit Tweets
         this.maxCreatedAt = null;
@@ -294,7 +297,10 @@ class TweetCompose {
             this.clearInput();
             this.enable();
             // Use this to append to the top of the ul feed.
-            this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
+            // this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
+
+            // This shit is wild. It utilizes inifnite tweets event handler. DRY it uP!!!!!
+            this.$ul.trigger("insert-tweet", data);
             
         });
         
