@@ -215,7 +215,7 @@ class TweetCompose {
 
         // This is terrible.
         this.$ele = $($el);
-        this.$ul = this.$ele.find('ul.feed');
+        this.$ul = $('ul.feed');
 
         this.$textArea = this.$ele.find('textarea');
         this.$charLeft = this.$ele.find('.chars-left');
@@ -294,10 +294,7 @@ class TweetCompose {
             this.clearInput();
             this.enable();
             // Use this to append to the top of the ul feed.
-            // this.$ul.append(`<li>${JSON.stringify(data)}</li>`);
-
-            console.log(this.$ul);
-            this.$ul.addClass("butts");
+            this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
             
         });
         
