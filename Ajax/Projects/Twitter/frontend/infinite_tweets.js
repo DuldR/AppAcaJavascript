@@ -31,26 +31,25 @@ class InfiniteTweets {
 
     fetchTweets () {
 
-    //     if (this.maxCreatedAt !== null) {
-    //         util.fetchTweet(this.maxCreatedAt).then((data) => {
-    //             this.insertTweets(data);
-    //             this.maxCreatedAt = data[data.length - 1].created_at;
-    //             this.enoughTweets();
-    //         })
-    //     } else {
-    //         util.fetchTweet().then((data) => {
-    //             this.insertTweets(data);
-    //             this.maxCreatedAt = data[data.length - 1].created_at;
-    //             this.enoughTweets();
-    //         })
+        if (this.maxCreatedAt !== null) {
+            util.fetchTweet(this.maxCreatedAt).then((data) => {
+                this.insertTweets(data);
+                this.maxCreatedAt = data[data.length - 1].created_at;
+                this.enoughTweets();
+            })
+        } else {
+            util.fetchTweet().then((data) => {
+                this.insertTweets(data);
+                this.maxCreatedAt = data[data.length - 1].created_at;
+                this.enoughTweets();
+            })
             
-    //     }
+        }
     }
 
     insertTweets (tweet) {
-        console.log(tweet);
+
         this.maxCreatedAt = tweet[tweet.length - 1].created_at;
-        console.log(this.maxCreatedAt);
         tweet.forEach((ele) => {
             this.$feed.append(`<li>${JSON.stringify(ele.content)}</li>`);
         })
