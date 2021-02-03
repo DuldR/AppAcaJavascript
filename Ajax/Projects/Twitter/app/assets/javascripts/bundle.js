@@ -300,7 +300,8 @@ class TweetCompose {
             // this.$ul.prepend(`<li>${JSON.stringify(data.content)}</li>`);
 
             // This shit is wild. It utilizes inifnite tweets event handler. DRY it uP!!!!!
-            this.$ul.trigger("insert-tweet", data);
+            // this.$ul.trigger("insert-tweet", data);
+            this.$ul.trigger("insert-tweet", [data]);
             
         });
         
