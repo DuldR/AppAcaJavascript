@@ -20,7 +20,7 @@ class InfiniteTweets {
 
 
         this.$feed.on('insert-tweet', (evt, prm) => {
-            this.insertTweets(prm);
+            this.insertTweets([prm]);
         })
 
         // Limit Tweets
@@ -50,6 +50,7 @@ class InfiniteTweets {
     insertTweets (tweet) {
         console.log(tweet);
         this.maxCreatedAt = tweet[tweet.length - 1].created_at;
+        console.log(this.maxCreatedAt);
         tweet.forEach((ele) => {
             this.$feed.append(`<li>${JSON.stringify(ele.content)}</li>`);
         })
