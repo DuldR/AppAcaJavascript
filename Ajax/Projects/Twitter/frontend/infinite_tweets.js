@@ -13,7 +13,9 @@ class InfiniteTweets {
 
         // custom handler?
 
-        this.$feed.on('insert-tweet', this.fetchTweets.bind(this));
+        this.$feed.on('insert-tweet', function(evt, prm) {
+            console.log(prm);
+        });
 
         // Limit Tweets
         this.maxCreatedAt = null;
@@ -23,24 +25,25 @@ class InfiniteTweets {
 
     fetchTweets () {
 
-        if (this.maxCreatedAt !== null) {
-            util.fetchTweet(this.maxCreatedAt).then((data) => {
-                this.insertTweets(data);
-                this.maxCreatedAt = data[data.length - 1].created_at;
-                this.enoughTweets();
-            })
-        } else {
-            util.fetchTweet().then((data) => {
-                this.insertTweets(data);
-                this.maxCreatedAt = data[data.length - 1].created_at;
-                this.enoughTweets();
-            })
+    //     if (this.maxCreatedAt !== null) {
+    //         util.fetchTweet(this.maxCreatedAt).then((data) => {
+    //             this.insertTweets(data);
+    //             this.maxCreatedAt = data[data.length - 1].created_at;
+    //             this.enoughTweets();
+    //         })
+    //     } else {
+    //         util.fetchTweet().then((data) => {
+    //             this.insertTweets(data);
+    //             this.maxCreatedAt = data[data.length - 1].created_at;
+    //             this.enoughTweets();
+    //         })
             
-        }
+    //     }
     }
 
     insertTweets (tweet) {
-
+        console.log(tweet);
+        this.maxCreatedAt = tweet[tweet.length - 1].created_at;
         tweet.forEach((ele) => {
             this.$feed.append(`<li>${JSON.stringify(ele.content)}</li>`);
         })
@@ -51,7 +54,7 @@ class InfiniteTweets {
     
         let len = this.$feed.find('li').length;
         console.log(len);
-        if (len > 3) {
+        if (len > 5) {
             this.$ele.find('a.fetch-more').text("No More Tweets");
             this.$ele.find('a.fetch-more').off('click');
         }

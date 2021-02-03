@@ -28,28 +28,6 @@ class TweetCompose {
 
     }
 
-    getMenVals(e) {
-        let vals = this.$ele.find('.mention');
-        console.log(vals);
-    }
-
-    testUser(e) {
-        this.test();
-    }
-
-    test() {
-        this.$addedMention = this.$ele.find('.added-mention');
-        // $.each(this.$addedMention, function(idx,ele) {
-        //     console.log(ele);
-        // })
-        this.$addedMention.each(function(idx, ele) {
-
-            // IT WORKS BITCH.
-            let val = $(ele).find('select').val();
-            console.log(val);
-            }
-        )
-    }
 
     // Update feed with new tweet
     handleSubmit(e) {
@@ -89,7 +67,7 @@ class TweetCompose {
 
             // This shit is wild. It utilizes inifnite tweets event handler. DRY it uP!!!!!
             // this.$ul.trigger("insert-tweet", data);
-            this.$ul.trigger("insert-tweet", [data]);
+            this.$ul.trigger("insert-tweet", [1]);
             
         });
         
