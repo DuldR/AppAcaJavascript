@@ -21,11 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- your code here!
 
   const addLi = (e) => {
-    const li = e.target;
-    alert("Clicked");
+    const inputUl = document.getElementById("sf-places");
+    const inputLi = document.createElement("li");
+
+    inputLi.textContent = "Test";
+    inputUl.appendChild(inputLi);
   }
 
-  document.querySelector(".favorite-submit").addEventListener('click', addLi);
+  document.querySelector(".favorite-submit").addEventListener('click', event => {
+    event.preventDefault();
+    addLi();
+  });
 
 
   // adding new photos
