@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lol. Check what kind of object it is.
     inputLi.textContent = formInput.item(0).value;
     inputUl.appendChild(inputLi);
+
+    formInput.item(0).value = '';
+    
   }
 
   document.querySelector(".favorite-submit").addEventListener('click', event => {
