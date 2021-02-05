@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputUl = document.getElementById("sf-places");
     const inputLi = document.createElement("li");
 
-    inputLi.textContent = "Test";
+    const formInput = document.getElementsByClassName("favorite-input")
+
+    // Lol. Check what kind of object it is.
+    inputLi.textContent = formInput.item(0).value;
     inputUl.appendChild(inputLi);
   }
 
