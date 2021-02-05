@@ -5,3 +5,8 @@
     json.mentioned_users tweet.mentioned_users
   end
 end
+
+
+# @tweets.each do |tweet|
+#   json.(tweet, *Tweet.column_names)
+# end
