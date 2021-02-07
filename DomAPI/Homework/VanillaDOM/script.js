@@ -44,6 +44,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- your code here!
 
+  const toggleForm = (e) => {
+    const inputButton = document.querySelector('.photo-form-container');
+    inputButton.classList.toggle('hidden');
+
+  }
+
+  document.querySelector(".photo-show-button").addEventListener('click', event => {
+    event.preventDefault();
+    toggleForm();
+  })
+
+  const addPic = (e) => {
+    const inputSrc = document.querySelector('.photo-url-input').value;
+    const inputLi = document.createElement('li');
+    const inputImg = document.createElement('img');
+
+    alert(inputSrc);
+
+  }
+
+  document.querySelector('.photo-url-submit').addEventListener('click', event => {
+    event.preventDefault();
+    addPic();
+  })
+
 
 
 });
