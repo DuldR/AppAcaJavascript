@@ -56,11 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   const addPic = (e) => {
-    const inputSrc = document.querySelector('.photo-url-input').value;
+
+    // Element Selectors
+    const inputSrcVal = document.querySelector('.photo-url-input').value;
+    const inputUl = document.querySelector('.dog-photos');
+
+    // Creating Elements;
     const inputLi = document.createElement('li');
     const inputImg = document.createElement('img');
 
-    alert(inputSrc);
+    inputImg.src = inputSrcVal;
+    inputLi.appendChild(inputImg);
+
+    inputUl.appendChild(inputLi);
+
 
   }
 
