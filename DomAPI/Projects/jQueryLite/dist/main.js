@@ -10,6 +10,6 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("document.addEventListener(\"DOMContentLoaded\", () => {\n    console.log(\"Webpack working\");\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("document.addEventListener(\"DOMContentLoaded\", () => {\n    console.log(\"Webpack working\");\n\n    window.$l = (e) => {\n        let returnArr = []\n        let nodeList = document.querySelectorAll(e);\n\n        nodeList.forEach((el) => {\n            returnArr.push(el);\n        })\n\n        return returnArr;\n    }\n})\n\n//# sourceURL=webpack:///./src/index.js?");
 /******/ })()
 ;
