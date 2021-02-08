@@ -9,8 +9,8 @@ DOMNodeCollection.prototype.html = function html(string) {
     let inputStr = string || null;
 
     if (inputStr !== null) {
-        this.collection.each((el) => {
-            el.innerHTML = inputSr;
+        this.collection.forEach((el) => {
+            el.innerHTML = inputStr;
         })
     } else {
         console.log(this.collection[0].innerHTML);
