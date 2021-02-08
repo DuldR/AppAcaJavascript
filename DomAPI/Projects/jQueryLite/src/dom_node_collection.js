@@ -6,7 +6,7 @@ class DOMNodeCollection {
 }
 
 DOMNodeCollection.prototype.html = function html(string) {
-    
+
     if (string !== null || string === "") {
         this.collection.forEach((el) => {
             el.innerHTML = string;
@@ -18,8 +18,11 @@ DOMNodeCollection.prototype.html = function html(string) {
 }
 
 DOMNodeCollection.prototype.empty = function empty() {
-    // console.log("");
     this.html("");
+}
+
+DOMNodeCollection.prototype.append = function append() {
+    
 }
 
 module.exports = DOMNodeCollection;
