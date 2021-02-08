@@ -15,7 +15,7 @@
   \************************************/
 /***/ ((module) => {
 
-eval("class DOMNodeCollection {\n\n    constructor (arr) {\n        this.collection = arr;\n    }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n\n    constructor (arr) {\n        this.collection = arr;\n    }\n}\n\nDOMNodeCollection.prototype.html = function html(string) {\n    let inputStr = string || null;\n\n    if (inputStr !== null) {\n        this.collection.each((el) => {\n            el.innerHTML = inputSr;\n        })\n    } else {\n        console.log(this.collection[0].innerHTML);\n    }\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ })
 
@@ -49,7 +49,7 @@ eval("class DOMNodeCollection {\n\n    constructor (arr) {\n        this.collect
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("const nodeCollection = __webpack_require__(/*! ./dom_node_collection.js */ \"./src/dom_node_collection.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    console.log(\"Webpack working\");\n    \n\n    window.$l = (e) => {\n        let returnArr = []\n        let nodeList = document.querySelectorAll(e);\n        let testNode = document.querySelector(\"div\");\n\n        // nodeList.forEach((el) => {\n        //     console.log(e instanceof Node);\n        //     // returnArr.push(el);\n        // })\n\n        console.log(testNode instanceof HTMLElement);\n        console.log(testNode.innerText);\n\n        return returnArr;\n    }\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const nodeCollection = __webpack_require__(/*! ./dom_node_collection.js */ \"./src/dom_node_collection.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    console.log(\"Webpack working\");\n    \n\n    window.$l = (e) => {\n        let returnArr = []\n        let nodeList = document.querySelectorAll(e);\n        // let testNode = document.querySelector(\"div\");\n\n        nodeList.forEach((el) => {\n            returnArr.push(el);\n        })\n\n        // These return true and print.\n        // console.log(testNode instanceof HTMLElement);\n        // console.log(testNode.innerText);\n\n        // This return an element\n\n        return new nodeCollection(returnArr);\n    }\n})\n\n//# sourceURL=webpack:///./src/index.js?");
 })();
 
 /******/ })()

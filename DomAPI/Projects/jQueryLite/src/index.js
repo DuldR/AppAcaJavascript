@@ -7,16 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     window.$l = (e) => {
         let returnArr = []
         let nodeList = document.querySelectorAll(e);
-        let testNode = document.querySelector("div");
+        // let testNode = document.querySelector("div");
 
-        // nodeList.forEach((el) => {
-        //     console.log(e instanceof Node);
-        //     // returnArr.push(el);
-        // })
+        nodeList.forEach((el) => {
+            returnArr.push(el);
+        })
 
-        console.log(testNode instanceof HTMLElement);
-        console.log(testNode.innerText);
+        // These return true and print.
+        // console.log(testNode instanceof HTMLElement);
+        // console.log(testNode.innerText);
 
-        return returnArr;
+        // This return an element
+
+        return new nodeCollection(returnArr);
     }
 })
