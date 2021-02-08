@@ -6,15 +6,20 @@ class DOMNodeCollection {
 }
 
 DOMNodeCollection.prototype.html = function html(string) {
-    let inputStr = string || null;
-
-    if (inputStr !== null) {
+    
+    if (string !== null || string === "") {
         this.collection.forEach((el) => {
-            el.innerHTML = inputStr;
+            el.innerHTML = string;
         })
     } else {
-        console.log(this.collection[0].innerHTML);
+        // IMplicit return :)
+        this.collection[0].innerHTML;
     }
+}
+
+DOMNodeCollection.prototype.empty = function empty() {
+    // console.log("");
+    this.html("");
 }
 
 module.exports = DOMNodeCollection;
