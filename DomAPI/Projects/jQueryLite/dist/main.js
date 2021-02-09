@@ -15,7 +15,7 @@
   \************************************/
 /***/ ((module) => {
 
-eval("class DOMNodeCollection {\n\n    constructor (arr) {\n        this.collection = arr;\n    }\n}\n\nDOMNodeCollection.prototype.html = function html(string) {\n\n    if (string !== null || string === \"\") {\n        this.collection.forEach((el) => {\n            el.innerHTML = string;\n        })\n    } else {\n        // IMplicit return :)\n        this.collection[0].innerHTML;\n    }\n}\n\nDOMNodeCollection.prototype.empty = function empty() {\n    this.html(\"\");\n}\n\nDOMNodeCollection.prototype.append = function append() {\n    \n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n\n    constructor (arr) {\n        this.collection = arr;\n    }\n}\n\nDOMNodeCollection.prototype.html = function html(string) {\n\n    if (string !== null || string === \"\") {\n        this.collection.forEach((el) => {\n            el.innerHTML = string;\n        })\n    } else {\n        // IMplicit return :)\n        this.collection[0].innerHTML;\n    }\n}\n\nDOMNodeCollection.prototype.empty = function empty() {\n    this.html(\"\");\n}\n\nDOMNodeCollection.prototype.append = function append(ele) {\n    // Test single\n    console.log(this.collection[0].outerHTML);\n    console.log(this.collection[0].nodeType);\n\n    // test variable\n    console.log(ele.collection[0].nodeType);\n\n    this.collection[0].appendChild(ele.collection[0]);\n}\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ })
 
