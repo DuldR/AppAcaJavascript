@@ -27,8 +27,9 @@ DOMNodeCollection.prototype.empty = function empty() {
 
 DOMNodeCollection.prototype.append = function append(ele) {
     // Test single
-
-    console.log(ele instanceof HTMLElement);
+    // This returns true
+    console.log(ele instanceof DOMNodeCollection);
+    // console.log(ele instanceof HTMLElement);
     // This works for string
     if ('string' === typeof(ele)) {
         this.collection.forEach((el) => {
@@ -42,7 +43,16 @@ DOMNodeCollection.prototype.append = function append(ele) {
         })
 
         ele.remove();
+    } else if (ele instanceof DOMNodeCollection) {
+        // This also accomplishes jquery append.
+        ele.collection.forEach((el) => {
+            this.collection[0].appendChild(el);
+        })
+
     }
+
+    // More is needed. If the the this collection is a collection and the appendee is a collection, jqeury uses the first element from the appendee and appends that to the this collection
+    
 }
 
 module.exports = DOMNodeCollection;
