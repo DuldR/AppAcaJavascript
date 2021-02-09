@@ -23,15 +23,11 @@ DOMNodeCollection.prototype.empty = function empty() {
 
 DOMNodeCollection.prototype.append = function append(ele) {
     // Test single
-    console.log(this.collection[0].outerHTML);
-    console.log(this.collection[0].nodeType);
 
-    // test variable
-    console.log(ele.collection[0].nodeType);
-
-    let inputNode = ele.collection[0].cloneNode(true);
-
-    this.collection[0].appendChild(inputNode);
+    // This works for strings
+    this.collection.forEach((el) => {
+        el.innerHTML = el.innerHTML + ele;
+    })
 }
 
 module.exports = DOMNodeCollection;
