@@ -29,7 +29,9 @@ DOMNodeCollection.prototype.append = function append(ele) {
     // test variable
     console.log(ele.collection[0].nodeType);
 
-    this.collection[0].appendChild(ele.collection[0]);
+    let inputNode = ele.collection[0].cloneNode(true);
+
+    this.collection[0].appendChild(inputNode);
 }
 
 module.exports = DOMNodeCollection;
