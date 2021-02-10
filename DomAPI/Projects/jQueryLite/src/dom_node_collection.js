@@ -97,8 +97,11 @@ DOMNodeCollection.prototype.children = function children(selector) {
 
         for (i=0; i < el.children.length; i++) {
             console.log(el.children.item(i));
+            returnArr.push(el.children.item(i));
         }
     })
+
+    return new DOMNodeCollection(returnArr);
 }
 
 module.exports = DOMNodeCollection;
