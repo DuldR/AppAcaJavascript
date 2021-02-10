@@ -66,6 +66,7 @@ DOMNodeCollection.prototype.attr = function attr(ele, set) {
 
 DOMNodeCollection.prototype.addClass = function addClass(el) {
 
+
     this.collection.forEach((ele) => {
         ele.classList.add(el);
     })
@@ -77,6 +78,27 @@ DOMNodeCollection.prototype.removeClass = function removeClass(el) {
         ele.classList.remove(el);
     })
 
+}
+
+DOMNodeCollection.prototype.children = function children(selector) {
+    let returnArr = [];
+
+    // Fucked this one up. Didnt call children
+    // this.collection.forEach((el) => {
+    //     for (i = 0; i < el.length; i++) {
+    //         console.log(el.item(i));
+    //         // returnArr.push(el.item(i));
+    //     }
+
+    // })
+
+    this.collection.forEach((el) => {
+
+
+        for (i=0; i < el.children.length; i++) {
+            console.log(el.children.item(i));
+        }
+    })
 }
 
 module.exports = DOMNodeCollection;
