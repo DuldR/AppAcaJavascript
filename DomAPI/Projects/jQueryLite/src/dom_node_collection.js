@@ -55,9 +55,13 @@ DOMNodeCollection.prototype.append = function append(ele) {
 
 }
 
-DOMNodeCollection.prototype.attr = function attr(ele) {
+DOMNodeCollection.prototype.attr = function attr(ele, set) {
     // return this.collection[0].attributes.getNamedItem(ele).value
-    return this.collection[0].getAttribute(ele);
+    if (set === undefined) {
+        return this.collection[0].getAttribute(ele);
+    } else {
+        this.collection[0].setAttribute(ele, set);
+    }
 }
 
 module.exports = DOMNodeCollection;
