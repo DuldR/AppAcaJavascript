@@ -64,4 +64,8 @@ DOMNodeCollection.prototype.attr = function attr(ele, set) {
     }
 }
 
+DOMNodeCollection.prototype.addClass = function addClass(el) {
+
+}
+
 module.exports = DOMNodeCollection;
