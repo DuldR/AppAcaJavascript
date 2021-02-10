@@ -52,7 +52,13 @@ DOMNodeCollection.prototype.append = function append(ele) {
     }
 
     // More is needed. If the the this collection is a collection and the appendee is a collection, jqeury uses the first element from the appendee and appends that to the this collection
-    
+
+}
+
+DOMNodeCollection.prototype.attr = function attr(ele) {
+    let returnedAttr = this.collection[0].attributes.getNamedItem(ele).value;
+    console.log(returnedAttr);
+    returnedAttr;
 }
 
 module.exports = DOMNodeCollection;
