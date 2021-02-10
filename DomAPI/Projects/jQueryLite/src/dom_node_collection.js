@@ -56,9 +56,7 @@ DOMNodeCollection.prototype.append = function append(ele) {
 }
 
 DOMNodeCollection.prototype.attr = function attr(ele) {
-    let returnedAttr = this.collection[0].attributes.getNamedItem(ele).value;
-    console.log(returnedAttr);
-    returnedAttr;
+    return this.collection[0].attributes.getNamedItem(ele).value
 }
 
 module.exports = DOMNodeCollection;
