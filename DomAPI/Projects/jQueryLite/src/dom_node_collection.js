@@ -66,6 +66,17 @@ DOMNodeCollection.prototype.attr = function attr(ele, set) {
 
 DOMNodeCollection.prototype.addClass = function addClass(el) {
 
+    this.collection.forEach((ele) => {
+        ele.classList.add(el);
+    })
+}
+
+DOMNodeCollection.prototype.removeClass = function removeClass(el) {
+
+    this.collection.forEach((ele) => {
+        ele.classList.remove(el);
+    })
+
 }
 
 module.exports = DOMNodeCollection;
