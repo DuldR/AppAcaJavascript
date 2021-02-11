@@ -80,6 +80,11 @@ DOMNodeCollection.prototype.removeClass = function removeClass(el) {
 
 }
 
+// Add this later
+DOMNodeCollection.prototype.wrapString = function wrapString(str) {
+    
+}
+
 DOMNodeCollection.prototype.children = function children(selector) {
     let returnArr = [];
 
@@ -105,6 +110,68 @@ DOMNodeCollection.prototype.children = function children(selector) {
             }
         }
 
+    })
+
+    return new DOMNodeCollection(returnArr);
+}
+
+
+DOMNodeCollection.prototype.parent = function parent(selector) {
+    let returnArr = [];
+
+    // Use an if to modify the selector lol.
+    // If its a class or id method
+    // We can refactor this to another method
+    if (selector !== undefined) {
+        if (selector[0] === '.' || selector[0] === '#') {
+            selector = selector.slice(1);
+        }
+    }
+
+    this.collection.forEach((el) => {
+
+        if (selector !== undefined) {
+            if (el.parentElement.classList.contains(selector)) {
+                // Jquery doesnt return duplicates
+                if (returnArr.includes(el.parentElement) !== true) {
+                    returnArr.push(el.parentElement);
+                }
+            }
+        } else {
+            if (returnArr.includes(el.parentElement) !== true) {
+                    returnArr.push(el.parentElement);
+            }
+        }
+
+    })
+
+    return new DOMNodeCollection(returnArr);
+
+}
+
+
+DOMNodeCollection.prototype.find = function find(selector) {
+
+    let returnArr = []
+
+    // if (selector !== undefined) {
+    //     if (selector[0] === '.' || selector[0] === '#') {
+    //         selector = selector.slice(1);
+    //     }
+    // }
+
+    console.log(selector);
+
+    console.log(this.collection[0].querySelectorAll(selector));
+    this.collection.forEach((ele) => {
+
+        let nodeList = ele.querySelectorAll(selector);
+
+        nodeList.forEach((node) => {
+
+            returnArr.push(node);
+
+        })
     })
 
     return new DOMNodeCollection(returnArr);
