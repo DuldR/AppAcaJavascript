@@ -91,15 +91,20 @@ DOMNodeCollection.prototype.children = function children(selector) {
         }
     }
 
-    console.log(selector);
     this.collection.forEach((el) => {
 
-
-        for (i=0; i < el.children.length; i++) {
-            if (el.children[i].classList.contains(selector)) {
+        if (selector !== undefined) {
+            for (i=0; i < el.children.length; i++) {
+                if (el.children[i].classList.contains(selector)) {
+                    returnArr.push(el.children[i]);
+                }
+            }
+        } else {
+            for (i=0; i < el.children.length; i++) {
                 returnArr.push(el.children[i]);
             }
         }
+
     })
 
     return new DOMNodeCollection(returnArr);
