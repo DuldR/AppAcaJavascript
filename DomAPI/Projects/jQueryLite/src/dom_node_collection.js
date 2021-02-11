@@ -154,15 +154,8 @@ DOMNodeCollection.prototype.find = function find(selector) {
 
     let returnArr = []
 
-    // if (selector !== undefined) {
-    //     if (selector[0] === '.' || selector[0] === '#') {
-    //         selector = selector.slice(1);
-    //     }
-    // }
+    // Dont need the string modification on this as it uses query selector
 
-    console.log(selector);
-
-    console.log(this.collection[0].querySelectorAll(selector));
     this.collection.forEach((ele) => {
 
         let nodeList = ele.querySelectorAll(selector);
@@ -175,6 +168,15 @@ DOMNodeCollection.prototype.find = function find(selector) {
     })
 
     return new DOMNodeCollection(returnArr);
+}
+
+DOMNodeCollection.prototype.remove = function remove(selector) {
+
+    this.collection.forEach((node) => {
+        // let candidate = document.querySelector(node);
+        // JUST THAT EASY LOl
+        node.remove();
+    })
 }
 
 module.exports = DOMNodeCollection;
