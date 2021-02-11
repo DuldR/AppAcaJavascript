@@ -83,21 +83,22 @@ DOMNodeCollection.prototype.removeClass = function removeClass(el) {
 DOMNodeCollection.prototype.children = function children(selector) {
     let returnArr = [];
 
-    // Fucked this one up. Didnt call children
-    // this.collection.forEach((el) => {
-    //     for (i = 0; i < el.length; i++) {
-    //         console.log(el.item(i));
-    //         // returnArr.push(el.item(i));
-    //     }
+    // Use an if to modify the selector lol.
+    // If its a class or id method
+    if (selector !== undefined) {
+        if (selector[0] === '.' || selector[0] === '#') {
+            selector = selector.slice(1);
+        }
+    }
 
-    // })
-
+    console.log(selector);
     this.collection.forEach((el) => {
 
 
         for (i=0; i < el.children.length; i++) {
-            console.log(el.children.item(i));
-            returnArr.push(el.children.item(i));
+            if (el.children[i].classList.contains(selector)) {
+                returnArr.push(el.children[i]);
+            }
         }
     })
 
