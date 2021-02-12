@@ -179,4 +179,18 @@ DOMNodeCollection.prototype.remove = function remove(selector) {
     })
 }
 
+DOMNodeCollection.prototype.on = function on(event, func) { 
+
+    this.collection.forEach((node) => {
+        node.addEventListener(event, func);
+    })
+
+}
+
+DOMNodeCollection.prototype.off = function on(event, func) { 
+    this.collection.forEach((node) => {
+        node.removeEventListener(event, func);
+    })
+}
+
 module.exports = DOMNodeCollection;
