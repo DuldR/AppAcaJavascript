@@ -36,6 +36,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return Object.assign(target, arg1, arg2);
     }
 
+    window.$l.ajax = function (options = {}) {
+
+        let defaults = {
+            method: 'GET',
+            URL: window.location.href,
+            success: function succ() {
+                console.log("Success!");
+            },
+            error: function err() {
+                console.log('Error!');
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+
+        console.log(this.extend(defaults, options));
+
+    }
+
     // This servus up a HTMLDocument error.
     // window.$l.prototype.take = () => {
     //     alert("balls");
