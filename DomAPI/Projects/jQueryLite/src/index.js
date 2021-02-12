@@ -5,20 +5,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     window.$l = (e) => {
+
+        let funcArr = []
         let returnArr = []
-        let nodeList = document.querySelectorAll(e);
-        // let testNode = document.querySelector("div");
 
-        nodeList.forEach((el) => {
-            returnArr.push(el);
-        })
+        function cycleFun() {
+            funcArr.forEach((func) => {
+                func();
+            })
+        }
 
-        // These return true and print.
-        // console.log(testNode instanceof HTMLElement);
-        // console.log(testNode.innerText);
+        if (e instanceof Function) {
+            funcArr.push(e);
+            if (document.readyState === 'complete') {
+                cycleFun();
+            }
+        } else {
+            let nodeList = document.querySelectorAll(e);
 
-        // This return an element
+            nodeList.forEach((el) => {
+                returnArr.push(el);
+            })
 
-        return new nodeCollection(returnArr);
+            return new nodeCollection(returnArr);
+        }
+    }
+
+    window.$l.extend = function () {
+        alert("l");
     }
 })
