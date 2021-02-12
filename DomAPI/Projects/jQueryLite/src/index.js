@@ -31,7 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    window.$l.extend = function () {
-        alert("l");
+    // This works
+    window.$l.extend = function (target, arg1, arg2) {
+        return Object.assign(target, arg1, arg2);
     }
+
+    // This servus up a HTMLDocument error.
+    // window.$l.prototype.take = () => {
+    //     alert("balls");
+    // }
 })
