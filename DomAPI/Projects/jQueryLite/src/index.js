@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let defaults = {
             method: 'GET',
             URL: window.location.href,
-            success: function succ() {
-                console.log("Success!");
+            success: function succ(obj) {
+                console.log(JSON.parse(obj));
             },
             error: function err() {
                 console.log('Error!');
@@ -61,8 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
         
         xhr.onload = function () {
             console.log(xhr.status);
-            console.log(xhr.responseType);
-            console.log(xhr.response);
+            if (xhr.status !== 200) {
+                options.error();
+            } else {
+                options.success(xhr.response);
+            }
         }
         xhr.send();
     }
