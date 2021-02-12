@@ -50,8 +50,21 @@ document.addEventListener("DOMContentLoaded", () => {
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         }
 
-        console.log(this.extend(defaults, options));
+        options = this.extend(defaults, options)
+    
+        // console.log(options.method);
+        // console.log(options.URL);
 
+        // THIS SHIT WORKS.
+        const xhr = new XMLHttpRequest();
+        xhr.open(options.method, options.URL);
+        
+        xhr.onload = function () {
+            console.log(xhr.status);
+            console.log(xhr.responseType);
+            console.log(xhr.response);
+        }
+        xhr.send();
     }
 
     // This servus up a HTMLDocument error.
