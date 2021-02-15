@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("document.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
+eval("document.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n    let innerText = \"\";\n    let toLowerCase = \"\";\n    let location = \"\";\n\n\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n            innerText = node.innerText;\n            toLowerCase = innerText.toLowerCase;\n            location = window.location.href;\n\n\n            console.log(innerText);\n            console.log(toLowerCase);\n            console.log(location);\n        })\n    })\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
 
 /***/ })
 
