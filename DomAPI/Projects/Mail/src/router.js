@@ -6,15 +6,17 @@ function router(node) {
 
 router.prototype.start = function start() {
 
-    document.addEventListener('hashchange', this.render);
+    window.addEventListener('hashchange', function() {
+        alert("ALERT HASH CHANGE");
+    });
 
 }
 
-router.prototype.activeRoute = function start() {
+router.prototype.activeRoute = function activeRoute() {
     
 }
 
-router.prototype.render = function start() {
+router.prototype.render = function render() {
     alert('ALERRT HASH CHANGE');
 }
 

@@ -1,3 +1,4 @@
+const router = require('./router.js');
 const Router = require('./router.js');
 
 
@@ -6,21 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Webpack work");
 
 
-
+    let inputContent = document.querySelector('.content');
     let sidebarNodes = document.querySelectorAll('.sidebar-nav li');
 
     sidebarNodes.forEach((node) => {
         node.addEventListener('click', function() {
 
             // This was setting it to the function :)
-            window.location.hash = node.innerText.toLowerCase;
+            window.location.hash = node.innerText.toLowerCase();
 
         })
     })
 
-    let newRouter = new Router(sidebarNodes[0]);
-
-    console.log(newRouter.node);
+    let route = new Router(inputContent);
+    route.start();
 
 
 })
