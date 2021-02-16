@@ -25,7 +25,7 @@ eval("const router = __webpack_require__(/*! ./router.js */ \"./src/router.js\")
   \***********************/
 /***/ ((module) => {
 
-eval("function router(node) {\n\n    this.node = node;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n    let returnRoute = window.location.hash\n\n    return returnRoute.slice(1);\n}\n\nrouter.prototype.render = function render() {\n    console.log(\"Render called\");\n    console.log(this.node);\n    // this.node.innerHTML = \"\"\n    \n  \n    // let inputP = document.createElement('p');\n    // inputP.innerHTML = this.activeRoute();\n\n    // this.node.appendChild(inputP);\n\n\n\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
+eval("function router(node) {\n\n    this.node = node;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n    let returnRoute = window.location.hash\n\n    return returnRoute.slice(1);\n}\n\nrouter.prototype.render = function render() {\n\n    this.node.innerHTML = \"\"\n    \n  \n    let inputP = document.createElement('p');\n    inputP.innerHTML = this.activeRoute();\n\n    this.node.appendChild(inputP);\n\n\n\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
 
 /***/ })
 

@@ -19,15 +19,14 @@ router.prototype.activeRoute = function activeRoute() {
 }
 
 router.prototype.render = function render() {
-    console.log("Render called");
-    console.log(this.node);
-    // this.node.innerHTML = ""
+
+    this.node.innerHTML = ""
     
   
-    // let inputP = document.createElement('p');
-    // inputP.innerHTML = this.activeRoute();
+    let inputP = document.createElement('p');
+    inputP.innerHTML = this.activeRoute();
 
-    // this.node.appendChild(inputP);
+    this.node.appendChild(inputP);
 
 
 
