@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let inputContent = document.querySelector('.content');
     let sidebarNodes = document.querySelectorAll('.sidebar-nav li');
 
+
     sidebarNodes.forEach((node) => {
         node.addEventListener('click', function() {
 
