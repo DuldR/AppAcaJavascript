@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebarNodes.forEach((node) => {
         node.addEventListener('click', function() {
 
+            // This was setting it to the function :)
             window.location.hash = node.innerText.toLowerCase;
 
         })
