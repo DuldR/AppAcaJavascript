@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Webpack work");
 
+    let routes = {
+        inbox: Inbox,
+    }
 
     let inputContent = document.querySelector('.content');
     let sidebarNodes = document.querySelectorAll('.sidebar-nav li');
@@ -20,10 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
 
-    let route = new Router(inputContent);
+    let route = new Router(inputContent, routes);
     route.start();
 
-    Inbox.render();
 
 
 })

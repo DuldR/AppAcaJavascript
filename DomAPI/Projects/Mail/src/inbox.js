@@ -2,7 +2,11 @@ const Inbox = {
 
 
     render: () => {
-        alert("Smoke Weed");
+        let inputUL = document.createElement('ul');
+        inputUL.className = 'messages';
+        inputUL.innerHTML = 'An Inbox Message';
+
+        return inputUL;
     }
 }
 

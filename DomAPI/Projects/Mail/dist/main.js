@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((module) => {
 
-eval("const Inbox = {\n\n\n    render: () => {\n        alert(\"Smoke Weed\");\n    }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack://Mail/./src/inbox.js?");
+eval("const Inbox = {\n\n\n    render: () => {\n        let inputUL = document.createElement('ul');\n        inputUL.className = 'messages';\n        inputUL.innerHTML = 'An Inbox Message';\n\n        return inputUL;\n    }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack://Mail/./src/inbox.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const Inbox = {\n\n\n    render: () => {\n        alert(\"Smoke Weed\");\n
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\nconst Router = __webpack_require__(/*! ./router.js */ \"./src/router.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n\n    let inputContent = document.querySelector('.content');\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n\n            // This was setting it to the function :)\n            window.location.hash = node.innerText.toLowerCase();\n\n        })\n    })\n\n    let route = new Router(inputContent);\n    route.start();\n\n    Inbox.render();\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
+eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\nconst Router = __webpack_require__(/*! ./router.js */ \"./src/router.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n    let routes = {\n        inbox: Inbox,\n    }\n\n    let inputContent = document.querySelector('.content');\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n\n            // This was setting it to the function :)\n            window.location.hash = node.innerText.toLowerCase();\n\n        })\n    })\n\n    let route = new Router(inputContent, routes);\n    route.start();\n\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\n
   \***********************/
 /***/ ((module) => {
 
-eval("function router(node) {\n\n    this.node = node;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n    let returnRoute = window.location.hash\n\n    return returnRoute.slice(1);\n}\n\nrouter.prototype.render = function render() {\n\n    this.node.innerHTML = \"\"\n    \n  \n    let inputP = document.createElement('p');\n    inputP.innerHTML = this.activeRoute();\n\n    this.node.appendChild(inputP);\n\n\n\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
+eval("function router(node, routes) {\n\n    this.node = node;\n    this.routes = routes;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n\n    return this.routes[window.location.hash.slice(1)].render();\n}\n\nrouter.prototype.render = function render() {\n\n    this.node.innerHTML = \"\"\n\n    let component = this.activeRoute();\n  \n    let inputP = document.createElement('p');\n    inputP.innerHTML = this.activeRoute();\n\n    this.node.appendChild(inputP);\n\n\n\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
 
 /***/ })
 
