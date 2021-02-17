@@ -1,4 +1,4 @@
-const router = require('./router.js');
+const Inbox = require('./inbox.js');
 const Router = require('./router.js');
 
 
@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let route = new Router(inputContent);
     route.start();
+
+    Inbox.render();
 
 
 })
