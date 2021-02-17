@@ -15,19 +15,22 @@ router.prototype.start = function start() {
 
 router.prototype.activeRoute = function activeRoute() {
 
-    return this.routes[window.location.hash.slice(1)].render();
+    return this.routes[window.location.hash.slice(1)];
 }
 
 router.prototype.render = function render() {
 
     this.node.innerHTML = ""
-
     let component = this.activeRoute();
   
-    let inputP = document.createElement('p');
-    inputP.innerHTML = this.activeRoute();
 
-    this.node.appendChild(inputP);
+    if (component === undefined) {
+        return
+    } else {
+        this.node.appendChild(component.render());
+    }
+
+
 
 
 
