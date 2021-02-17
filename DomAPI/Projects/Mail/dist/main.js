@@ -13,9 +13,9 @@
 /*!**********************!*\
   !*** ./src/inbox.js ***!
   \**********************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Inbox = {\n\n\n    render: () => {\n        let inputUL = document.createElement('ul');\n        inputUL.className = 'messages';\n        inputUL.innerHTML = 'An Inbox Message';\n\n        return inputUL;\n    }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack://Mail/./src/inbox.js?");
+eval("const MessageStore = __webpack_require__(/*! ./message_store.js */ \"./src/message_store.js\");\n\nconst Inbox = {\n\n\n    render: function render() {\n        console.log(this);\n        let inboxMessages = MessageStore.getInboxMessages();\n        let inputUL = document.createElement('ul');\n        inputUL.className = 'messages';\n\n        inboxMessages.forEach((message) => {\n            console.log(this);\n            let inputMessage = this.renderMessage(message);\n\n\n            inputUL.appendChild(inputMessage);\n        });\n        // let inputUL = document.createElement('ul');\n        // inputUL.className = 'messages';\n        // inputUL.innerHTML = 'An Inbox Message';\n\n        return inputUL;\n    },\n\n    renderMessage: function renderMessage(message) {\n\n        let inputLi = document.createElement('li');\n        inputLi.className = 'message';\n        inputLi.innerHTML = `<span class='from'>${message.from}</span><span class='subject'>${message.subject}</span>\n        <span class='body'>${message.subject}</span>`\n\n        return inputLi;\n\n    \n\n    }\n}\n\nmodule.exports = Inbox;\n\n//# sourceURL=webpack://Mail/./src/inbox.js?");
 
 /***/ }),
 
@@ -26,6 +26,16 @@ eval("const Inbox = {\n\n\n    render: () => {\n        let inputUL = document.c
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\nconst Router = __webpack_require__(/*! ./router.js */ \"./src/router.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n    let routes = {\n        inbox: Inbox,\n    }\n\n    let inputContent = document.querySelector('.content');\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n\n            // This was setting it to the function :)\n            window.location.hash = node.innerText.toLowerCase();\n\n        })\n    })\n\n    let route = new Router(inputContent, routes);\n    route.start();\n\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/message_store.js":
+/*!******************************!*\
+  !*** ./src/message_store.js ***!
+  \******************************/
+/***/ ((module) => {
+
+eval("const Messages = {\n    sent: [\n        {\n            to: \"Coolguy420@69.com\",\n            subject: \"That thing I sent you\",\n            body: \"Did you egt it?\"\n        },\n\n        {\n            to: \"HarvyBirdman@attorny@law.com\",\n            subject: \"A fatty grunt?\",\n            body: \"It IS\"\n        }\n    ],\n\n    inbox: [\n        {\n            from: \"ob\",\n            subject: \"Nigerian Prince - Scam?\",\n            body: \"May be legit\"\n        },\n\n        {\n            from: \"covid\",\n            subject: \"GME\",\n            body: \"To the moon\"\n        }\n    ]\n}\n\nconst MessageStore = {\n\n    getInboxMessages: function getInboxMessages() {\n        return Messages.inbox;\n    },\n\n    getSentMessages: function getSentMessages() {\n        return Messages.sent;\n    }\n}\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack://Mail/./src/message_store.js?");
 
 /***/ }),
 
