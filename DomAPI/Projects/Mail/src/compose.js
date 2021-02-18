@@ -6,12 +6,18 @@ const Compose = {
 
         let divContainer = document.querySelector('div.content');
         divContainer.addEventListener('change', function(event) {
-            // alert(event.currentTarget);
-            console.log(event.target.name);
-            console.log(event.target.value);
 
             MessageStore.updateDraftField(event.target.name, event.target.value);
-            console.log(MessageStore.getMessageDraft());
+
+        })
+
+        divContainer.addEventListener('submit', function(event) {
+
+            event.preventDefault();
+            MessageStore.sendDraft();
+
+            window.location.hash = "#inbox";
+
         })
 
         
