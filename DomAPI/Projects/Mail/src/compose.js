@@ -4,6 +4,18 @@ const Compose = {
 
     render: function render() {
 
+        let divContainer = document.querySelector('div.content');
+        divContainer.addEventListener('change', function(event) {
+            // alert(event.currentTarget);
+            console.log(event.target.name);
+            console.log(event.target.value);
+
+            MessageStore.updateDraftField(event.target.name, event.target.value);
+            console.log(MessageStore.getMessageDraft());
+        })
+
+        
+        // Adds email html
         let inputDiv = document.createElement('div');
         inputDiv.className = 'new-message';
         inputDiv.innerHTML = this.renderForm();
