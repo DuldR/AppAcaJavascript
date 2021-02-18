@@ -29,11 +29,6 @@ router.prototype.render = function render() {
     } else {
         this.node.appendChild(component.render());
     }
-
-
-
-
-
 }
 
 

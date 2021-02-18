@@ -28,6 +28,15 @@ const Messages = {
     ]
 }
 
+const Message = function message() {
+    this.from = ""
+    this.to = ""
+    this.subject = ""
+    this.body = ""
+}
+
+let messageDraft = new Message();
+
 const MessageStore = {
 
     getInboxMessages: function getInboxMessages() {
@@ -36,6 +45,16 @@ const MessageStore = {
 
     getSentMessages: function getSentMessages() {
         return Messages.sent;
+    },
+
+    updateDraftField: function updateDraftField(field, value) {
+        messageDraft[field] = value;
+
+    },
+
+    sendDraft: function sendDraft() {
+        Messages.sent.push(messageDraft);
+        messageDraft = new Message();
     }
 }
 
