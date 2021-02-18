@@ -55,6 +55,10 @@ const MessageStore = {
     sendDraft: function sendDraft() {
         Messages.sent.push(messageDraft);
         messageDraft = new Message();
+    },
+
+    getMessageDraft: function getMessageDraft() {
+        return messageDraft;
     }
 }
 

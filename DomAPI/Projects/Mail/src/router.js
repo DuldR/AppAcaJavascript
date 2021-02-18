@@ -27,6 +27,8 @@ router.prototype.render = function render() {
     if (component === undefined) {
         return
     } else {
+        console.log(component);
+        console.log(component.render())
         this.node.appendChild(component.render());
     }
 }

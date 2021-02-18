@@ -9,6 +9,16 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/compose.js":
+/*!************************!*\
+  !*** ./src/compose.js ***!
+  \************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const MessageStore = __webpack_require__(/*! ./message_store.js */ \"./src/message_store.js\");\n\nconst Compose = {\n\n    render: function render() {\n\n        let inputDiv = document.createElement('div');\n        inputDiv.className = 'new-message';\n        inputDiv.innerHTML = this.renderForm();\n\n        return inputDiv;\n\n    },\n\n    renderForm: function renderForm() {\n\n        let currentDraft = MessageStore.getMessageDraft();\n        let inputHTML = `<p class='new-message-header'>New Message</p>\n\n\n        <form class='compose-form'>\n            <input placeholder='Recipient' name='to' type='text' value=${currentDraft.to}>\n            <input placeholder='Subject' name='subject' type='text' value=${currentDraft.subject}>\n            <textarea name='body' rows='20'>${currentDraft.body}</textarea>\n\n            <button type='submit' class='btn btn-primary submit-message'>Send</button>\n        </form>`\n\n        return inputHTML\n\n    }\n\n}\n\nmodule.exports = Compose;\n\n//# sourceURL=webpack://Mail/./src/compose.js?");
+
+/***/ }),
+
 /***/ "./src/inbox.js":
 /*!**********************!*\
   !*** ./src/inbox.js ***!
@@ -25,7 +35,7 @@ eval("const MessageStore = __webpack_require__(/*! ./message_store.js */ \"./src
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\nconst Sent = __webpack_require__(/*! ./sent.js */ \"./src/sent.js\");\nconst Router = __webpack_require__(/*! ./router.js */ \"./src/router.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n    let routes = {\n        inbox: Inbox,\n        sent: Sent,\n    }\n\n    let inputContent = document.querySelector('.content');\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n\n            // This was setting it to the function :)\n            window.location.hash = node.innerText.toLowerCase();\n\n        })\n    })\n\n    let route = new Router(inputContent, routes);\n    route.start();\n\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
+eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\nconst Compose = __webpack_require__(/*! ./compose.js */ \"./src/compose.js\");\nconst Sent = __webpack_require__(/*! ./sent.js */ \"./src/sent.js\");\nconst Router = __webpack_require__(/*! ./router.js */ \"./src/router.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n    console.log(\"Webpack work\");\n\n    let routes = {\n        inbox: Inbox,\n        sent: Sent,\n        compose: Compose,\n    }\n\n    let inputContent = document.querySelector('.content');\n    let sidebarNodes = document.querySelectorAll('.sidebar-nav li');\n\n\n    sidebarNodes.forEach((node) => {\n        node.addEventListener('click', function() {\n\n            // This was setting it to the function :)\n            window.location.hash = node.innerText.toLowerCase();\n\n        })\n    })\n\n    let route = new Router(inputContent, routes);\n    route.start();\n\n\n\n})\n\n//# sourceURL=webpack://Mail/./src/index.js?");
 
 /***/ }),
 
@@ -35,7 +45,7 @@ eval("const Inbox = __webpack_require__(/*! ./inbox.js */ \"./src/inbox.js\");\n
   \******************************/
 /***/ ((module) => {
 
-eval("const Messages = {\n    sent: [\n        {\n            to: \"Coolguy420@69.com\",\n            subject: \"That thing I sent you\",\n            body: \"Did you egt it?\"\n        },\n\n        {\n            to: \"HarvyBirdman@attorny@law.com\",\n            subject: \"A fatty grunt?\",\n            body: \"It IS\"\n        }\n    ],\n\n    inbox: [\n        {\n            from: \"ob\",\n            subject: \"Nigerian Prince - Scam?\",\n            body: \"May be legit\"\n        },\n\n        {\n            from: \"covid\",\n            subject: \"GME\",\n            body: \"To the moon\"\n        }\n    ]\n}\n\nconst Message = function message() {\n    this.from = \"\"\n    this.to = \"\"\n    this.subject = \"\"\n    this.body = \"\"\n}\n\nlet messageDraft = new Message();\n\nconst MessageStore = {\n\n    getInboxMessages: function getInboxMessages() {\n        return Messages.inbox;\n    },\n\n    getSentMessages: function getSentMessages() {\n        return Messages.sent;\n    },\n\n    updateDraftField: function updateDraftField(field, value) {\n        messageDraft[field] = value;\n\n    },\n\n    sendDraft: function sendDraft() {\n        Messages.sent.push(messageDraft);\n        messageDraft = new Message();\n    }\n}\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack://Mail/./src/message_store.js?");
+eval("const Messages = {\n    sent: [\n        {\n            to: \"Coolguy420@69.com\",\n            subject: \"That thing I sent you\",\n            body: \"Did you egt it?\"\n        },\n\n        {\n            to: \"HarvyBirdman@attorny@law.com\",\n            subject: \"A fatty grunt?\",\n            body: \"It IS\"\n        }\n    ],\n\n    inbox: [\n        {\n            from: \"ob\",\n            subject: \"Nigerian Prince - Scam?\",\n            body: \"May be legit\"\n        },\n\n        {\n            from: \"covid\",\n            subject: \"GME\",\n            body: \"To the moon\"\n        }\n    ]\n}\n\nconst Message = function message() {\n    this.from = \"\"\n    this.to = \"\"\n    this.subject = \"\"\n    this.body = \"\"\n}\n\nlet messageDraft = new Message();\n\nconst MessageStore = {\n\n    getInboxMessages: function getInboxMessages() {\n        return Messages.inbox;\n    },\n\n    getSentMessages: function getSentMessages() {\n        return Messages.sent;\n    },\n\n    updateDraftField: function updateDraftField(field, value) {\n        messageDraft[field] = value;\n\n    },\n\n    sendDraft: function sendDraft() {\n        Messages.sent.push(messageDraft);\n        messageDraft = new Message();\n    },\n\n    getMessageDraft: function getMessageDraft() {\n        return messageDraft;\n    }\n}\n\nmodule.exports = MessageStore;\n\n//# sourceURL=webpack://Mail/./src/message_store.js?");
 
 /***/ }),
 
@@ -45,7 +55,7 @@ eval("const Messages = {\n    sent: [\n        {\n            to: \"Coolguy420@6
   \***********************/
 /***/ ((module) => {
 
-eval("function router(node, routes) {\n\n    this.node = node;\n    this.routes = routes;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n\n    return this.routes[window.location.hash.slice(1)];\n}\n\nrouter.prototype.render = function render() {\n\n    this.node.innerHTML = \"\"\n    let component = this.activeRoute();\n  \n\n    if (component === undefined) {\n        return\n    } else {\n        this.node.appendChild(component.render());\n    }\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
+eval("function router(node, routes) {\n\n    this.node = node;\n    this.routes = routes;\n}\n\n\nrouter.prototype.start = function start() {\n\n    this.render();\n    // Lol. It wasnt passing this lol very cool I love javascritp lol :)\n    window.addEventListener('hashchange', this.render.bind(this));\n\n}\n\nrouter.prototype.activeRoute = function activeRoute() {\n\n    return this.routes[window.location.hash.slice(1)];\n}\n\nrouter.prototype.render = function render() {\n\n    this.node.innerHTML = \"\"\n    let component = this.activeRoute();\n  \n\n    if (component === undefined) {\n        return\n    } else {\n        console.log(component);\n        console.log(component.render())\n        this.node.appendChild(component.render());\n    }\n}\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://Mail/./src/router.js?");
 
 /***/ }),
 
